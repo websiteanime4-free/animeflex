@@ -1,1 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>AnimeFlex | Discover Anime</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #080808;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            height: 70px;
+            background: #0d0d0d;
+            border-bottom: 1px solid #222;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #e50914;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e50914;
+        }
+
+        .search {
+            background: #171717;
+            border: 1px solid #292929;
+            border-radius: 25px;
+
+            padding: 10px 15px;
+            width: 220px;
+
+            color: white;
+            outline: none;
+        }
+
+        .search:focus {
+            border-color: #e50914;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 520px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 70px 7%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #080808 0%,
+                    #080808 45%,
+                    rgba(8,8,8,0.75) 70%,
+                    rgba(8,8,8,0.2)
+                ),
+                url("https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-small {
+            color: #e50914;
+            font-weight: bold;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #e50914;
+        }
+
+        .hero p {
+            color: #bbb;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            border: none;
+            padding: 13px 22px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #e50914;
+            color: white;
+        }
+
+        .primary:hover {
+            background: #ff1a25;
+            transform: translateY(-2px);
+        }
+
+        .secondary {
+            background: #222;
+            color: white;
+            border: 1px solid #444;
+        }
+
+        .secondary:hover {
+            background: #333;
+        }
+
+        /* SECTION */
+
+        .section {
+            padding: 45px 6%;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title h2 {
+            font-size: 25px;
+        }
+
+        .section-title h2::before {
+            content: "";
+            display: inline-block;
+
+            width: 5px;
+            height: 25px;
+
+            background: #e50914;
+
+            margin-right: 10px;
+            vertical-align: middle;
+
+            border-radius: 5px;
+        }
+
+        .view {
+            color: #e50914;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* ANIME CARDS */
+
+        .anime-grid {
+            display: grid;
+
+            grid-template-columns: repeat(6, 1fr);
+
+            gap: 18px;
+        }
+
+        .card {
+            background: #111;
+            border: 1px solid #222;
+
+            border-radius: 9px;
+
+            overflow: hidden;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: #e50914;
+
+            box-shadow:
+                0 10px 30px rgba(229,9,20,0.15);
+        }
+
+        .poster {
+            width: 100%;
+            aspect-ratio: 2 / 3;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        .card-info {
+            padding: 12px;
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 14px;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            margin-bottom: 8px;
+        }
+
+        .card-meta {
+            color: #888;
+            font-size: 11px;
+
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .rating {
+            color: #ffb400;
+        }
+
+        /* GENRES */
+
+        .genres {
+            display: flex;
+            gap: 12px;
+
+            overflow-x: auto;
+
+            padding-bottom: 10px;
+        }
+
+        .genre {
+            background: #151515;
+
+            border: 1px solid #292929;
+
+            color: #bbb;
+
+            padding: 11px 18px;
+
+            border-radius: 25px;
+
+            white-space: nowrap;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .genre:hover {
+            background: #e50914;
+            border-color: #e50914;
+            color: white;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 40px;
+
+            padding: 40px 6%;
+
+            background: #0c0c0c;
+
+            border-top: 1px solid #222;
+
+            text-align: center;
+
+            color: #777;
+        }
+
+        footer strong {
+            color: #e50914;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 1000px) {
+
+            .anime-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            nav {
+                padding: 0 4%;
+            }
+
+            .search {
+                width: 150px;
+            }
+
+            .hero {
+                min-height: 470px;
+                padding: 50px 6%;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .anime-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .section {
+                padding: 35px 4%;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            Anime<span>Flex</span>
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="#">Home</a>
+            </li>
+
+            <li>
+                <a href="#trending">Trending</a>
+            </li>
+
+            <li>
+                <a href="#genres">Genres</a>
+            </li>
+
+            <li>
+                <a href="#">Watchlist</a>
+            </li>
+
+        </ul>
+
+        <input
+            class="search"
+            type="text"
+            placeholder="🔎 Search anime..."
+        >
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                WELCOME TO ANIMEFLEX
+            </div>
+
+            <h1>
+                Discover Your
+                <span>Next Anime.</span>
+            </h1>
+
+            <p>
+                Explore trending anime, discover new adventures
+                and find your next favorite series.
+            </p>
+
+            <div class="buttons">
+
+                <button
+                    class="btn primary"
+                    onclick="document.getElementById('trending').scrollIntoView({behavior:'smooth'})"
+                >
+                    Explore Anime
+                </button>
+
+                <button
+                    class="btn secondary"
+                    onclick="document.getElementById('genres').scrollIntoView({behavior:'smooth'})"
+                >
+                    Browse Genres
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TRENDING -->
+
+    <section
+        class="section"
+        id="trending"
+    >
+
+        <div class="section-title">
+
+            <h2>
+                Trending Anime
+            </h2>
+
+            <div class="view">
+                View All →
+            </div>
+
+        </div>
+
+
+        <div class="anime-grid">
+
+            <!-- CARD 1 -->
+
+            <div class="card">
+
+                <img
+                    class="poster"
+                    src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80"
+                    alt="Anime"
+                >
+
+                <div class="card-info">
+
+                    <div class="card-title">
+                        Demon Slayer
+                    </div>
+
+                    <div class="card-meta">
+
+                        <span>
+                            2019
+                        </span>
+
+                        <span class="rating">
+                            ⭐ 8.6
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 2 -->
+
+            <div class="card">
+
+                <img
+                    class="poster"
+                    src="https://images.unsplash.com/photo-1614583224978-f5c76f6c9f2b?auto=format&fit=crop&w=600&q=80"
+                    alt="Anime"
+                >
+
+                <div class="card-info">
+
+                    <div class="card-title">
+                        One Piece
+                    </div>
+
+                    <div class="card-meta">
+
+                        <span>
+                            1999
+                        </span>
+
+                        <span class="rating">
+                            ⭐ 9.0
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
+            <div class="card">
+
+                <img
+                    class="poster"
+                    src="https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&w=600&q=80"
+                    alt="Anime"
+                >
+
+                <div class="card-info">
+
+                    <div class="card-title">
+                        My Hero Academia
+                    </div>
+
+                    <div class="card-meta">
+
+                        <span>
+                            2016
+                        </span>
+
+                        <span class="rating">
+                            ⭐ 8.0
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 4 -->
+
+            <div class="card">
+
+                <img
+                    class="poster"
+                    src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80"
+                    alt="Anime"
+                >
+
+                <div class="card-info">
+
+                    <div class="card-title">
+                        Spy × Family
+                    </div>
+
+                    <div class="card-meta">
+
+                        <span>
+                            2022
+                        </span>
+
+                        <span class="rating">
+                            ⭐ 8.4
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 5 -->
+
+            <div class="card">
+
+                <img
+                    class="poster"
+                    src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80"
+                    alt="Anime"
+                >
+
+                <div class="card-info">
+
+                    <div class="card-title">
+                        Your Name
+                    </div>
+
+                    <div class="card-meta">
+
+                        <span>
+                            2016
+                        </span>
+
+                        <span class="rating">
+                            ⭐ 8.8
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 6 -->
+
+            <div class="card">
+
+                <img
+                    class="poster"
+                    src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=600&q=80"
+                    alt="Anime"
+                >
+
+                <div class="card-info">
+
+                    <div class="card-title">
+                        Haikyuu!!
+                    </div>
+
+                    <div class="card-meta">
+
+                        <span>
+                            2014
+                        </span>
+
+                        <span class="rating">
+                            ⭐ 8.7
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- GENRES -->
+
+    <section
+        class="section"
+        id="genres"
+    >
+
+        <div class="section-title">
+
+            <h2>
+                Browse Genres
+            </h2>
+
+        </div>
+
+        <div class="genres">
+
+            <div class="genre">
+                ⚔️ Action
+            </div>
+
+            <div class="genre">
+                🌎 Adventure
+            </div>
+
+            <div class="genre">
+                😂 Comedy
+            </div>
+
+            <div class="genre">
+                ✨ Fantasy
+            </div>
+
+            <div class="genre">
+                ❤️ Romance
+            </div>
+
+            <div class="genre">
+                🏆 Sports
+            </div>
+
+            <div class="genre">
+                🔍 Mystery
+            </div>
+
+            <div class="genre">
+                👻 Horror
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 <strong>AnimeFlex</strong>
+        </p>
+
+        <br>
+
+        <p>
+            Discover. Explore. Enjoy Anime.
+        </p>
+
+    </footer>
+
+
+</body>
+</html>
