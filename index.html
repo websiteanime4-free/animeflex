@@ -42,6 +42,7 @@ nav{
     font-size:26px;
     font-weight:800;
     white-space:nowrap;
+    cursor:pointer;
 }
 
 .logo span{
@@ -59,6 +60,7 @@ nav{
     text-decoration:none;
     font-size:14px;
     transition:.2s;
+    cursor:pointer;
 }
 
 .nav-links a:hover{
@@ -79,6 +81,7 @@ nav{
     outline:none;
     color:#fff;
     padding:0 16px 0 42px;
+    font-size:14px;
 }
 
 .search-box input:focus{
@@ -156,6 +159,7 @@ nav{
 .buttons{
     display:flex;
     gap:12px;
+    flex-wrap:wrap;
 }
 
 .btn{
@@ -188,6 +192,112 @@ nav{
     background:#333;
 }
 
+/* ================= SEARCH ENGINE SECTION ================= */
+
+.search-engine{
+    padding:50px 5%;
+    background:#0a0a0a;
+    border-bottom:1px solid #1a1a1a;
+}
+
+.search-engine-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.search-engine-header h2{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.search-engine-header p{
+    color:#888;
+    font-size:15px;
+}
+
+.search-bar-big{
+    max-width:700px;
+    margin:0 auto 30px;
+    position:relative;
+}
+
+.search-bar-big input{
+    width:100%;
+    height:55px;
+    background:#141414;
+    border:2px solid #2a2a2a;
+    border-radius:30px;
+    outline:none;
+    color:#fff;
+    padding:0 25px 0 55px;
+    font-size:16px;
+    transition:.2s;
+}
+
+.search-bar-big input:focus{
+    border-color:#e50914;
+    background:#181818;
+}
+
+.search-bar-big .search-icon{
+    left:20px;
+    top:16px;
+    font-size:18px;
+}
+
+.search-btn{
+    position:absolute;
+    right:6px;
+    top:6px;
+    height:43px;
+    padding:0 25px;
+    background:#e50914;
+    color:#fff;
+    border:none;
+    border-radius:22px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:14px;
+    transition:.2s;
+}
+
+.search-btn:hover{
+    background:#ff1b27;
+}
+
+.search-btn:disabled{
+    background:#555;
+    cursor:not-allowed;
+}
+
+/* ================= LOADING & ERROR ================= */
+
+.loading{
+    text-align:center;
+    padding:40px;
+    color:#888;
+}
+
+.spinner{
+    width:40px;
+    height:40px;
+    border:3px solid #333;
+    border-top-color:#e50914;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:0 auto 15px;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg);}
+}
+
+.error-msg{
+    text-align:center;
+    padding:40px;
+    color:#ff4444;
+}
+
 /* ================= SECTION ================= */
 
 .section{
@@ -199,6 +309,8 @@ nav{
     align-items:center;
     justify-content:space-between;
     margin-bottom:25px;
+    flex-wrap:wrap;
+    gap:10px;
 }
 
 .section-title{
@@ -610,6 +722,10 @@ footer strong{
         font-size:27px;
     }
 
+    .search-engine-header h2{
+        font-size:24px;
+    }
+
 }
 
 @media(max-width:380px){
@@ -632,23 +748,25 @@ footer strong{
 
 <nav>
 
-    <div class="logo">
+    <div class="logo" onclick="goHome()">
         Anime<span>Flex</span>
     </div>
 
     <ul class="nav-links" id="navLinks">
-        <li><a href="#home" onclick="showSection('home')">Home</a></li>
-        <li><a href="#trending" onclick="showSection('trending')">Trending</a></li>
-        <li><a href="#genres" onclick="showSection('genres')">Genres</a></li>
-        <li><a href="#watchlist" onclick="showSection('watchlist')">Watchlist</a></li>
+        <li><a onclick="goHome()">Home</a></li>
+        <li><a onclick="scrollToSection('trending')">Trending</a></li>
+        <li><a onclick="scrollToSection('explore')">Explore</a></li>
+        <li><a onclick="scrollToSection('browse')">Browse</a></li>
+        <li><a onclick="scrollToSection('genres')">Genres</a></li>
+        <li><a onclick="scrollToSection('watchlist')">Watchlist</a></li>
     </ul>
 
     <div class="search-box">
         <span class="search-icon">&#128269;</span>
         <input
-            id="search"
+            id="navSearch"
             type="search"
-            placeholder="Search anime..."
+            placeholder="Quick search..."
         >
     </div>
 
@@ -665,43 +783,20 @@ footer strong{
 
 <!-- ================= HERO ================= -->
 
-<section
-    class="hero"
-    id="home"
->
+<section class="hero" id="home">
 
     <div class="hero-content">
 
-        <div class="hero-small">
-            WELCOME TO ANIMEFLEX
-        </div>
+        <div class="hero-small">WELCOME TO ANIMEFLEX</div>
 
-        <h1>
-            Discover Your
-            <span>Next Anime.</span>
-        </h1>
+        <h1>Discover Your <span>Next Anime.</span></h1>
 
-        <p>
-            Discover trending anime, explore different
-            genres and find your next favorite series.
-        </p>
+        <p>Discover trending anime, explore different genres and find your next favorite series using our powerful anime search engine.</p>
 
         <div class="buttons">
-
-            <button
-                class="btn primary"
-                onclick="scrollToSection('trending')"
-            >
-                Explore Anime
-            </button>
-
-            <button
-                class="btn secondary"
-                onclick="scrollToSection('genres')"
-            >
-                Browse Genres
-            </button>
-
+            <button class="btn primary" onclick="scrollToSection('searchEngine')">Search Anime</button>
+            <button class="btn secondary" onclick="scrollToSection('explore')">Explore Anime</button>
+            <button class="btn secondary" onclick="scrollToSection('browse')">Browse Anime</button>
         </div>
 
     </div>
@@ -709,34 +804,56 @@ footer strong{
 </section>
 
 
-<!-- ================= TRENDING ================= -->
+<!-- ================= SEARCH ENGINE ================= -->
 
-<section
-    class="section"
-    id="trending"
->
+<section class="search-engine" id="searchEngine">
 
-    <div class="section-header">
-
-        <h2 class="section-title">
-            Trending Anime
-        </h2>
-
-        <button
-            class="view-all"
-            onclick="clearFilters()"
-        >
-            View All &rarr;
-        </button>
-
+    <div class="search-engine-header">
+        <h2>&#128269; Anime Search Engine</h2>
+        <p>Search from 20,000+ anime titles powered by MyAnimeList</p>
     </div>
 
-    <div
-        class="search-message"
-        id="searchMessage"
-    >
-        Results for:
-        <strong id="searchText"></strong>
+    <div class="search-bar-big">
+        <span class="search-icon">&#128269;</span>
+        <input
+            id="mainSearch"
+            type="search"
+            placeholder="Type anime name... e.g. Attack on Titan, Naruto, One Piece"
+            onkeydown="if(event.key==='Enter')performSearch()"
+        >
+        <button class="search-btn" id="searchBtn" onclick="performSearch()">Search</button>
+    </div>
+
+    <div id="searchResultsArea">
+        <div class="section-header">
+            <h2 class="section-title">Search Results</h2>
+        </div>
+        <div id="searchLoading" class="loading" style="display:none;">
+            <div class="spinner"></div>
+            <p>Searching anime database...</p>
+        </div>
+        <div id="searchError" class="error-msg" style="display:none;"></div>
+        <div class="anime-grid" id="searchGrid"></div>
+        <div class="no-results" id="searchNoResults" style="display:none;">
+            <h3>No anime found</h3>
+            <p>Try a different search term</p>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ================= TRENDING ================= -->
+
+<section class="section" id="trending">
+
+    <div class="section-header">
+        <h2 class="section-title">Trending Anime</h2>
+        <button class="view-all" onclick="clearFilters()">View All &rarr;</button>
+    </div>
+
+    <div class="search-message" id="searchMessage">
+        Results for: <strong id="searchText"></strong>
     </div>
 
     <div class="no-results" id="noResults">
@@ -744,24 +861,13 @@ footer strong{
         <p>Try a different search term</p>
     </div>
 
-    <div
-        class="anime-grid"
-        id="animeGrid"
-    >
+    <div class="anime-grid" id="animeGrid">
 
         <!-- 1 Demon Slayer -->
-        <div
-            class="anime-card"
-            data-title="Demon Slayer"
-            data-genre="Action Fantasy"
-            onclick="openAnime('Demon Slayer','2019','8.6','Action &bull; Fantasy','https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/0afee99416d9b7051a07d2b7d07b4f8bff2bba31','A young swordsman begins a dangerous journey after tragedy strikes his family.')"
-        >
+        <div class="anime-card" data-title="Demon Slayer" data-genre="Action Fantasy"
+            onclick="openAnimeStatic('Demon Slayer','2019','8.6','Action &bull; Fantasy','https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/0afee99416d9b7051a07d2b7d07b4f8bff2bba31','A young swordsman begins a dangerous journey after tragedy strikes his family.')">
             <div class="poster">
-                <img
-                    src="https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/0afee99416d9b7051a07d2b7d07b4f8bff2bba31"
-                    alt="Demon Slayer"
-                    loading="lazy"
-                >
+                <img src="https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/0afee99416d9b7051a07d2b7d07b4f8bff2bba31" alt="Demon Slayer" loading="lazy">
                 <span class="badge">TRENDING</span>
             </div>
             <div class="card-info">
@@ -774,18 +880,10 @@ footer strong{
         </div>
 
         <!-- 2 One Piece -->
-        <div
-            class="anime-card"
-            data-title="One Piece"
-            data-genre="Adventure Action"
-            onclick="openAnime('One Piece','1999','9.0','Adventure &bull; Action','https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/939ca69295a09937d2912d58f13927cbef941da0','A young pirate and his crew travel across a vast world in search of legendary treasure.')"
-        >
+        <div class="anime-card" data-title="One Piece" data-genre="Adventure Action"
+            onclick="openAnimeStatic('One Piece','1999','9.0','Adventure &bull; Action','https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/939ca69295a09937d2912d58f13927cbef941da0','A young pirate and his crew travel across a vast world in search of legendary treasure.')">
             <div class="poster">
-                <img
-                    src="https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/939ca69295a09937d2912d58f13927cbef941da0"
-                    alt="One Piece"
-                    loading="lazy"
-                >
+                <img src="https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/939ca69295a09937d2912d58f13927cbef941da0" alt="One Piece" loading="lazy">
                 <span class="badge">9.0</span>
             </div>
             <div class="card-info">
@@ -798,18 +896,10 @@ footer strong{
         </div>
 
         <!-- 3 My Hero Academia -->
-        <div
-            class="anime-card"
-            data-title="My Hero Academia"
-            data-genre="Action"
-            onclick="openAnime('My Hero Academia','2016','8.0','Action','https://static.wikia.nocookie.net/bokunoheroacademia/images/2/22/Izuku_Midoriya_s4_profile.png/revision/latest?cb=20200321011638','In a world where special abilities are common, a determined student works hard to become a professional hero.')"
-        >
+        <div class="anime-card" data-title="My Hero Academia" data-genre="Action"
+            onclick="openAnimeStatic('My Hero Academia','2016','8.0','Action','https://kimi-web-img.kimi.ai/img/i.ebayimg.com/3afb4f4d16506a72745ee562040361fa685d289f.jpg','In a world where special abilities are common, a determined student works hard to become a professional hero.')">
             <div class="poster">
-                <img
-                    src="https://static.wikia.nocookie.net/bokunoheroacademia/images/2/22/Izuku_Midoriya_s4_profile.png/revision/latest?cb=20200321011638"
-                    alt="My Hero Academia"
-                    loading="lazy"
-                >
+                <img src="https://kimi-web-img.kimi.ai/img/i.ebayimg.com/3afb4f4d16506a72745ee562040361fa685d289f.jpg" alt="My Hero Academia" loading="lazy">
             </div>
             <div class="card-info">
                 <div class="card-title">My Hero Academia</div>
@@ -821,18 +911,10 @@ footer strong{
         </div>
 
         <!-- 4 Spy Family -->
-        <div
-            class="anime-card"
-            data-title="Spy Family"
-            data-genre="Comedy Action"
-            onclick="openAnime('Spy x Family','2022','8.4','Comedy &bull; Action','https://kimi-web-img.kimi.ai/img/static0.cbrimages.com/f20aad70d283493fc0ca8713149cf4804c4e562c.jpg','A secret agent creates a pretend family for an important mission, but every member has secrets.')"
-        >
+        <div class="anime-card" data-title="Spy Family" data-genre="Comedy Action"
+            onclick="openAnimeStatic('Spy x Family','2022','8.4','Comedy &bull; Action','https://kimi-web-img.kimi.ai/img/static0.cbrimages.com/f20aad70d283493fc0ca8713149cf4804c4e562c.jpg','A secret agent creates a pretend family for an important mission, but every member has secrets.')">
             <div class="poster">
-                <img
-                    src="https://kimi-web-img.kimi.ai/img/static0.cbrimages.com/f20aad70d283493fc0ca8713149cf4804c4e562c.jpg"
-                    alt="Spy Family"
-                    loading="lazy"
-                >
+                <img src="https://kimi-web-img.kimi.ai/img/static0.cbrimages.com/f20aad70d283493fc0ca8713149cf4804c4e562c.jpg" alt="Spy Family" loading="lazy">
             </div>
             <div class="card-info">
                 <div class="card-title">Spy x Family</div>
@@ -844,18 +926,10 @@ footer strong{
         </div>
 
         <!-- 5 Your Name -->
-        <div
-            class="anime-card"
-            data-title="Your Name"
-            data-genre="Romance Fantasy"
-            onclick="openAnime('Your Name','2016','8.8','Romance &bull; Fantasy','https://kimi-web-img.kimi.ai/img/render.fineartamerica.com/4a7efaaa295612d00df769abbe7dce4c65875b06.jpg','Two teenagers discover an unusual connection that brings their lives together across distance and time.')"
-        >
+        <div class="anime-card" data-title="Your Name" data-genre="Romance Fantasy"
+            onclick="openAnimeStatic('Your Name','2016','8.8','Romance &bull; Fantasy','https://kimi-web-img.kimi.ai/img/render.fineartamerica.com/4a7efaaa295612d00df769abbe7dce4c65875b06.jpg','Two teenagers discover an unusual connection that brings their lives together across distance and time.')">
             <div class="poster">
-                <img
-                    src="https://kimi-web-img.kimi.ai/img/render.fineartamerica.com/4a7efaaa295612d00df769abbe7dce4c65875b06.jpg"
-                    alt="Your Name"
-                    loading="lazy"
-                >
+                <img src="https://kimi-web-img.kimi.ai/img/render.fineartamerica.com/4a7efaaa295612d00df769abbe7dce4c65875b06.jpg" alt="Your Name" loading="lazy">
             </div>
             <div class="card-info">
                 <div class="card-title">Your Name</div>
@@ -867,67 +941,9 @@ footer strong{
         </div>
 
         <!-- 6 Haikyuu -->
-        <div
-            class="anime-card"
-            data-title="Haikyuu"
-            data-genre="Sports Comedy"
-            onclick="openAnime('Haikyuu!!','2014','8.7','Sports &bull; Comedy','https://kimi-web-img.kimi.ai/img/m.media-amazon.com/aad02a978523861ae04d894d989567653ed4f048.jpg','A passionate young volleyball player joins his school team and works to reach the highest level.')"
-        >
+        <div class="anime-card" data-title="Haikyuu" data-genre="Sports Comedy"
+            onclick="openAnimeStatic('Haikyuu!!','2014','8.7','Sports &bull; Comedy','https://kimi-web-img.kimi.ai/img/m.media-amazon.com/aad02a978523861ae04d894d989567653ed4f048.jpg','A passionate young volleyball player joins his school team and works to reach the highest level.')">
             <div class="poster">
-                <img
-                    src="https://kimi-web-img.kimi.ai/img/m.media-amazon.com/aad02a978523861ae04d894d989567653ed4f048.jpg"
-                    alt="Haikyuu"
-                    loading="lazy"
-                >
+                <img src="https://kimi-web-img.kimi.ai/img/m.media-amazon.com/aad02a978523861ae04d894d989567653ed4f048.jpg" alt="Haikyuu" loading="lazy">
             </div>
-            <div class="card-info">
-                <div class="card-title">Haikyuu!!</div>
-                <div class="card-meta">
-                    <span>2014</span>
-                    <span class="rating">&#11088; 8.7</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 7 Attack on Titan -->
-        <div
-            class="anime-card"
-            data-title="Attack on Titan"
-            data-genre="Action Mystery"
-            onclick="openAnime('Attack on Titan','2013','9.1','Action &bull; Mystery','https://kimi-web-img.kimi.ai/img/m.media-amazon.com/f3b5df4abfdc4ad214586c9548944aef510ab480.jpg','Humanity fights for survival while mysterious enemies threaten everything they know.')"
-        >
-            <div class="poster">
-                <img
-                    src="https://kimi-web-img.kimi.ai/img/m.media-amazon.com/f3b5df4abfdc4ad214586c9548944aef510ab480.jpg"
-                    alt="Attack on Titan"
-                    loading="lazy"
-                >
-            </div>
-            <div class="card-info">
-                <div class="card-title">Attack on Titan</div>
-                <div class="card-meta">
-                    <span>2013</span>
-                    <span class="rating">&#11088; 9.1</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 8 Jujutsu Kaisen -->
-        <div
-            class="anime-card"
-            data-title="Jujutsu Kaisen"
-            data-genre="Action Fantasy"
-            onclick="openAnime('Jujutsu Kaisen','2020','8.7','Action &bull; Fantasy','https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/1c32498f5c0d3f41ae3f2a565d68620eb51a3f0f','A student enters the dangerous world of supernatural curses and learns to fight alongside powerful sorcerers.')"
-        >
-            <div class="poster">
-                <img
-                    src="https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/1c32498f5c0d3f41ae3f2a565d68620eb51a3f0f"
-                    alt="Jujutsu Kaisen"
-                    loading="lazy"
-                >
-            </div>
-            <div class="card-info">
-                <div class="card-title">Jujutsu Kaisen</div>
-                <div class="card-meta">
-                    <span>2020</span>
-                    <span class="rating">&#11088;
+            <di
