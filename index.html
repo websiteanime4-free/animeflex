@@ -270,34 +270,6 @@ nav{
     cursor:not-allowed;
 }
 
-/* ================= LOADING & ERROR ================= */
-
-.loading{
-    text-align:center;
-    padding:40px;
-    color:#888;
-}
-
-.spinner{
-    width:40px;
-    height:40px;
-    border:3px solid #333;
-    border-top-color:#e50914;
-    border-radius:50%;
-    animation:spin 1s linear infinite;
-    margin:0 auto 15px;
-}
-
-@keyframes spin{
-    to{transform:rotate(360deg);}
-}
-
-.error-msg{
-    text-align:center;
-    padding:40px;
-    color:#ff4444;
-}
-
 /* ================= SECTION ================= */
 
 .section{
@@ -804,7 +776,7 @@ footer strong{
 
     <div class="search-engine-header">
         <h2>&#128269; Anime Search Engine</h2>
-        <p>Search from 20,000+ anime titles powered by MyAnimeList</p>
+        <p>Search from 50+ popular anime titles instantly</p>
     </div>
 
     <div class="search-bar-big">
@@ -822,11 +794,6 @@ footer strong{
         <div class="section-header">
             <h2 class="section-title">Search Results</h2>
         </div>
-        <div id="searchLoading" class="loading" style="display:none;">
-            <div class="spinner"></div>
-            <p>Searching anime database...</p>
-        </div>
-        <div id="searchError" class="error-msg" style="display:none;"></div>
         <div class="anime-grid" id="searchGrid"></div>
         <div class="no-results" id="searchNoResults" style="display:none;">
             <h3>No anime found</h3>
@@ -941,4 +908,16 @@ footer strong{
                 <img src="https://kimi-web-img.kimi.ai/img/m.media-amazon.com/aad02a978523861ae04d894d989567653ed4f048.jpg" alt="Haikyuu" loading="lazy">
             </div>
             <div class="card-info">
-                <div c
+                <div class="card-title">Haikyuu!!</div>
+                <div class="card-meta">
+                    <span>2014</span>
+                    <span class="rating">&#11088; 8.7</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7 Attack on Titan -->
+        <div class="anime-card" data-title="Attack on Titan" data-genre="Action Mystery"
+            onclick="openAnimeStatic('Attack on Titan','2013','9.1','Action &bull; Mystery','https://kimi-web-img.kimi.ai/img/m.media-amazon.com/f3b5df4abfdc4ad214586c9548944aef510ab480.jpg','Humanity fights for survival while mysterious enemies threaten everything they know.')">
+            <div class="poster">
+                <img src="https://kim
