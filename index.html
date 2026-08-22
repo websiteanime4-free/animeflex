@@ -1,1031 +1,1023 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AnimeFlex | Discover Anime</title>
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #080808;
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
-            min-height: 100vh;
-        }
-
-        /* ================= NAVBAR ================= */
-
-        nav {
-            height: 70px;
-            background: #0d0d0d;
-            border-bottom: 1px solid #222;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 6%;
-
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 25px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        .logo span {
-            color: #e50914;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #e50914;
-        }
-
-        .search {
-            background: #171717;
-            border: 1px solid #292929;
-            border-radius: 25px;
-
-            padding: 10px 15px;
-            width: 220px;
-
-            color: white;
-            outline: none;
-
-            transition: 0.3s;
-        }
-
-        .search:focus {
-            border-color: #e50914;
-            box-shadow: 0 0 12px rgba(229, 9, 20, 0.2);
-        }
-
-        .search::placeholder {
-            color: #777;
-        }
-
-        /* ================= HERO ================= */
-
-        .hero {
-            min-height: 520px;
-
-            display: flex;
-            align-items: center;
-
-            padding: 70px 7%;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #080808 0%,
-                    #080808 45%,
-                    rgba(8, 8, 8, 0.75) 70%,
-                    rgba(8, 8, 8, 0.2)
-                ),
-                url("https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1600&q=80");
-
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .hero-small {
-            color: #e50914;
-            font-weight: bold;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-        }
-
-        .hero h1 {
-            font-size: 60px;
-            line-height: 1;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: #e50914;
-        }
-
-        .hero p {
-            color: #bbb;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 12px;
-        }
-
-        .btn {
-            border: none;
-            padding: 13px 22px;
-            border-radius: 7px;
-
-            cursor: pointer;
-
-            font-weight: bold;
-
-            transition: 0.3s;
-        }
-
-        .primary {
-            background: #e50914;
-            color: white;
-        }
-
-        .primary:hover {
-            background: #ff1a25;
-            transform: translateY(-2px);
-        }
-
-        .secondary {
-            background: #222;
-            color: white;
-            border: 1px solid #444;
-        }
-
-        .secondary:hover {
-            background: #333;
-        }
-
-        /* ================= SECTIONS ================= */
-
-        .section {
-            padding: 45px 6%;
-        }
-
-        .section-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .section-title h2 {
-            font-size: 25px;
-        }
-
-        .section-title h2::before {
-            content: "";
-
-            display: inline-block;
-
-            width: 5px;
-            height: 25px;
-
-            background: #e50914;
-
-            margin-right: 10px;
-
-            vertical-align: middle;
-
-            border-radius: 5px;
-        }
-
-        .view {
-            color: #e50914;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        /* ================= SEARCH STATUS ================= */
-
-        .search-status {
-            display: none;
-
-            color: #aaa;
-
-            margin-bottom: 20px;
-
-            font-size: 14px;
-        }
-
-        .search-status span {
-            color: #e50914;
-            font-weight: bold;
-        }
-
-        .no-results {
-            display: none;
-
-            text-align: center;
-
-            padding: 50px 20px;
-
-            color: #777;
-
-            font-size: 16px;
-        }
-
-        .no-results strong {
-            color: #e50914;
-        }
-
-        /* ================= ANIME GRID ================= */
-
-        .anime-grid {
-            display: grid;
-
-            grid-template-columns: repeat(6, 1fr);
-
-            gap: 18px;
-        }
-
-        .card {
-            background: #111;
-
-            border: 1px solid #222;
-
-            border-radius: 9px;
-
-            overflow: hidden;
-
-            cursor: pointer;
-
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-7px);
-
-            border-color: #e50914;
-
-            box-shadow:
-                0 10px 30px
-                rgba(229, 9, 20, 0.15);
-        }
-
-        .poster {
-            width: 100%;
-
-            aspect-ratio: 2 / 3;
-
-            object-fit: cover;
-
-            display: block;
-        }
-
-        .card-info {
-            padding: 12px;
-        }
-
-        .card-title {
-            font-weight: bold;
-
-            font-size: 14px;
-
-            white-space: nowrap;
-
-            overflow: hidden;
-
-            text-overflow: ellipsis;
-
-            margin-bottom: 8px;
-        }
-
-        .card-meta {
-            color: #888;
-
-            font-size: 11px;
-
-            display: flex;
-
-            justify-content: space-between;
-        }
-
-        .rating {
-            color: #ffb400;
-        }
-
-        /* ================= GENRES ================= */
-
-        .genres {
-            display: flex;
-
-            gap: 12px;
-
-            overflow-x: auto;
-
-            padding-bottom: 10px;
-        }
-
-        .genre {
-            background: #151515;
-
-            border: 1px solid #292929;
-
-            color: #bbb;
-
-            padding: 11px 18px;
-
-            border-radius: 25px;
-
-            white-space: nowrap;
-
-            cursor: pointer;
-
-            transition: 0.3s;
-        }
-
-        .genre:hover {
-            background: #e50914;
-
-            border-color: #e50914;
-
-            color: white;
-        }
-
-        /* ================= MODAL ================= */
-
-        .modal {
-            display: none;
-
-            position: fixed;
-
-            inset: 0;
-
-            z-index: 2000;
-
-            background: rgba(0, 0, 0, 0.82);
-
-            backdrop-filter: blur(6px);
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 20px;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-box {
-            width: 100%;
-
-            max-width: 850px;
-
-            max-height: 90vh;
-
-            overflow-y: auto;
-
-            background: #111;
-
-            border: 1px solid #333;
-
-            border-radius: 14px;
-
-            position: relative;
-
-            box-shadow:
-                0 20px 70px
-                rgba(0, 0, 0, 0.8);
-
-            animation: modalOpen 0.25s ease;
-        }
-
-        @keyframes modalOpen {
-
-            from {
-                opacity: 0;
-                transform: scale(0.94);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-        }
-
-        .modal-close {
-            position: absolute;
-
-            top: 15px;
-            right: 18px;
-
-            width: 38px;
-            height: 38px;
-
-            border-radius: 50%;
-
-            border: 1px solid #444;
-
-            background: rgba(0, 0, 0, 0.7);
-
-            color: white;
-
-            font-size: 22px;
-
-            cursor: pointer;
-
-            z-index: 5;
-
-            transition: 0.3s;
-        }
-
-        .modal-close:hover {
-            background: #e50914;
-            border-color: #e50914;
-        }
-
-        .modal-content {
-            display: grid;
-
-            grid-template-columns: 250px 1fr;
-
-            gap: 30px;
-
-            padding: 35px;
-        }
-
-        .modal-poster {
-            width: 100%;
-
-            aspect-ratio: 2 / 3;
-
-            object-fit: cover;
-
-            border-radius: 9px;
-        }
-
-        .modal-info {
-            padding-top: 10px;
-        }
-
-        .modal-info h2 {
-            font-size: 34px;
-
-            margin-bottom: 12px;
-        }
-
-        .modal-info h2 span {
-            color: #e50914;
-        }
-
-        .modal-description {
-            color: #aaa;
-
-            line-height: 1.7;
-
-            margin:
-                20px 0;
-        }
-
-        .details {
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 10px;
-
-            margin-bottom: 25px;
-        }
-
-        .detail {
-            background: #1b1b1b;
-
-            border: 1px solid #333;
-
-            color: #ccc;
-
-            padding: 8px 12px;
-
-            border-radius: 6px;
-
-            font-size: 12px;
-        }
-
-        .modal-actions {
-            display: flex;
-
-            gap: 10px;
-
-            flex-wrap: wrap;
-        }
-
-        .watch-btn {
-            background: #e50914;
-
-            color: white;
-
-            border: none;
-
-            padding: 12px 20px;
-
-            border-radius: 7px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-        .watch-btn:hover {
-            background: #ff1a25;
-        }
-
-        .list-btn {
-            background: #222;
-
-            color: white;
-
-            border: 1px solid #444;
-
-            padding: 12px 20px;
-
-            border-radius: 7px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-        .list-btn:hover {
-            background: #333;
-        }
-
-        /* ================= FOOTER ================= */
-
-        footer {
-            margin-top: 40px;
-
-            padding: 40px 6%;
-
-            background: #0c0c0c;
-
-            border-top: 1px solid #222;
-
-            text-align: center;
-
-            color: #777;
-        }
-
-        footer strong {
-            color: #e50914;
-        }
-
-        /* ================= MOBILE ================= */
-
-        @media (max-width: 1000px) {
-
-            .anime-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-        }
-
-        @media (max-width: 650px) {
-
-            nav {
-                padding: 0 4%;
-            }
-
-            .search {
-                width: 150px;
-            }
-
-            .hero {
-                min-height: 470px;
-
-                padding: 50px 6%;
-            }
-
-            .hero h1 {
-                font-size: 45px;
-            }
-
-            .anime-grid {
-                grid-template-columns: repeat(2, 1fr);
-
-                gap: 12px;
-            }
-
-            .section {
-                padding: 35px 4%;
-            }
-
-            .modal-content {
-                grid-template-columns: 1fr;
-
-                padding: 25px;
-            }
-
-            .modal-poster {
-                width: 160px;
-
-                margin: auto;
-            }
-
-            .modal-info h2 {
-                font-size: 27px;
-            }
-
-        }
-
-        @media (max-width: 430px) {
-
-            .logo {
-                font-size: 21px;
-            }
-
-            .search {
-                width: 135px;
-            }
-
-            .hero h1 {
-                font-size: 39px;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>AnimeFlex — Discover Anime</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+    background:#080808;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
+}
+
+button,input{font:inherit}
+
+button{cursor:pointer}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    height:72px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(10,10,10,.96);
+    border-bottom:1px solid #252525;
+    display:flex;
+    align-items:center;
+    padding:0 5%;
+    gap:30px;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    color:#fff;
+    white-space:nowrap;
+}
+
+.logo span{color:#e50914}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    list-style:none;
+    margin-left:20px;
+}
+
+.nav-links a{
+    color:#aaa;
+    text-decoration:none;
+    font-size:14px;
+    transition:.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:#fff;
+}
+
+.search-wrap{
+    margin-left:auto;
+    position:relative;
+}
+
+.search-icon{
+    position:absolute;
+    left:14px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#777;
+    pointer-events:none;
+}
+
+.search{
+    width:245px;
+    height:40px;
+    border-radius:22px;
+    border:1px solid #303030;
+    background:#171717;
+    color:#fff;
+    outline:none;
+    padding:0 15px 0 40px;
+}
+
+.search:focus{border-color:#e50914}
+
+.menu-btn{
+    display:none;
+    background:none;
+    border:0;
+    color:#fff;
+    font-size:25px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:550px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    padding:70px 7%;
+    overflow:hidden;
+    background:
+        linear-gradient(90deg,#080808 0%,#080808 35%,rgba(8,8,8,.75) 65%,rgba(8,8,8,.25)),
+        url("https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1800&q=85");
+    background-size:cover;
+    background-position:center;
+}
+
+.hero-content{
+    max-width:620px;
+    position:relative;
+    z-index:2;
+}
+
+.hero-tag{
+    color:#e50914;
+    font-weight:700;
+    letter-spacing:3px;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:64px;
+    line-height:1.02;
+    margin-bottom:20px;
+}
+
+.hero h1 span{color:#e50914}
+
+.hero p{
+    color:#aaa;
+    max-width:540px;
+    line-height:1.7;
+    margin-bottom:28px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:0;
+    border-radius:7px;
+    padding:13px 22px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.btn-red{
+    background:#e50914;
+    color:#fff;
+}
+
+.btn-red:hover{
+    background:#ff1824;
+    transform:translateY(-2px);
+}
+
+.btn-dark{
+    background:#222;
+    color:#fff;
+    border:1px solid #444;
+}
+
+.btn-dark:hover{background:#303030}
+
+/* ================= SECTIONS ================= */
+
+.section{
+    padding:50px 5%;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.section-title{
+    font-size:25px;
+}
+
+.section-title:before{
+    content:"";
+    display:inline-block;
+    width:5px;
+    height:25px;
+    background:#e50914;
+    border-radius:4px;
+    margin-right:10px;
+    vertical-align:-3px;
+}
+
+.view-all{
+    color:#e50914;
+    background:none;
+    border:0;
+    font-size:14px;
+}
+
+/* ================= CARDS ================= */
+
+.anime-grid{
+    display:grid;
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:18px;
+}
+
+.card{
+    background:#111;
+    border:1px solid #242424;
+    border-radius:10px;
+    overflow:hidden;
+    transition:.25s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:translateY(-7px);
+    border-color:#e50914;
+    box-shadow:0 12px 30px rgba(229,9,20,.14);
+}
+
+.poster-box{
+    position:relative;
+    aspect-ratio:2/3;
+    background:#181818;
+    overflow:hidden;
+}
+
+.poster{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:.3s;
+}
+
+.card:hover .poster{transform:scale(1.04)}
+
+.card-badge{
+    position:absolute;
+    top:9px;
+    left:9px;
+    background:#e50914;
+    padding:5px 8px;
+    border-radius:5px;
+    font-size:10px;
+    font-weight:700;
+}
+
+.card-info{padding:12px}
+
+.card-title{
+    font-weight:700;
+    font-size:14px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    margin-bottom:8px;
+}
+
+.card-meta{
+    display:flex;
+    justify-content:space-between;
+    color:#777;
+    font-size:11px;
+}
+
+.rating{color:#ffb400}
+
+/* ================= SEARCH RESULT ================= */
+
+.results-info{
+    display:none;
+    margin-bottom:22px;
+    color:#999;
+    font-size:14px;
+}
+
+.results-info strong{color:#e50914}
+
+.empty{
+    display:none;
+    text-align:center;
+    padding:60px 20px;
+    color:#777;
+}
+
+.empty-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.empty h3{
+    color:#ddd;
+    margin-bottom:8px;
+}
+
+/* ================= GENRES ================= */
+
+.genre-list{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.genre-btn{
+    background:#151515;
+    color:#aaa;
+    border:1px solid #292929;
+    padding:10px 17px;
+    border-radius:22px;
+    transition:.2s;
+}
+
+.genre-btn:hover,
+.genre-btn.selected{
+    background:#e50914;
+    border-color:#e50914;
+    color:#fff;
+}
+
+/* ================= WATCHLIST ================= */
+
+.watchlist-section{
+    display:none;
+}
+
+.watchlist-section.show{display:block}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:3000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.82);
+    backdrop-filter:blur(8px);
+}
+
+.modal.show{display:flex}
+
+.modal-box{
+    width:min(850px,100%);
+    max-height:90vh;
+    overflow-y:auto;
+    background:#111;
+    border:1px solid #333;
+    border-radius:14px;
+    position:relative;
+    box-shadow:0 25px 80px #000;
+    animation:pop .2s ease;
+}
+
+@keyframes pop{
+    from{opacity:0;transform:scale(.94)}
+    to{opacity:1;transform:scale(1)}
+}
+
+.close{
+    position:absolute;
+    top:14px;
+    right:14px;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:1px solid #444;
+    background:#111;
+    color:#fff;
+    font-size:24px;
+    z-index:5;
+}
+
+.close:hover{
+    background:#e50914;
+    border-color:#e50914;
+}
+
+.modal-content{
+    display:grid;
+    grid-template-columns:230px 1fr;
+    gap:30px;
+    padding:35px;
+}
+
+.modal-poster{
+    width:100%;
+    aspect-ratio:2/3;
+    object-fit:cover;
+    border-radius:9px;
+}
+
+.modal-info{
+    padding-top:8px;
+}
+
+.modal-title{
+    font-size:34px;
+    margin-bottom:15px;
+}
+
+.modal-details{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.detail{
+    background:#1b1b1b;
+    border:1px solid #333;
+    padding:7px 11px;
+    border-radius:6px;
+    color:#ccc;
+    font-size:12px;
+}
+
+.modal-description{
+    color:#aaa;
+    line-height:1.75;
+    margin-bottom:25px;
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translate(-50%,20px);
+    background:#171717;
+    border:1px solid #333;
+    border-left:4px solid #e50914;
+    color:#fff;
+    padding:13px 18px;
+    border-radius:7px;
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+    z-index:5000;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    border-top:1px solid #222;
+    background:#0c0c0c;
+    text-align:center;
+    padding:40px 5%;
+    color:#666;
+    line-height:1.8;
+}
+
+footer strong{color:#e50914}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px){
+
+    .anime-grid{
+        grid-template-columns:repeat(4,minmax(0,1fr));
+    }
+
+    .nav-links{gap:15px}
+
+}
+
+@media(max-width:800px){
+
+    .navbar{gap:15px}
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:72px;
+        left:0;
+        right:0;
+        background:#0d0d0d;
+        border-bottom:1px solid #222;
+        padding:20px 5%;
+        flex-direction:column;
+        margin:0;
+    }
+
+    .nav-links.open{display:flex}
+
+    .menu-btn{display:block}
+
+    .search-wrap{
+        margin-left:auto;
+    }
+
+    .search{width:190px}
+
+    .hero h1{font-size:50px}
+
+    .anime-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        padding:0 4%;
+    }
+
+    .logo{font-size:21px}
+
+    .search{width:150px}
+
+    .hero{
+        min-height:470px;
+        padding:50px 6%;
+    }
+
+    .hero h1{font-size:42px}
+
+    .section{padding:38px 4%}
+
+    .anime-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:12px;
+    }
+
+    .modal-content{
+        grid-template-columns:1fr;
+        padding:25px;
+    }
+
+    .modal-poster{
+        width:150px;
+        margin:auto;
+    }
+
+    .modal-title{
+        font-size:27px;
+    }
+
+}
+
+@media(max-width:380px){
+
+    .search{width:125px}
+
+    .hero h1{font-size:37px}
+
+}
+</style>
 </head>
-
 
 <body>
 
+<!-- ================= NAVBAR ================= -->
 
-    <!-- ================= NAVBAR ================= -->
+<nav class="navbar">
 
-    <nav>
+    <div class="logo">
+        Anime<span>Flex</span>
+    </div>
 
-        <div class="logo">
-            Anime<span>Flex</span>
-        </div>
+    <ul class="nav-links" id="navLinks">
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#trending">Trending</a></li>
+        <li><a href="#genres">Genres</a></li>
+        <li><a href="#watchlist">Watchlist</a></li>
+    </ul>
 
-        <ul class="nav-links">
-
-            <li>
-                <a href="#">
-                    Home
-                </a>
-            </li>
-
-            <li>
-                <a href="#trending">
-                    Trending
-                </a>
-            </li>
-
-            <li>
-                <a href="#genres">
-                    Genres
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    Watchlist
-                </a>
-            </li>
-
-        </ul>
-
+    <div class="search-wrap">
+        <span class="search-icon">🔎</span>
         <input
             id="searchInput"
             class="search"
-            type="text"
-            placeholder="🔎 Search anime..."
+            type="search"
+            placeholder="Search anime..."
             autocomplete="off"
         >
+    </div>
 
-    </nav>
+    <button class="menu-btn" id="menuBtn">☰</button>
+
+</nav>
 
 
-    <!-- ================= HERO ================= -->
+<!-- ================= HERO ================= -->
 
-    <section class="hero">
+<section class="hero" id="home">
 
-        <div class="hero-content">
+    <div class="hero-content">
 
-            <div class="hero-small">
-                WELCOME TO ANIMEFLEX
-            </div>
+        <div class="hero-tag">
+            WELCOME TO ANIMEFLEX
+        </div>
 
-            <h1>
-                Discover Your
-                <span>Next Anime.</span>
-            </h1>
+        <h1>
+            Discover Your
+            <span>Next Anime.</span>
+        </h1>
 
-            <p>
-                Explore trending anime, discover new adventures
-                and find your next favorite series.
-            </p>
+        <p>
+            Explore anime, discover new adventures,
+            find your favorites and build your personal
+            watchlist.
+        </p>
 
-            <div class="buttons">
+        <div class="hero-buttons">
 
-                <button
-                    class="btn primary"
-                    onclick="
-                        document
-                        .getElementById('trending')
-                        .scrollIntoView({
-                            behavior:'smooth'
-                        })
-                    "
-                >
-                    Explore Anime
-                </button>
+            <button
+                class="btn btn-red"
+                id="exploreBtn"
+            >
+                Explore Anime
+            </button>
 
-                <button
-                    class="btn secondary"
-                    onclick="
-                        document
-                        .getElementById('genres')
-                        .scrollIntoView({
-                            behavior:'smooth'
-                        })
-                    "
-                >
-                    Browse Genres
-                </button>
-
-            </div>
+            <button
+                class="btn btn-dark"
+                id="genreBtn"
+            >
+                Browse Genres
+            </button>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- ================= TRENDING ================= -->
+<!-- ================= TRENDING ================= -->
 
-    <section
-        class="section"
-        id="trending"
+<section class="section" id="trending">
+
+    <div class="section-head">
+
+        <h2 class="section-title">
+            Trending Anime
+        </h2>
+
+        <button
+            class="view-all"
+            id="viewAllBtn"
+        >
+            View All →
+        </button>
+
+    </div>
+
+    <div
+        class="results-info"
+        id="resultsInfo"
     >
+        Showing results for:
+        <strong id="resultText"></strong>
+    </div>
 
-        <div class="section-title">
+    <div
+        class="anime-grid"
+        id="animeGrid"
+    ></div>
 
-            <h2>
-                Trending Anime
-            </h2>
+    <div
+        class="empty"
+        id="emptyState"
+    >
+        <div class="empty-icon">🔎</div>
+        <h3>No anime found</h3>
+        <p>Try another anime name or clear your search.</p>
+    </div>
 
-            <div
-                class="view"
-                onclick="showAllAnime()"
+</section>
+
+
+<!-- ================= GENRES ================= -->
+
+<section class="section" id="genres">
+
+    <div class="section-head">
+
+        <h2 class="section-title">
+            Browse Genres
+        </h2>
+
+    </div>
+
+    <div class="genre-list">
+
+        <button class="genre-btn" data-genre="All">
+            All
+        </button>
+
+        <button class="genre-btn" data-genre="Action">
+            ⚔️ Action
+        </button>
+
+        <button class="genre-btn" data-genre="Adventure">
+            🌎 Adventure
+        </button>
+
+        <button class="genre-btn" data-genre="Comedy">
+            😂 Comedy
+        </button>
+
+        <button class="genre-btn" data-genre="Fantasy">
+            ✨ Fantasy
+        </button>
+
+        <button class="genre-btn" data-genre="Romance">
+            ❤️ Romance
+        </button>
+
+        <button class="genre-btn" data-genre="Sports">
+            🏆 Sports
+        </button>
+
+        <button class="genre-btn" data-genre="Mystery">
+            🔍 Mystery
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WATCHLIST ================= -->
+
+<section
+    class="section watchlist-section"
+    id="watchlist"
+>
+
+    <div class="section-head">
+
+        <h2 class="section-title">
+            My Watchlist
+        </h2>
+
+    </div>
+
+    <div
+        class="anime-grid"
+        id="watchlistGrid"
+    ></div>
+
+    <div
+        class="empty"
+        id="watchlistEmpty"
+    >
+        <div class="empty-icon">❤️</div>
+        <h3>Your watchlist is empty</h3>
+        <p>Open an anime and add it to your watchlist.</p>
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 <strong>AnimeFlex</strong>
+    </p>
+
+    <p>
+        Discover. Explore. Enjoy Anime.
+    </p>
+
+</footer>
+
+
+<!-- ================= DETAILS MODAL ================= -->
+
+<div
+    class="modal"
+    id="animeModal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            id="closeModal"
+        >
+            ×
+        </button>
+
+        <div class="modal-content">
+
+            <img
+                id="modalPoster"
+                class="modal-poster"
+                src=""
+                alt="Anime poster"
             >
-                View All →
+
+            <div class="modal-info">
+
+                <h2
+                    class="modal-title"
+                    id="modalTitle"
+                >
+                    Anime
+                </h2>
+
+                <div class="modal-details">
+
+                    <div
+                        class="detail"
+                        id="modalYear"
+                    ></div>
+
+                    <div
+                        class="detail"
+                        id="modalRating"
+                    ></div>
+
+                    <div
+                        class="detail"
+                        id="modalGenre"
+                    ></div>
+
+                </div>
+
+                <p
+                    class="modal-description"
+                    id="modalDescription"
+                ></p>
+
+                <div class="modal-actions">
+
+                    <button
+                        class="btn btn-red"
+                        id="trailerBtn"
+                    >
+                        ▶ Trailer
+                    </button>
+
+                    <button
+                        class="btn btn-dark"
+                        id="watchlistBtn"
+                    >
+                        ♡ Add to Watchlist
+                    </button>
+
+                </div>
+
             </div>
 
         </div>
 
-
-        <div
-            class="search-status"
-            id="searchStatus"
-        >
-            Search results for:
-            <span id="searchText"></span>
-        </div>
-
-
-        <div
-            class="anime-grid"
-            id="animeGrid"
-        >
-
-
-            <!-- DEMON SLAYER -->
-
-            <div
-                class="card"
-                onclick="openAnime(0)"
-            >
-
-                <img
-                    class="poster"
-                    src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80"
-                    alt="Demon Slayer"
-                >
-
-                <div class="card-info">
-
-                    <div class="card-title">
-                        Demon Slayer
-                    </div>
-
-                    <div class="card-meta">
-
-                        <span>
-                            2019
-                        </span>
-
-                        <span class="rating">
-                            ⭐ 8.6
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ONE PIECE -->
-
-            <div
-                class="card"
-                onclick="openAnime(1)"
-            >
-
-                <img
-                    class="poster"
-                    src="https://images.unsplash.com/photo-1614583224978-f5c76f6c9f2b?auto=format&fit=crop&w=600&q=80"
-                    alt="One Piece"
-                >
-
-                <div class="card-info">
-
-                    <div class="card-title">
-                        One Piece
-                    </div>
-
-                    <div class="card-meta">
-
-                        <span>
-                            1999
-                        </span>
-
-                        <span class="rating">
-                            ⭐ 9.0
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MY HERO ACADEMIA -->
-
-            <div
-                class="card"
-                onclick="openAnime(2)"
-            >
-
-                <img
-                    class="poster"
-                    src="https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&w=600&q=80"
-                    alt="My Hero Academia"
-                >
-
-                <div class="card-info">
-
-                    <div class="card-title">
-                        My Hero Academia
-                    </div>
-
-                    <div class="card-meta">
-
-                        <span>
-                            2016
-                        </span>
-
-                        <span class="rating">
-                            ⭐ 8.0
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- SPY FAMILY -->
-
-            <div
-                class="card"
-                onclick="openAnime(3)"
-            >
-
-                <img
-                    class="poster"
-                    src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80"
-                    alt="Spy x Family"
-                >
-
-                <div class="card-info">
-
-                    <div class="card-title">
-                        Spy × Family
-                    </div>
-
-                    <div class="card-meta">
-
-                        <span>
-                            2022
-                        </span>
-
-                        <span class="rating">
-                            ⭐ 8.4
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- YOUR NAME -->
-
-            <div
-                class="card"
-                onclick="openAnime(4)"
-            >
-
-                <img
-                    class="poster"
-                    src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80"
-                    alt="Your Name"
-                >
-
-                <div class="card-info">
-
-                    <div class="card-title">
-                        Your Name
-                    </div>
-
-                    <div class="card-meta">
-
-                        <span>
-                            2016
-                        </span>
-
-                        <span class="rating">
-                            ⭐ 8.8
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- HAIKYUU -->
-
-            <div
-                class="card"
-                onclick="openAnime(5)"
-            >
-
-                <img
-                    class="poster"
-                    src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=600&q=80"
-                    alt="Haikyuu"
-                >
-
-                <div class="card-info">
-
-                    <div class="card-title">
-                        Haikyuu!!
-                    </div>
-
-                    <div class="card-meta">
-
-                        <span>
-                            2014
-                        </span>
-
-                        <span class="rating">
-                            ⭐ 8.7
-                        <
+    </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script>
+
+/* =========================================================
+   ANIME DATABASE
+   ========================================================= */
+
+const animeData = [
+
+    {
+        id:1,
+        title:"Demon Slayer",
+        year:"2019",
+        rating:"⭐ 8.6",
+        genres:["Action","Fantasy"],
+        image:"https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=700&q=85",
+        description:"A young swordsman begins a dangerous journey after tragedy strikes his family. He trains to become stronger and protect the people he loves."
+    },
+
+    {
+        id:2,
+        title:"One Piece",
+        year:"1999",
+        rating:"⭐ 9.0",
+        genres:["Adventure","Action"],
+        image:"https://images.unsplash.com/photo-1614583224978-f5c76f6c9f2b?auto=format&fit=crop&w=700&q=85",
+        description:"A young pirate and his crew travel across a vast world in search of legendary treasure while facing powerful enemies."
+    },
+
+    {
+        id:3,
+        title:"My Hero Academia",
+        year:"2016",
+        rating:"⭐ 8.0",
+        genres:["Action"],
+        image:"https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&w=700&q=85",
+        description:"In a world where special abilities are common, a determined student works hard to become a professional hero."
+    },
+
+    {
+        id:4,
+        title:"Spy × Family",
+        year:"2022",
+        rating:"⭐ 8.4",
+        genres:["Comedy","Action"],
+        image:"https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=700&q=85",
+        description:"A secret agent creates a pretend family for an important mission, but every member of the unusual family has secrets."
+    },
+
+    {
+        id:5,
+        title:"Your Name",
+        year:"2016",
+        rating:"⭐ 8.8",
+        genres:["Romance","Fantasy"],
+        image:"https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=85",
+        description:"Two teenagers who have never met discover an unusual connection that brings their lives together across distance and time."
+    },
+
+    {
+        id:6,
+        title:"Haikyuu!!",
+        year:"2014",
+        rating:"⭐ 8.7",
+        genres:["Sports","Comedy"],
+        image:"https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=700&q=85",
+        description:"A passionate young volleyball player joins his school team and works with his teammates to reach the highest level."
+    },
+
+    {
+        id:7,
+        title:"Attack on Titan",
+        year:"2013",
+        rating:"⭐ 9.1",
+        genres:["Action","Mystery"],
+        image:"https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=700&q=85",
+        description:"Humanity fights for survival behind enormous walls while mysterious enemies threaten everything they know."
+    },
+
+    {
+        id:8,
+        title:"Jujutsu Kaisen",
+        year:"2020",
+        rating:"⭐ 8.7",
+        genres:["Action","Fantasy"],
+        image:"https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=700&q=85",
+        description:"A student enters the dangerous world of supernatural curses and learns to fight alongside powerful sorcerers."
+    },
+
+    {
+        id:9,
+        title:"Naruto",
+        year:"2002",
+        rating:"⭐ 8.4",
+        genres:["Action","Adventure"],
+        image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=85",
+        description:"A young ninja dreams of becoming the leader of his village while growing stronger and building friendships."
+    },
+
+    {
+        id:10,
+        title:"Death Note",
+        year:"2006",
+        rating:"⭐ 8.9",
+        genres:["Mystery"],
+        image:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=700&q=85",
+        description:"A mysterious notebook gives its owner extraordinary power, leading to a tense battle of intelligence and strategy."
+    },
+
+    {
+        id:11,
+        title:"Hunter × Hunter",
+        year:"2011",
+        rating:"⭐ 9.0",
+        genres:["Adventure","Action"],
+        image:"https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=700&q=85",
+        description:"A young adventurer sets out to become a Hunter and discover the truth about his missing father."
+    },
+
+    {
+        id:12,
+        title:"Blue Lock",
+        year:"2022",
+        rating:"⭐ 8.3",
+        genres:["Sports"],
+        image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=700&q=85",
+        description:"Talented young football players compete in an intense training program designed to create Japan's ultimate striker."
+    }
+
+];
