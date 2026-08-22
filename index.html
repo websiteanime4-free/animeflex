@@ -90,6 +90,7 @@ nav{
     left:15px;
     top:11px;
     color:#777;
+    font-size:14px;
 }
 
 .menu{
@@ -98,6 +99,7 @@ nav{
     border:0;
     color:#fff;
     font-size:25px;
+    cursor:pointer;
 }
 
 /* ================= HERO ================= */
@@ -163,6 +165,7 @@ nav{
     font-weight:bold;
     cursor:pointer;
     transition:.2s;
+    font-size:14px;
 }
 
 .primary{
@@ -218,6 +221,7 @@ nav{
     background:none;
     border:0;
     cursor:pointer;
+    font-size:14px;
 }
 
 /* ================= SEARCH MESSAGE ================= */
@@ -255,6 +259,10 @@ nav{
     box-shadow:0 12px 30px rgba(229,9,20,.15);
 }
 
+.anime-card.hidden{
+    display:none;
+}
+
 .poster{
     position:relative;
     width:100%;
@@ -284,6 +292,7 @@ nav{
     border-radius:5px;
     font-size:10px;
     font-weight:bold;
+    color:#fff;
 }
 
 .card-info{
@@ -330,6 +339,7 @@ nav{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
+    margin-bottom:25px;
 }
 
 .genre{
@@ -340,6 +350,7 @@ nav{
     border-radius:25px;
     cursor:pointer;
     transition:.2s;
+    font-size:13px;
 }
 
 .genre:hover,
@@ -353,6 +364,10 @@ nav{
 
 #watchlistSection{
     display:none;
+}
+
+#watchlistSection.active{
+    display:block;
 }
 
 .watch-empty{
@@ -401,6 +416,9 @@ nav{
     font-size:24px;
     cursor:pointer;
     z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .close:hover{
@@ -475,6 +493,7 @@ nav{
     pointer-events:none;
     transition:.25s;
     z-index:5000;
+    font-size:14px;
 }
 
 .toast.show{
@@ -519,6 +538,7 @@ footer strong{
         border-bottom:1px solid #222;
         padding:20px 5%;
         flex-direction:column;
+        gap:15px;
     }
 
     .nav-links.open{
@@ -617,14 +637,14 @@ footer strong{
     </div>
 
     <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#trending">Trending</a></li>
-        <li><a href="#genres">Genres</a></li>
-        <li><a href="#watchlist">Watchlist</a></li>
+        <li><a href="#home" onclick="showSection('home')">Home</a></li>
+        <li><a href="#trending" onclick="showSection('trending')">Trending</a></li>
+        <li><a href="#genres" onclick="showSection('genres')">Genres</a></li>
+        <li><a href="#watchlist" onclick="showSection('watchlist')">Watchlist</a></li>
     </ul>
 
     <div class="search-box">
-        <span class="search-icon">🔎</span>
+        <span class="search-icon">&#128269;</span>
         <input
             id="search"
             type="search"
@@ -635,8 +655,9 @@ footer strong{
     <button
         class="menu"
         id="menuBtn"
+        onclick="toggleMenu()"
     >
-        ☰
+        &#9776;
     </button>
 
 </nav>
@@ -705,7 +726,7 @@ footer strong{
             class="view-all"
             onclick="clearFilters()"
         >
-            View All →
+            View All &rarr;
         </button>
 
     </div>
@@ -718,310 +739,195 @@ footer strong{
         <strong id="searchText"></strong>
     </div>
 
-
-    <!-- CARDS ARE DIRECTLY IN HTML -->
+    <div class="no-results" id="noResults">
+        <h3>No anime found</h3>
+        <p>Try a different search term</p>
+    </div>
 
     <div
         class="anime-grid"
         id="animeGrid"
     >
 
-        <!-- 1 -->
-
+        <!-- 1 Demon Slayer -->
         <div
             class="anime-card"
             data-title="Demon Slayer"
             data-genre="Action Fantasy"
-            onclick="openAnime('Demon Slayer','2019','⭐ 8.6','Action • Fantasy','https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=700&q=80','A young swordsman begins a dangerous journey after tragedy strikes his family.')"
+            onclick="openAnime('Demon Slayer','2019','8.6','Action &bull; Fantasy','https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/0afee99416d9b7051a07d2b7d07b4f8bff2bba31','A young swordsman begins a dangerous journey after tragedy strikes his family.')"
         >
-
             <div class="poster">
-
                 <img
-                    src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=700&q=80"
+                    src="https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/0afee99416d9b7051a07d2b7d07b4f8bff2bba31"
                     alt="Demon Slayer"
+                    loading="lazy"
                 >
-
-                <span class="badge">
-                    TRENDING
-                </span>
-
+                <span class="badge">TRENDING</span>
             </div>
-
             <div class="card-info">
-
-                <div class="card-title">
-                    Demon Slayer
-                </div>
-
+                <div class="card-title">Demon Slayer</div>
                 <div class="card-meta">
                     <span>2019</span>
-                    <span class="rating">⭐ 8.6</span>
+                    <span class="rating">&#11088; 8.6</span>
                 </div>
-
             </div>
-
         </div>
 
-
-        <!-- 2 -->
-
+        <!-- 2 One Piece -->
         <div
             class="anime-card"
             data-title="One Piece"
             data-genre="Adventure Action"
-            onclick="openAnime('One Piece','1999','⭐ 9.0','Adventure • Action','https://images.unsplash.com/photo-1614583224978-f5c76f6c9f2b?auto=format&fit=crop&w=700&q=80','A young pirate and his crew travel across a vast world in search of legendary treasure.')"
+            onclick="openAnime('One Piece','1999','9.0','Adventure &bull; Action','https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/939ca69295a09937d2912d58f13927cbef941da0','A young pirate and his crew travel across a vast world in search of legendary treasure.')"
         >
-
             <div class="poster">
-
                 <img
-                    src="https://images.unsplash.com/photo-1614583224978-f5c76f6c9f2b?auto=format&fit=crop&w=700&q=80"
+                    src="https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/939ca69295a09937d2912d58f13927cbef941da0"
                     alt="One Piece"
+                    loading="lazy"
                 >
-
-                <span class="badge">
-                    9.0
-                </span>
-
+                <span class="badge">9.0</span>
             </div>
-
             <div class="card-info">
-
-                <div class="card-title">
-                    One Piece
-                </div>
-
+                <div class="card-title">One Piece</div>
                 <div class="card-meta">
                     <span>1999</span>
-                    <span class="rating">⭐ 9.0</span>
+                    <span class="rating">&#11088; 9.0</span>
                 </div>
-
             </div>
-
         </div>
 
-
-        <!-- 3 -->
-
+        <!-- 3 My Hero Academia -->
         <div
             class="anime-card"
             data-title="My Hero Academia"
             data-genre="Action"
-            onclick="openAnime('My Hero Academia','2016','⭐ 8.0','Action','https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&w=700&q=80','In a world where special abilities are common, a determined student works hard to become a professional hero.')"
+            onclick="openAnime('My Hero Academia','2016','8.0','Action','https://static.wikia.nocookie.net/bokunoheroacademia/images/2/22/Izuku_Midoriya_s4_profile.png/revision/latest?cb=20200321011638','In a world where special abilities are common, a determined student works hard to become a professional hero.')"
         >
-
             <div class="poster">
-
                 <img
-                    src="https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&w=700&q=80"
+                    src="https://static.wikia.nocookie.net/bokunoheroacademia/images/2/22/Izuku_Midoriya_s4_profile.png/revision/latest?cb=20200321011638"
                     alt="My Hero Academia"
+                    loading="lazy"
                 >
-
             </div>
-
             <div class="card-info">
-
-                <div class="card-title">
-                    My Hero Academia
-                </div>
-
+                <div class="card-title">My Hero Academia</div>
                 <div class="card-meta">
                     <span>2016</span>
-                    <span class="rating">⭐ 8.0</span>
+                    <span class="rating">&#11088; 8.0</span>
                 </div>
-
             </div>
-
         </div>
 
-
-        <!-- 4 -->
-
+        <!-- 4 Spy Family -->
         <div
             class="anime-card"
             data-title="Spy Family"
             data-genre="Comedy Action"
-            onclick="openAnime('Spy × Family','2022','⭐ 8.4','Comedy • Action','https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=700&q=80','A secret agent creates a pretend family for an important mission, but every member has secrets.')"
+            onclick="openAnime('Spy x Family','2022','8.4','Comedy &bull; Action','https://kimi-web-img.kimi.ai/img/static0.cbrimages.com/f20aad70d283493fc0ca8713149cf4804c4e562c.jpg','A secret agent creates a pretend family for an important mission, but every member has secrets.')"
         >
-
             <div class="poster">
-
                 <img
-                    src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=700&q=80"
+                    src="https://kimi-web-img.kimi.ai/img/static0.cbrimages.com/f20aad70d283493fc0ca8713149cf4804c4e562c.jpg"
                     alt="Spy Family"
+                    loading="lazy"
                 >
-
             </div>
-
             <div class="card-info">
-
-                <div class="card-title">
-                    Spy × Family
-                </div>
-
+                <div class="card-title">Spy x Family</div>
                 <div class="card-meta">
                     <span>2022</span>
-                    <span class="rating">⭐ 8.4</span>
+                    <span class="rating">&#11088; 8.4</span>
                 </div>
-
             </div>
-
         </div>
 
-
-        <!-- 5 -->
-
+        <!-- 5 Your Name -->
         <div
             class="anime-card"
             data-title="Your Name"
             data-genre="Romance Fantasy"
-            onclick="openAnime('Your Name','2016','⭐ 8.8','Romance • Fantasy','https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80','Two teenagers discover an unusual connection that brings their lives together across distance and time.')"
+            onclick="openAnime('Your Name','2016','8.8','Romance &bull; Fantasy','https://kimi-web-img.kimi.ai/img/render.fineartamerica.com/4a7efaaa295612d00df769abbe7dce4c65875b06.jpg','Two teenagers discover an unusual connection that brings their lives together across distance and time.')"
         >
-
             <div class="poster">
-
                 <img
-                    src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80"
+                    src="https://kimi-web-img.kimi.ai/img/render.fineartamerica.com/4a7efaaa295612d00df769abbe7dce4c65875b06.jpg"
                     alt="Your Name"
+                    loading="lazy"
                 >
-
             </div>
-
             <div class="card-info">
-
-                <div class="card-title">
-                    Your Name
-                </div>
-
+                <div class="card-title">Your Name</div>
                 <div class="card-meta">
                     <span>2016</span>
-                    <span class="rating">⭐ 8.8</span>
+                    <span class="rating">&#11088; 8.8</span>
                 </div>
-
             </div>
-
         </div>
 
-
-        <!-- 6 -->
-
+        <!-- 6 Haikyuu -->
         <div
             class="anime-card"
             data-title="Haikyuu"
             data-genre="Sports Comedy"
-            onclick="openAnime('Haikyuu!!','2014','⭐ 8.7','Sports • Comedy','https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=700&q=80','A passionate young volleyball player joins his school team and works to reach the highest level.')"
+            onclick="openAnime('Haikyuu!!','2014','8.7','Sports &bull; Comedy','https://kimi-web-img.kimi.ai/img/m.media-amazon.com/aad02a978523861ae04d894d989567653ed4f048.jpg','A passionate young volleyball player joins his school team and works to reach the highest level.')"
         >
-
             <div class="poster">
-
                 <img
-                    src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=700&q=80"
+                    src="https://kimi-web-img.kimi.ai/img/m.media-amazon.com/aad02a978523861ae04d894d989567653ed4f048.jpg"
                     alt="Haikyuu"
+                    loading="lazy"
                 >
-
             </div>
-
             <div class="card-info">
-
-                <div class="card-title">
-                    Haikyuu!!
-                </div>
-
+                <div class="card-title">Haikyuu!!</div>
                 <div class="card-meta">
                     <span>2014</span>
-                    <span class="rating">⭐ 8.7</span>
+                    <span class="rating">&#11088; 8.7</span>
                 </div>
-
             </div>
-
         </div>
 
-
-        <!-- 7 -->
-
+        <!-- 7 Attack on Titan -->
         <div
             class="anime-card"
             data-title="Attack on Titan"
             data-genre="Action Mystery"
-            onclick="openAnime('Attack on Titan','2013','⭐ 9.1','Action • Mystery','https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=700&q=80','Humanity fights for survival while mysterious enemies threaten everything they know.')"
+            onclick="openAnime('Attack on Titan','2013','9.1','Action &bull; Mystery','https://kimi-web-img.kimi.ai/img/m.media-amazon.com/f3b5df4abfdc4ad214586c9548944aef510ab480.jpg','Humanity fights for survival while mysterious enemies threaten everything they know.')"
         >
-
             <div class="poster">
-
                 <img
-                    src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=700&q=80"
+                    src="https://kimi-web-img.kimi.ai/img/m.media-amazon.com/f3b5df4abfdc4ad214586c9548944aef510ab480.jpg"
                     alt="Attack on Titan"
+                    loading="lazy"
                 >
-
             </div>
-
             <div class="card-info">
-
-                <div class="card-title">
-                    Attack on Titan
-                </div>
-
+                <div class="card-title">Attack on Titan</div>
                 <div class="card-meta">
                     <span>2013</span>
-                    <span class="rating">⭐ 9.1</span>
+                    <span class="rating">&#11088; 9.1</span>
                 </div>
-
             </div>
-
         </div>
 
-
-        <!-- 8 -->
-
+        <!-- 8 Jujutsu Kaisen -->
         <div
             class="anime-card"
             data-title="Jujutsu Kaisen"
             data-genre="Action Fantasy"
-            onclick="openAnime('Jujutsu Kaisen','2020','⭐ 8.7','Action • Fantasy','https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=700&q=80','A student enters the dangerous world of supernatural curses and learns to fight alongside powerful sorcerers.')"
+            onclick="openAnime('Jujutsu Kaisen','2020','8.7','Action &bull; Fantasy','https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/1c32498f5c0d3f41ae3f2a565d68620eb51a3f0f','A student enters the dangerous world of supernatural curses and learns to fight alongside powerful sorcerers.')"
         >
-
             <div class="poster">
-
                 <img
-                    src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=700&q=80"
+                    src="https://kimi-web-img.kimi.ai/img/static.wikia.nocookie.net/1c32498f5c0d3f41ae3f2a565d68620eb51a3f0f"
                     alt="Jujutsu Kaisen"
+                    loading="lazy"
                 >
-
             </div>
-
             <div class="card-info">
-
-                <div class="card-title">
-                    Jujutsu Kaisen
-                </div>
-
+                <div class="card-title">Jujutsu Kaisen</div>
                 <div class="card-meta">
                     <span>2020</span>
-                    <span class="rating">⭐ 8.7</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 9 -->
-
-        <div
-            class="anime-card"
-            data-title="Naruto"
-            data-genre="Action Adventure"
-            onclick="openAnime('Naruto','2002','⭐ 8.4','Action • Adventure','https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=80','A young ninja dreams of becoming the leader of his village while growing stronger and building friendships.')"
-        >
-
-            <div class="poster">
-
-                <img
-                    src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=80"
-                    alt="Naruto"
-                >
-
-            </div>
-
-            <div class="card-i
+                    <span class="rating">&#11088;
