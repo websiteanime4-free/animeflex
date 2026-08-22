@@ -3,13 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080808">
-<title>AnimeFlex — Discover Anime</title>
+<title>AnimeFlex | Discover Anime</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-html{scroll-behavior:smooth}
+html{
+    scroll-behavior:smooth;
+}
 
 body{
     background:#080808;
@@ -18,39 +23,35 @@ body{
     overflow-x:hidden;
 }
 
-button,input{font:inherit}
-
-button{cursor:pointer}
-
 /* ================= NAVBAR ================= */
 
-.navbar{
-    height:72px;
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:rgba(10,10,10,.96);
-    border-bottom:1px solid #252525;
+nav{
+    height:70px;
+    background:#0d0d0d;
+    border-bottom:1px solid #242424;
     display:flex;
     align-items:center;
     padding:0 5%;
     gap:30px;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
 .logo{
-    font-size:25px;
+    font-size:26px;
     font-weight:800;
-    color:#fff;
     white-space:nowrap;
 }
 
-.logo span{color:#e50914}
+.logo span{
+    color:#e50914;
+}
 
 .nav-links{
     display:flex;
-    gap:25px;
     list-style:none;
-    margin-left:20px;
+    gap:25px;
 }
 
 .nav-links a{
@@ -60,39 +61,38 @@ button{cursor:pointer}
     transition:.2s;
 }
 
-.nav-links a:hover,
-.nav-links a.active{
-    color:#fff;
+.nav-links a:hover{
+    color:#e50914;
 }
 
-.search-wrap{
+.search-box{
     margin-left:auto;
     position:relative;
 }
 
+.search-box input{
+    width:240px;
+    height:40px;
+    background:#181818;
+    border:1px solid #303030;
+    border-radius:22px;
+    outline:none;
+    color:#fff;
+    padding:0 16px 0 42px;
+}
+
+.search-box input:focus{
+    border-color:#e50914;
+}
+
 .search-icon{
     position:absolute;
-    left:14px;
-    top:50%;
-    transform:translateY(-50%);
+    left:15px;
+    top:11px;
     color:#777;
-    pointer-events:none;
 }
 
-.search{
-    width:245px;
-    height:40px;
-    border-radius:22px;
-    border:1px solid #303030;
-    background:#171717;
-    color:#fff;
-    outline:none;
-    padding:0 15px 0 40px;
-}
-
-.search:focus{border-color:#e50914}
-
-.menu-btn{
+.menu{
     display:none;
     background:none;
     border:0;
@@ -103,90 +103,98 @@ button{cursor:pointer}
 /* ================= HERO ================= */
 
 .hero{
-    min-height:550px;
-    position:relative;
+    min-height:540px;
     display:flex;
     align-items:center;
     padding:70px 7%;
-    overflow:hidden;
+    position:relative;
+
     background:
-        linear-gradient(90deg,#080808 0%,#080808 35%,rgba(8,8,8,.75) 65%,rgba(8,8,8,.25)),
-        url("https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1800&q=85");
+    linear-gradient(
+        90deg,
+        #080808 0%,
+        #080808 38%,
+        rgba(8,8,8,.78) 65%,
+        rgba(8,8,8,.2)
+    ),
+    url("https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1800&q=80");
+
     background-size:cover;
     background-position:center;
 }
 
 .hero-content{
-    max-width:620px;
-    position:relative;
-    z-index:2;
+    max-width:600px;
 }
 
-.hero-tag{
+.hero-small{
     color:#e50914;
-    font-weight:700;
-    letter-spacing:3px;
     font-size:13px;
-    margin-bottom:18px;
+    font-weight:bold;
+    letter-spacing:3px;
+    margin-bottom:17px;
 }
 
 .hero h1{
-    font-size:64px;
+    font-size:62px;
     line-height:1.02;
     margin-bottom:20px;
 }
 
-.hero h1 span{color:#e50914}
+.hero h1 span{
+    color:#e50914;
+}
 
 .hero p{
     color:#aaa;
-    max-width:540px;
     line-height:1.7;
     margin-bottom:28px;
 }
 
-.hero-buttons{
+.buttons{
     display:flex;
     gap:12px;
-    flex-wrap:wrap;
 }
 
 .btn{
     border:0;
-    border-radius:7px;
     padding:13px 22px;
-    font-weight:700;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
     transition:.2s;
 }
 
-.btn-red{
+.primary{
     background:#e50914;
-    color:#fff;
+    color:white;
 }
 
-.btn-red:hover{
-    background:#ff1824;
+.primary:hover{
+    background:#ff1b27;
     transform:translateY(-2px);
 }
 
-.btn-dark{
+.secondary{
     background:#222;
     color:#fff;
     border:1px solid #444;
 }
 
-.btn-dark:hover{background:#303030}
+.secondary:hover{
+    background:#333;
+}
 
-/* ================= SECTIONS ================= */
+/* ================= SECTION ================= */
 
 .section{
     padding:50px 5%;
 }
 
-.section-head{
+.section-header{
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
     margin-bottom:25px;
 }
 
@@ -200,7 +208,7 @@ button{cursor:pointer}
     width:5px;
     height:25px;
     background:#e50914;
-    border-radius:4px;
+    border-radius:5px;
     margin-right:10px;
     vertical-align:-3px;
 }
@@ -209,50 +217,65 @@ button{cursor:pointer}
     color:#e50914;
     background:none;
     border:0;
-    font-size:14px;
-}
-
-/* ================= CARDS ================= */
-
-.anime-grid{
-    display:grid;
-    grid-template-columns:repeat(6,minmax(0,1fr));
-    gap:18px;
-}
-
-.card{
-    background:#111;
-    border:1px solid #242424;
-    border-radius:10px;
-    overflow:hidden;
-    transition:.25s;
     cursor:pointer;
 }
 
-.card:hover{
-    transform:translateY(-7px);
-    border-color:#e50914;
-    box-shadow:0 12px 30px rgba(229,9,20,.14);
+/* ================= SEARCH MESSAGE ================= */
+
+.search-message{
+    display:none;
+    color:#aaa;
+    margin-bottom:20px;
 }
 
-.poster-box{
-    position:relative;
-    aspect-ratio:2/3;
-    background:#181818;
+.search-message strong{
+    color:#e50914;
+}
+
+/* ================= ANIME GRID ================= */
+
+.anime-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:18px;
+}
+
+.anime-card{
+    background:#111;
+    border:1px solid #242424;
+    border-radius:9px;
     overflow:hidden;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.anime-card:hover{
+    transform:translateY(-7px);
+    border-color:#e50914;
+    box-shadow:0 12px 30px rgba(229,9,20,.15);
 }
 
 .poster{
+    position:relative;
+    width:100%;
+    aspect-ratio:2/3;
+    background:#191919;
+    overflow:hidden;
+}
+
+.poster img{
     width:100%;
     height:100%;
-    object-fit:cover;
     display:block;
+    object-fit:cover;
     transition:.3s;
 }
 
-.card:hover .poster{transform:scale(1.04)}
+.anime-card:hover .poster img{
+    transform:scale(1.05);
+}
 
-.card-badge{
+.badge{
     position:absolute;
     top:9px;
     left:9px;
@@ -260,14 +283,16 @@ button{cursor:pointer}
     padding:5px 8px;
     border-radius:5px;
     font-size:10px;
-    font-weight:700;
+    font-weight:bold;
 }
 
-.card-info{padding:12px}
+.card-info{
+    padding:12px;
+}
 
 .card-title{
-    font-weight:700;
     font-size:14px;
+    font-weight:bold;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -281,34 +306,22 @@ button{cursor:pointer}
     font-size:11px;
 }
 
-.rating{color:#ffb400}
-
-/* ================= SEARCH RESULT ================= */
-
-.results-info{
-    display:none;
-    margin-bottom:22px;
-    color:#999;
-    font-size:14px;
+.rating{
+    color:#ffb400;
 }
 
-.results-info strong{color:#e50914}
+/* ================= NO RESULTS ================= */
 
-.empty{
+.no-results{
     display:none;
     text-align:center;
     padding:60px 20px;
     color:#777;
 }
 
-.empty-icon{
-    font-size:45px;
-    margin-bottom:15px;
-}
-
-.empty h3{
+.no-results h3{
     color:#ddd;
-    margin-bottom:8px;
+    margin:12px 0 7px;
 }
 
 /* ================= GENRES ================= */
@@ -319,67 +332,66 @@ button{cursor:pointer}
     flex-wrap:wrap;
 }
 
-.genre-btn{
+.genre{
     background:#151515;
     color:#aaa;
     border:1px solid #292929;
     padding:10px 17px;
-    border-radius:22px;
+    border-radius:25px;
+    cursor:pointer;
     transition:.2s;
 }
 
-.genre-btn:hover,
-.genre-btn.selected{
+.genre:hover,
+.genre.active{
     background:#e50914;
     border-color:#e50914;
-    color:#fff;
+    color:white;
 }
 
 /* ================= WATCHLIST ================= */
 
-.watchlist-section{
+#watchlistSection{
     display:none;
 }
 
-.watchlist-section.show{display:block}
+.watch-empty{
+    text-align:center;
+    padding:50px;
+    color:#777;
+}
 
 /* ================= MODAL ================= */
 
 .modal{
+    display:none;
     position:fixed;
     inset:0;
     z-index:3000;
-    display:none;
+    background:rgba(0,0,0,.85);
     align-items:center;
     justify-content:center;
     padding:20px;
-    background:rgba(0,0,0,.82);
-    backdrop-filter:blur(8px);
 }
 
-.modal.show{display:flex}
+.modal.active{
+    display:flex;
+}
 
 .modal-box{
     width:min(850px,100%);
     max-height:90vh;
-    overflow-y:auto;
+    overflow:auto;
     background:#111;
     border:1px solid #333;
     border-radius:14px;
     position:relative;
-    box-shadow:0 25px 80px #000;
-    animation:pop .2s ease;
-}
-
-@keyframes pop{
-    from{opacity:0;transform:scale(.94)}
-    to{opacity:1;transform:scale(1)}
 }
 
 .close{
     position:absolute;
-    top:14px;
-    right:14px;
+    right:15px;
+    top:15px;
     width:38px;
     height:38px;
     border-radius:50%;
@@ -387,17 +399,17 @@ button{cursor:pointer}
     background:#111;
     color:#fff;
     font-size:24px;
-    z-index:5;
+    cursor:pointer;
+    z-index:2;
 }
 
 .close:hover{
     background:#e50914;
-    border-color:#e50914;
 }
 
-.modal-content{
+.modal-body{
     display:grid;
-    grid-template-columns:230px 1fr;
+    grid-template-columns:220px 1fr;
     gap:30px;
     padding:35px;
 }
@@ -406,19 +418,19 @@ button{cursor:pointer}
     width:100%;
     aspect-ratio:2/3;
     object-fit:cover;
-    border-radius:9px;
+    border-radius:8px;
 }
 
 .modal-info{
     padding-top:8px;
 }
 
-.modal-title{
+.modal-info h2{
     font-size:34px;
     margin-bottom:15px;
 }
 
-.modal-details{
+.details{
     display:flex;
     gap:8px;
     flex-wrap:wrap;
@@ -428,19 +440,19 @@ button{cursor:pointer}
 .detail{
     background:#1b1b1b;
     border:1px solid #333;
-    padding:7px 11px;
+    color:#bbb;
+    padding:7px 10px;
     border-radius:6px;
-    color:#ccc;
     font-size:12px;
 }
 
-.modal-description{
+.description{
     color:#aaa;
-    line-height:1.75;
+    line-height:1.7;
     margin-bottom:25px;
 }
 
-.modal-actions{
+.modal-buttons{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
@@ -452,7 +464,7 @@ button{cursor:pointer}
     position:fixed;
     bottom:25px;
     left:50%;
-    transform:translate(-50%,20px);
+    transform:translate(-50%,30px);
     background:#171717;
     border:1px solid #333;
     border-left:4px solid #e50914;
@@ -473,88 +485,98 @@ button{cursor:pointer}
 /* ================= FOOTER ================= */
 
 footer{
-    border-top:1px solid #222;
     background:#0c0c0c;
+    border-top:1px solid #222;
     text-align:center;
     padding:40px 5%;
     color:#666;
-    line-height:1.8;
+    line-height:2;
 }
 
-footer strong{color:#e50914}
+footer strong{
+    color:#e50914;
+}
 
-/* ================= RESPONSIVE ================= */
+/* ================= MOBILE ================= */
 
 @media(max-width:1100px){
 
     .anime-grid{
-        grid-template-columns:repeat(4,minmax(0,1fr));
+        grid-template-columns:repeat(4,1fr);
     }
-
-    .nav-links{gap:15px}
 
 }
 
 @media(max-width:800px){
 
-    .navbar{gap:15px}
-
     .nav-links{
         display:none;
         position:absolute;
-        top:72px;
         left:0;
         right:0;
+        top:70px;
         background:#0d0d0d;
         border-bottom:1px solid #222;
         padding:20px 5%;
         flex-direction:column;
-        margin:0;
     }
 
-    .nav-links.open{display:flex}
-
-    .menu-btn{display:block}
-
-    .search-wrap{
-        margin-left:auto;
+    .nav-links.open{
+        display:flex;
     }
 
-    .search{width:190px}
+    .menu{
+        display:block;
+    }
 
-    .hero h1{font-size:50px}
+    .search-box input{
+        width:190px;
+    }
 
     .anime-grid{
-        grid-template-columns:repeat(3,minmax(0,1fr));
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .hero h1{
+        font-size:50px;
     }
 
 }
 
 @media(max-width:600px){
 
-    .navbar{
+    nav{
         padding:0 4%;
+        gap:10px;
     }
 
-    .logo{font-size:21px}
+    .logo{
+        font-size:21px;
+    }
 
-    .search{width:150px}
+    .search-box input{
+        width:145px;
+    }
 
     .hero{
         min-height:470px;
         padding:50px 6%;
     }
 
-    .hero h1{font-size:42px}
+    .hero h1{
+        font-size:42px;
+    }
 
-    .section{padding:38px 4%}
+    .section{
+        padding:38px 4%;
+    }
 
     .anime-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
+        grid-template-columns:repeat(2,1fr);
         gap:12px;
     }
 
-    .modal-content{
+    .modal-body{
         grid-template-columns:1fr;
         padding:25px;
     }
@@ -564,7 +586,7 @@ footer strong{color:#e50914}
         margin:auto;
     }
 
-    .modal-title{
+    .modal-info h2{
         font-size:27px;
     }
 
@@ -572,9 +594,13 @@ footer strong{color:#e50914}
 
 @media(max-width:380px){
 
-    .search{width:125px}
+    .search-box input{
+        width:120px;
+    }
 
-    .hero h1{font-size:37px}
+    .hero h1{
+        font-size:36px;
+    }
 
 }
 </style>
@@ -584,42 +610,48 @@ footer strong{color:#e50914}
 
 <!-- ================= NAVBAR ================= -->
 
-<nav class="navbar">
+<nav>
 
     <div class="logo">
         Anime<span>Flex</span>
     </div>
 
     <ul class="nav-links" id="navLinks">
-        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#home">Home</a></li>
         <li><a href="#trending">Trending</a></li>
         <li><a href="#genres">Genres</a></li>
         <li><a href="#watchlist">Watchlist</a></li>
     </ul>
 
-    <div class="search-wrap">
+    <div class="search-box">
         <span class="search-icon">🔎</span>
         <input
-            id="searchInput"
-            class="search"
+            id="search"
             type="search"
             placeholder="Search anime..."
-            autocomplete="off"
         >
     </div>
 
-    <button class="menu-btn" id="menuBtn">☰</button>
+    <button
+        class="menu"
+        id="menuBtn"
+    >
+        ☰
+    </button>
 
 </nav>
 
 
 <!-- ================= HERO ================= -->
 
-<section class="hero" id="home">
+<section
+    class="hero"
+    id="home"
+>
 
     <div class="hero-content">
 
-        <div class="hero-tag">
+        <div class="hero-small">
             WELCOME TO ANIMEFLEX
         </div>
 
@@ -629,23 +661,22 @@ footer strong{color:#e50914}
         </h1>
 
         <p>
-            Explore anime, discover new adventures,
-            find your favorites and build your personal
-            watchlist.
+            Discover trending anime, explore different
+            genres and find your next favorite series.
         </p>
 
-        <div class="hero-buttons">
+        <div class="buttons">
 
             <button
-                class="btn btn-red"
-                id="exploreBtn"
+                class="btn primary"
+                onclick="scrollToSection('trending')"
             >
                 Explore Anime
             </button>
 
             <button
-                class="btn btn-dark"
-                id="genreBtn"
+                class="btn secondary"
+                onclick="scrollToSection('genres')"
             >
                 Browse Genres
             </button>
@@ -659,9 +690,12 @@ footer strong{color:#e50914}
 
 <!-- ================= TRENDING ================= -->
 
-<section class="section" id="trending">
+<section
+    class="section"
+    id="trending"
+>
 
-    <div class="section-head">
+    <div class="section-header">
 
         <h2 class="section-title">
             Trending Anime
@@ -669,7 +703,7 @@ footer strong{color:#e50914}
 
         <button
             class="view-all"
-            id="viewAllBtn"
+            onclick="clearFilters()"
         >
             View All →
         </button>
@@ -677,347 +711,317 @@ footer strong{color:#e50914}
     </div>
 
     <div
-        class="results-info"
-        id="resultsInfo"
+        class="search-message"
+        id="searchMessage"
     >
-        Showing results for:
-        <strong id="resultText"></strong>
+        Results for:
+        <strong id="searchText"></strong>
     </div>
+
+
+    <!-- CARDS ARE DIRECTLY IN HTML -->
 
     <div
         class="anime-grid"
         id="animeGrid"
-    ></div>
-
-    <div
-        class="empty"
-        id="emptyState"
     >
-        <div class="empty-icon">🔎</div>
-        <h3>No anime found</h3>
-        <p>Try another anime name or clear your search.</p>
-    </div>
 
-</section>
+        <!-- 1 -->
 
-
-<!-- ================= GENRES ================= -->
-
-<section class="section" id="genres">
-
-    <div class="section-head">
-
-        <h2 class="section-title">
-            Browse Genres
-        </h2>
-
-    </div>
-
-    <div class="genre-list">
-
-        <button class="genre-btn" data-genre="All">
-            All
-        </button>
-
-        <button class="genre-btn" data-genre="Action">
-            ⚔️ Action
-        </button>
-
-        <button class="genre-btn" data-genre="Adventure">
-            🌎 Adventure
-        </button>
-
-        <button class="genre-btn" data-genre="Comedy">
-            😂 Comedy
-        </button>
-
-        <button class="genre-btn" data-genre="Fantasy">
-            ✨ Fantasy
-        </button>
-
-        <button class="genre-btn" data-genre="Romance">
-            ❤️ Romance
-        </button>
-
-        <button class="genre-btn" data-genre="Sports">
-            🏆 Sports
-        </button>
-
-        <button class="genre-btn" data-genre="Mystery">
-            🔍 Mystery
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- ================= WATCHLIST ================= -->
-
-<section
-    class="section watchlist-section"
-    id="watchlist"
->
-
-    <div class="section-head">
-
-        <h2 class="section-title">
-            My Watchlist
-        </h2>
-
-    </div>
-
-    <div
-        class="anime-grid"
-        id="watchlistGrid"
-    ></div>
-
-    <div
-        class="empty"
-        id="watchlistEmpty"
-    >
-        <div class="empty-icon">❤️</div>
-        <h3>Your watchlist is empty</h3>
-        <p>Open an anime and add it to your watchlist.</p>
-    </div>
-
-</section>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-    <p>
-        © 2026 <strong>AnimeFlex</strong>
-    </p>
-
-    <p>
-        Discover. Explore. Enjoy Anime.
-    </p>
-
-</footer>
-
-
-<!-- ================= DETAILS MODAL ================= -->
-
-<div
-    class="modal"
-    id="animeModal"
->
-
-    <div class="modal-box">
-
-        <button
-            class="close"
-            id="closeModal"
+        <div
+            class="anime-card"
+            data-title="Demon Slayer"
+            data-genre="Action Fantasy"
+            onclick="openAnime('Demon Slayer','2019','⭐ 8.6','Action • Fantasy','https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=700&q=80','A young swordsman begins a dangerous journey after tragedy strikes his family.')"
         >
-            ×
-        </button>
 
-        <div class="modal-content">
+            <div class="poster">
 
-            <img
-                id="modalPoster"
-                class="modal-poster"
-                src=""
-                alt="Anime poster"
-            >
-
-            <div class="modal-info">
-
-                <h2
-                    class="modal-title"
-                    id="modalTitle"
+                <img
+                    src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=700&q=80"
+                    alt="Demon Slayer"
                 >
-                    Anime
-                </h2>
 
-                <div class="modal-details">
+                <span class="badge">
+                    TRENDING
+                </span>
 
-                    <div
-                        class="detail"
-                        id="modalYear"
-                    ></div>
+            </div>
 
-                    <div
-                        class="detail"
-                        id="modalRating"
-                    ></div>
+            <div class="card-info">
 
-                    <div
-                        class="detail"
-                        id="modalGenre"
-                    ></div>
-
+                <div class="card-title">
+                    Demon Slayer
                 </div>
 
-                <p
-                    class="modal-description"
-                    id="modalDescription"
-                ></p>
-
-                <div class="modal-actions">
-
-                    <button
-                        class="btn btn-red"
-                        id="trailerBtn"
-                    >
-                        ▶ Trailer
-                    </button>
-
-                    <button
-                        class="btn btn-dark"
-                        id="watchlistBtn"
-                    >
-                        ♡ Add to Watchlist
-                    </button>
-
+                <div class="card-meta">
+                    <span>2019</span>
+                    <span class="rating">⭐ 8.6</span>
                 </div>
 
             </div>
 
         </div>
 
-    </div>
 
-</div>
+        <!-- 2 -->
+
+        <div
+            class="anime-card"
+            data-title="One Piece"
+            data-genre="Adventure Action"
+            onclick="openAnime('One Piece','1999','⭐ 9.0','Adventure • Action','https://images.unsplash.com/photo-1614583224978-f5c76f6c9f2b?auto=format&fit=crop&w=700&q=80','A young pirate and his crew travel across a vast world in search of legendary treasure.')"
+        >
+
+            <div class="poster">
+
+                <img
+                    src="https://images.unsplash.com/photo-1614583224978-f5c76f6c9f2b?auto=format&fit=crop&w=700&q=80"
+                    alt="One Piece"
+                >
+
+                <span class="badge">
+                    9.0
+                </span>
+
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    One Piece
+                </div>
+
+                <div class="card-meta">
+                    <span>1999</span>
+                    <span class="rating">⭐ 9.0</span>
+                </div>
+
+            </div>
+
+        </div>
 
 
-<!-- ================= TOAST ================= -->
+        <!-- 3 -->
 
-<div
-    class="toast"
-    id="toast"
-></div>
+        <div
+            class="anime-card"
+            data-title="My Hero Academia"
+            data-genre="Action"
+            onclick="openAnime('My Hero Academia','2016','⭐ 8.0','Action','https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&w=700&q=80','In a world where special abilities are common, a determined student works hard to become a professional hero.')"
+        >
+
+            <div class="poster">
+
+                <img
+                    src="https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&w=700&q=80"
+                    alt="My Hero Academia"
+                >
+
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    My Hero Academia
+                </div>
+
+                <div class="card-meta">
+                    <span>2016</span>
+                    <span class="rating">⭐ 8.0</span>
+                </div>
+
+            </div>
+
+        </div>
 
 
-<script>
+        <!-- 4 -->
 
-/* =========================================================
-   ANIME DATABASE
-   ========================================================= */
+        <div
+            class="anime-card"
+            data-title="Spy Family"
+            data-genre="Comedy Action"
+            onclick="openAnime('Spy × Family','2022','⭐ 8.4','Comedy • Action','https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=700&q=80','A secret agent creates a pretend family for an important mission, but every member has secrets.')"
+        >
 
-const animeData = [
+            <div class="poster">
 
-    {
-        id:1,
-        title:"Demon Slayer",
-        year:"2019",
-        rating:"⭐ 8.6",
-        genres:["Action","Fantasy"],
-        image:"https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=700&q=85",
-        description:"A young swordsman begins a dangerous journey after tragedy strikes his family. He trains to become stronger and protect the people he loves."
-    },
+                <img
+                    src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=700&q=80"
+                    alt="Spy Family"
+                >
 
-    {
-        id:2,
-        title:"One Piece",
-        year:"1999",
-        rating:"⭐ 9.0",
-        genres:["Adventure","Action"],
-        image:"https://images.unsplash.com/photo-1614583224978-f5c76f6c9f2b?auto=format&fit=crop&w=700&q=85",
-        description:"A young pirate and his crew travel across a vast world in search of legendary treasure while facing powerful enemies."
-    },
+            </div>
 
-    {
-        id:3,
-        title:"My Hero Academia",
-        year:"2016",
-        rating:"⭐ 8.0",
-        genres:["Action"],
-        image:"https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&w=700&q=85",
-        description:"In a world where special abilities are common, a determined student works hard to become a professional hero."
-    },
+            <div class="card-info">
 
-    {
-        id:4,
-        title:"Spy × Family",
-        year:"2022",
-        rating:"⭐ 8.4",
-        genres:["Comedy","Action"],
-        image:"https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=700&q=85",
-        description:"A secret agent creates a pretend family for an important mission, but every member of the unusual family has secrets."
-    },
+                <div class="card-title">
+                    Spy × Family
+                </div>
 
-    {
-        id:5,
-        title:"Your Name",
-        year:"2016",
-        rating:"⭐ 8.8",
-        genres:["Romance","Fantasy"],
-        image:"https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=85",
-        description:"Two teenagers who have never met discover an unusual connection that brings their lives together across distance and time."
-    },
+                <div class="card-meta">
+                    <span>2022</span>
+                    <span class="rating">⭐ 8.4</span>
+                </div>
 
-    {
-        id:6,
-        title:"Haikyuu!!",
-        year:"2014",
-        rating:"⭐ 8.7",
-        genres:["Sports","Comedy"],
-        image:"https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=700&q=85",
-        description:"A passionate young volleyball player joins his school team and works with his teammates to reach the highest level."
-    },
+            </div>
 
-    {
-        id:7,
-        title:"Attack on Titan",
-        year:"2013",
-        rating:"⭐ 9.1",
-        genres:["Action","Mystery"],
-        image:"https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=700&q=85",
-        description:"Humanity fights for survival behind enormous walls while mysterious enemies threaten everything they know."
-    },
+        </div>
 
-    {
-        id:8,
-        title:"Jujutsu Kaisen",
-        year:"2020",
-        rating:"⭐ 8.7",
-        genres:["Action","Fantasy"],
-        image:"https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=700&q=85",
-        description:"A student enters the dangerous world of supernatural curses and learns to fight alongside powerful sorcerers."
-    },
 
-    {
-        id:9,
-        title:"Naruto",
-        year:"2002",
-        rating:"⭐ 8.4",
-        genres:["Action","Adventure"],
-        image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=85",
-        description:"A young ninja dreams of becoming the leader of his village while growing stronger and building friendships."
-    },
+        <!-- 5 -->
 
-    {
-        id:10,
-        title:"Death Note",
-        year:"2006",
-        rating:"⭐ 8.9",
-        genres:["Mystery"],
-        image:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=700&q=85",
-        description:"A mysterious notebook gives its owner extraordinary power, leading to a tense battle of intelligence and strategy."
-    },
+        <div
+            class="anime-card"
+            data-title="Your Name"
+            data-genre="Romance Fantasy"
+            onclick="openAnime('Your Name','2016','⭐ 8.8','Romance • Fantasy','https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80','Two teenagers discover an unusual connection that brings their lives together across distance and time.')"
+        >
 
-    {
-        id:11,
-        title:"Hunter × Hunter",
-        year:"2011",
-        rating:"⭐ 9.0",
-        genres:["Adventure","Action"],
-        image:"https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=700&q=85",
-        description:"A young adventurer sets out to become a Hunter and discover the truth about his missing father."
-    },
+            <div class="poster">
 
-    {
-        id:12,
-        title:"Blue Lock",
-        year:"2022",
-        rating:"⭐ 8.3",
-        genres:["Sports"],
-        image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=700&q=85",
-        description:"Talented young football players compete in an intense training program designed to create Japan's ultimate striker."
-    }
+                <img
+                    src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80"
+                    alt="Your Name"
+                >
 
-];
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    Your Name
+                </div>
+
+                <div class="card-meta">
+                    <span>2016</span>
+                    <span class="rating">⭐ 8.8</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 6 -->
+
+        <div
+            class="anime-card"
+            data-title="Haikyuu"
+            data-genre="Sports Comedy"
+            onclick="openAnime('Haikyuu!!','2014','⭐ 8.7','Sports • Comedy','https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=700&q=80','A passionate young volleyball player joins his school team and works to reach the highest level.')"
+        >
+
+            <div class="poster">
+
+                <img
+                    src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=700&q=80"
+                    alt="Haikyuu"
+                >
+
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    Haikyuu!!
+                </div>
+
+                <div class="card-meta">
+                    <span>2014</span>
+                    <span class="rating">⭐ 8.7</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 7 -->
+
+        <div
+            class="anime-card"
+            data-title="Attack on Titan"
+            data-genre="Action Mystery"
+            onclick="openAnime('Attack on Titan','2013','⭐ 9.1','Action • Mystery','https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=700&q=80','Humanity fights for survival while mysterious enemies threaten everything they know.')"
+        >
+
+            <div class="poster">
+
+                <img
+                    src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=700&q=80"
+                    alt="Attack on Titan"
+                >
+
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    Attack on Titan
+                </div>
+
+                <div class="card-meta">
+                    <span>2013</span>
+                    <span class="rating">⭐ 9.1</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 8 -->
+
+        <div
+            class="anime-card"
+            data-title="Jujutsu Kaisen"
+            data-genre="Action Fantasy"
+            onclick="openAnime('Jujutsu Kaisen','2020','⭐ 8.7','Action • Fantasy','https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=700&q=80','A student enters the dangerous world of supernatural curses and learns to fight alongside powerful sorcerers.')"
+        >
+
+            <div class="poster">
+
+                <img
+                    src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=700&q=80"
+                    alt="Jujutsu Kaisen"
+                >
+
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    Jujutsu Kaisen
+                </div>
+
+                <div class="card-meta">
+                    <span>2020</span>
+                    <span class="rating">⭐ 8.7</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 9 -->
+
+        <div
+            class="anime-card"
+            data-title="Naruto"
+            data-genre="Action Adventure"
+            onclick="openAnime('Naruto','2002','⭐ 8.4','Action • Adventure','https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=80','A young ninja dreams of becoming the leader of his village while growing stronger and building friendships.')"
+        >
+
+            <div class="poster">
+
+                <img
+                    src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=80"
+                    alt="Naruto"
+                >
+
+            </div>
+
+            <div class="card-i
