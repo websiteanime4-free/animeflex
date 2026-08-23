@@ -2899,37 +2899,20 @@ function closeModal(){
 ========================================================= */
 
 function setupSeasons(){
+    const seasonSelect = document.getElementById("seasonSelect");
+    if(!seasonSelect || !currentAnime) return;
 
-    const select =
-        document.getElementById("seasonSelect");
+    seasonSelect.innerHTML = "";
 
-    select.innerHTML = "";
+    currentAnime.seasons.forEach(function(season,index){
+        const option = document.createElement("option");
+        option.value = String(index);
+        option.textContent = season.name + " — " + season.episodes + " episodes";
+        seasonSelect.appendChild(option);
+    });
 
-    if(!currentAnime) return;
-
-
-    currentAnime.seasons.forEach(
-        function(season,index){
-
-            const option =
-                document.createElement("option");
-
-            option.value = index;
-
-            option.textContent =
-                season.name +
-                " — " +
-                season.episodes +
-                " episodes";
-
-            select.appendChild(option);
-
-        }
-    );
-
-
+    seasonSelect.selectedIndex = 0;
     setupEpisodes();
-
 }
 
 
@@ -2938,45 +2921,35 @@ function setupSeasons(){
 ========================================================= */
 
 function setupEpisodes(){
+    const seasonSelect = document.getElementById("seasonSelect");
+    const episodeSelect = document.getElementById("episodeSelect");
 
-    const seasonSelect =
-        document.getElementById("seasonSelect");
+    if(!seasonSelect || !episodeSelect || !currentAnime) return;
 
-    const episodeSelect =
-        document.getElementById("episodeSelect");
-
+    const season = currentAnime.seasons[Number(seasonSelect.value)];
     episodeSelect.innerHTML = "";
-
-    if(!currentAnime) return;
-
-
-    const season =
-        currentAnime.seasons[
-            parseInt(seasonSelect.value || 0)
-        ];
-
 
     if(!season) return;
 
-
-    for(
-        let i=1;
-        i<=season.episodes;
-        i++
-    ){
-
-        const option =
-            document.createElement("option");
-
-        option.value = i;
-
-        option.textContent =
-            "Episode " + i;
-
+    for(let i = 1; i <= Number(season.episodes); i++){
+        const option = document.createElement("option");
+        option.value = String(i);
+        option.textContent = "Episode " + i;
         episodeSelect.appendChild(option);
-
     }
 
+    episodeSelect.selectedIndex = 0;
+}
+
+
+/* =========================================================
+   SEASON CHANGE
+========================================================= */
+
+function handleSeasonChange(){
+    if(!currentAnime) return;
+    setupEpisodes();
+    updateEpisodeInfo(false);
 }
 
 
@@ -2984,50 +2957,26 @@ function setupEpisodes(){
    UPDATE EPISODE INFO
 ========================================================= */
 
-function updateEpisodeInfo(){
-
+function updateEpisodeInfo(rebuildEpisodes = true){
     if(!currentAnime) return;
 
-    setupEpisodes();
+    if(rebuildEpisodes){
+        setupEpisodes();
+    }
 
-
-    const seasonSelect =
-        document.getElementById("seasonSelect");
-
-    const episodeSelect =
-        document.getElementById("episodeSelect");
-
-
-    const seasonIndex =
-        parseInt(seasonSelect.value || 0);
-
-
-    const episode =
-        parseInt(episodeSelect.value || 1);
-
-
-    const season =
-        currentAnime.seasons[seasonIndex];
-
+    const seasonSelect = document.getElementById("seasonSelect");
+    const episodeSelect = document.getElementById("episodeSelect");
+    const season = currentAnime.seasons[Number(seasonSelect.value)];
 
     if(!season) return;
 
+    const episode = Number(episodeSelect.value || 1);
 
-    document.getElementById(
-        "episodeInfo"
-    ).innerHTML =
-        "<strong>" +
-        currentAnime.title +
-        "</strong> — " +
-        season.name +
-        " — Episode " +
-        episode +
-        " of " +
-        season.episodes;
-
+    document.getElementById("episodeInfo").innerHTML =
+        "<strong>" + currentAnime.title + "</strong> — " +
+        season.name + " — Episode " + episode + " of " + season.episodes;
 
     updateWatchLinks();
-
 }
 
 
