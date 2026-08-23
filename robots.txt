@@ -1,1 +1,4 @@
+User-agent: *
+Allow: /
 
+Sitemap: https://websiteanime4-free.github.io/animeflex/sitemap.xml
