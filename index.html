@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>AnimeFlex</title>
+<title>AnimeFlex | Discover Anime</title>
 
 <style>
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
 html{
@@ -21,36 +20,29 @@ body{
     background:#080808;
     color:#fff;
     font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
 }
 
-button,
-input{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
-}
+/* ================= NAVBAR ================= */
 
 nav{
+    height:70px;
+    background:#0d0d0d;
+    border-bottom:1px solid #242424;
+    display:flex;
+    align-items:center;
+    padding:0 5%;
+    gap:30px;
     position:sticky;
     top:0;
     z-index:1000;
-    height:72px;
-    display:flex;
-    align-items:center;
-    gap:25px;
-    padding:0 5%;
-    background:rgba(8,8,8,.96);
-    border-bottom:1px solid #222;
-    backdrop-filter:blur(12px);
 }
 
 .logo{
-    font-size:25px;
-    font-weight:900;
-    cursor:pointer;
+    font-size:26px;
+    font-weight:800;
     white-space:nowrap;
+    cursor:pointer;
 }
 
 .logo span{
@@ -59,117 +51,98 @@ nav{
 
 .nav-links{
     display:flex;
-    gap:18px;
     list-style:none;
+    gap:25px;
 }
 
 .nav-links a{
     color:#aaa;
     text-decoration:none;
     font-size:14px;
-    cursor:pointer;
     transition:.2s;
+    cursor:pointer;
 }
 
 .nav-links a:hover{
-    color:#fff;
+    color:#e50914;
 }
 
 .search-box{
     margin-left:auto;
-    display:flex;
-    align-items:center;
-    background:#151515;
-    border:1px solid #292929;
-    border-radius:7px;
-    padding:0 10px;
+    position:relative;
 }
 
 .search-box input{
-    width:145px;
-    padding:9px;
-    background:none;
-    border:0;
-    outline:0;
+    width:240px;
+    height:40px;
+    background:#181818;
+    border:1px solid #303030;
+    border-radius:22px;
+    outline:none;
     color:#fff;
+    padding:0 16px 0 42px;
+    font-size:14px;
 }
 
-.search-icon{
-    opacity:.7;
-}
-
-.auth-actions{
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-.auth-btn{
-    border:1px solid #333;
-    background:#171717;
-    color:#fff;
-    border-radius:6px;
-    padding:9px 13px;
-}
-
-.auth-btn:hover{
-    background:#252525;
-}
-
-.auth-btn.signup{
-    background:#e50914;
+.search-box input:focus{
     border-color:#e50914;
 }
 
-.user-menu{
-    display:none;
-    align-items:center;
-    gap:8px;
-}
-
-.user-email{
-    max-width:150px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    color:#aaa;
-    font-size:13px;
+.search-icon{
+    position:absolute;
+    left:15px;
+    top:11px;
+    color:#777;
+    font-size:14px;
 }
 
 .menu{
     display:none;
     background:none;
-    color:#fff;
     border:0;
+    color:#fff;
     font-size:25px;
+    cursor:pointer;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 
 .hero{
-    min-height:650px;
+    min-height:540px;
     display:flex;
     align-items:center;
-    padding:80px 7%;
+    padding:70px 7%;
+    position:relative;
+
     background:
-        radial-gradient(circle at 75% 45%,rgba(229,9,20,.18),transparent 35%),
-        linear-gradient(90deg,#080808 20%,rgba(8,8,8,.75),#080808);
+    linear-gradient(
+        90deg,
+        #080808 0%,
+        #080808 38%,
+        rgba(8,8,8,.78) 65%,
+        rgba(8,8,8,.2)
+    ),
+    url("https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1800&q=80");
+
+    background-size:cover;
+    background-position:center;
 }
 
 .hero-content{
-    max-width:720px;
+    max-width:600px;
 }
 
 .hero-small{
     color:#e50914;
+    font-size:13px;
     font-weight:bold;
     letter-spacing:3px;
-    margin-bottom:15px;
+    margin-bottom:17px;
 }
 
 .hero h1{
-    font-size:68px;
-    line-height:1.05;
+    font-size:62px;
+    line-height:1.02;
     margin-bottom:20px;
 }
 
@@ -178,53 +151,53 @@ nav{
 }
 
 .hero p{
-    color:#999;
+    color:#aaa;
     line-height:1.7;
-    max-width:620px;
+    margin-bottom:28px;
 }
 
 .buttons{
     display:flex;
     gap:12px;
     flex-wrap:wrap;
-    margin-top:30px;
 }
 
 .btn{
     border:0;
+    padding:13px 22px;
     border-radius:7px;
-    padding:12px 18px;
     font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+    font-size:14px;
 }
 
-.btn.primary{
+.primary{
     background:#e50914;
-    color:#fff;
+    color:white;
 }
 
-.btn.primary:hover{
-    background:#ff1c27;
+.primary:hover{
+    background:#ff1b27;
+    transform:translateY(-2px);
 }
 
-.btn.secondary{
+.secondary{
     background:#222;
     color:#fff;
-    border:1px solid #333;
+    border:1px solid #444;
 }
 
-.btn.secondary:hover{
-    background:#2c2c2c;
+.secondary:hover{
+    background:#333;
 }
 
-/* SECTIONS */
-
-.section,
-.search-engine{
-    padding:65px 5%;
-}
+/* ================= SEARCH ENGINE SECTION ================= */
 
 .search-engine{
-    background:#0c0c0c;
+    padding:50px 5%;
+    background:#0a0a0a;
+    border-bottom:1px solid #1a1a1a;
 }
 
 .search-engine-header{
@@ -234,73 +207,120 @@ nav{
 
 .search-engine-header h2{
     font-size:32px;
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
 .search-engine-header p{
-    color:#777;
+    color:#888;
+    font-size:15px;
 }
 
 .search-bar-big{
-    max-width:800px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    background:#151515;
-    border:1px solid #333;
-    border-radius:9px;
-    padding-left:15px;
-    overflow:hidden;
+    max-width:700px;
+    margin:0 auto 30px;
+    position:relative;
 }
 
 .search-bar-big input{
-    flex:1;
-    min-width:0;
-    padding:16px;
-    background:none;
-    border:0;
-    outline:0;
+    width:100%;
+    height:55px;
+    background:#141414;
+    border:2px solid #2a2a2a;
+    border-radius:30px;
+    outline:none;
     color:#fff;
+    padding:0 25px 0 55px;
+    font-size:16px;
+    transition:.2s;
+}
+
+.search-bar-big input:focus{
+    border-color:#e50914;
+    background:#181818;
+}
+
+.search-bar-big .search-icon{
+    left:20px;
+    top:16px;
+    font-size:18px;
 }
 
 .search-btn{
-    padding:16px 24px;
+    position:absolute;
+    right:6px;
+    top:6px;
+    height:43px;
+    padding:0 25px;
     background:#e50914;
     color:#fff;
-    border:0;
+    border:none;
+    border-radius:22px;
     font-weight:bold;
+    cursor:pointer;
+    font-size:14px;
+    transition:.2s;
+}
+
+.search-btn:hover{
+    background:#ff1b27;
+}
+
+.search-btn:disabled{
+    background:#555;
+    cursor:not-allowed;
+}
+
+/* ================= SECTION ================= */
+
+.section{
+    padding:50px 5%;
 }
 
 .section-header{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:15px;
     margin-bottom:25px;
+    flex-wrap:wrap;
+    gap:10px;
 }
 
 .section-title{
-    font-size:27px;
+    font-size:25px;
+}
+
+.section-title:before{
+    content:"";
+    display:inline-block;
+    width:5px;
+    height:25px;
+    background:#e50914;
+    border-radius:5px;
+    margin-right:10px;
+    vertical-align:-3px;
 }
 
 .view-all{
+    color:#e50914;
     background:none;
     border:0;
-    color:#e50914;
-    font-weight:bold;
+    cursor:pointer;
+    font-size:14px;
 }
+
+/* ================= SEARCH MESSAGE ================= */
 
 .search-message{
     display:none;
-    color:#777;
+    color:#aaa;
     margin-bottom:20px;
 }
 
 .search-message strong{
-    color:#fff;
+    color:#e50914;
 }
 
-/* GRID */
+/* ================= ANIME GRID ================= */
 
 .anime-grid{
     display:grid;
@@ -310,7 +330,7 @@ nav{
 
 .anime-card{
     background:#111;
-    border:1px solid #222;
+    border:1px solid #242424;
     border-radius:9px;
     overflow:hidden;
     cursor:pointer;
@@ -318,8 +338,9 @@ nav{
 }
 
 .anime-card:hover{
-    transform:translateY(-5px);
-    border-color:#444;
+    transform:translateY(-7px);
+    border-color:#e50914;
+    box-shadow:0 12px 30px rgba(229,9,20,.15);
 }
 
 .anime-card.hidden{
@@ -328,26 +349,34 @@ nav{
 
 .poster{
     position:relative;
+    width:100%;
     aspect-ratio:2/3;
-    background:#171717;
+    background:#191919;
     overflow:hidden;
 }
 
 .poster img{
     width:100%;
     height:100%;
-    object-fit:cover;
     display:block;
+    object-fit:cover;
+    transition:.3s;
+}
+
+.anime-card:hover .poster img{
+    transform:scale(1.05);
 }
 
 .badge{
     position:absolute;
     top:9px;
-    right:9px;
-    background:rgba(0,0,0,.8);
+    left:9px;
+    background:#e50914;
+    padding:5px 8px;
     border-radius:5px;
-    padding:5px 7px;
-    font-size:11px;
+    font-size:10px;
+    font-weight:bold;
+    color:#fff;
 }
 
 .card-info{
@@ -355,86 +384,93 @@ nav{
 }
 
 .card-title{
+    font-size:14px;
     font-weight:bold;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+    margin-bottom:8px;
 }
 
 .card-meta{
     display:flex;
     justify-content:space-between;
-    margin-top:9px;
     color:#777;
-    font-size:12px;
+    font-size:11px;
 }
 
 .rating{
-    color:#f1c40f;
+    color:#ffb400;
 }
+
+/* ================= NO RESULTS ================= */
 
 .no-results{
     display:none;
     text-align:center;
-    padding:50px;
+    padding:60px 20px;
     color:#777;
 }
 
 .no-results h3{
-    color:#fff;
-    margin-bottom:7px;
+    color:#ddd;
+    margin:12px 0 7px;
 }
 
-/* GENRES */
+/* ================= GENRES ================= */
 
 .genre-list{
     display:flex;
-    flex-wrap:wrap;
     gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
 }
 
 .genre{
     background:#151515;
-    border:1px solid #292929;
     color:#aaa;
-    border-radius:6px;
-    padding:9px 15px;
+    border:1px solid #292929;
+    padding:10px 17px;
+    border-radius:25px;
+    cursor:pointer;
+    transition:.2s;
+    font-size:13px;
 }
 
 .genre:hover,
 .genre.active{
     background:#e50914;
-    color:#fff;
     border-color:#e50914;
+    color:white;
 }
 
-/* WATCHLIST */
+/* ================= WATCHLIST ================= */
+
+#watchlistSection{
+    display:none;
+}
+
+#watchlistSection.active{
+    display:block;
+}
 
 .watch-empty{
     text-align:center;
     padding:50px;
-    background:#101010;
-    border:1px dashed #333;
-    border-radius:10px;
     color:#777;
 }
 
-.watch-empty h3{
-    color:#fff;
-    margin-bottom:8px;
-}
-
-/* MODALS */
+/* ================= MODAL ================= */
 
 .modal{
+    display:none;
     position:fixed;
     inset:0;
-    z-index:4000;
-    display:none;
+    z-index:3000;
+    background:rgba(0,0,0,.85);
     align-items:center;
     justify-content:center;
     padding:20px;
-    background:rgba(0,0,0,.82);
 }
 
 .modal.active{
@@ -442,27 +478,31 @@ nav{
 }
 
 .modal-box{
-    width:min(950px,100%);
+    width:min(850px,100%);
     max-height:90vh;
     overflow:auto;
     background:#111;
     border:1px solid #333;
-    border-radius:12px;
+    border-radius:14px;
     position:relative;
 }
 
 .close{
     position:absolute;
-    top:12px;
-    right:16px;
-    z-index:10;
-    border:none;
-    background:#222;
-    color:#fff;
-    width:35px;
-    height:35px;
+    right:15px;
+    top:15px;
+    width:38px;
+    height:38px;
     border-radius:50%;
-    font-size:25px;
+    border:1px solid #444;
+    background:#111;
+    color:#fff;
+    font-size:24px;
+    cursor:pointer;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .close:hover{
@@ -471,431 +511,151 @@ nav{
 
 .modal-body{
     display:grid;
-    grid-template-columns:230px 1fr;
+    grid-template-columns:220px 1fr;
     gap:30px;
     padding:35px;
 }
 
 .modal-poster{
-    width:230px;
+    width:100%;
     aspect-ratio:2/3;
     object-fit:cover;
     border-radius:8px;
-    background:#191919;
 }
 
 .modal-info{
-    padding-top:10px;
+    padding-top:8px;
 }
 
 .modal-info h2{
-    font-size:35px;
-    margin-bottom:18px;
+    font-size:34px;
+    margin-bottom:15px;
 }
 
 .details{
     display:flex;
-    flex-wrap:wrap;
     gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
 }
 
 .detail{
-    background:#1c1c1c;
-    border:1px solid #2b2b2b;
+    background:#1b1b1b;
+    border:1px solid #333;
+    color:#bbb;
     padding:7px 10px;
-    border-radius:5px;
-    color:#aaa;
+    border-radius:6px;
     font-size:12px;
 }
 
 .description{
     color:#aaa;
     line-height:1.7;
-    margin-top:22px;
+    margin-bottom:25px;
 }
 
 .modal-buttons{
     display:flex;
-    flex-wrap:wrap;
     gap:10px;
-    margin-top:25px;
-}
-
-/* WATCH MODAL */
-
-.watch-modal-box{
-    width:min(1050px,100%);
-}
-
-.watch-header{
-    padding:28px 35px 20px;
-    border-bottom:1px solid #222;
-}
-
-.watch-header h2{
-    font-size:30px;
-    margin-bottom:7px;
-}
-
-.watch-header p{
-    color:#777;
-}
-
-.season-tabs{
-    display:flex;
     flex-wrap:wrap;
-    gap:9px;
-    padding:20px 35px;
-    border-bottom:1px solid #222;
 }
 
-.season-btn{
-    background:#191919;
-    border:1px solid #333;
-    color:#aaa;
-    padding:9px 14px;
-    border-radius:6px;
-}
-
-.season-btn.active{
-    background:#e50914;
-    color:#fff;
-    border-color:#e50914;
-}
-
-.episode-area{
-    padding:25px 35px 35px;
-}
-
-.episode-toolbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    margin-bottom:20px;
-}
-
-.episode-toolbar h3{
-    font-size:20px;
-}
-
-.episode-count{
-    color:#777;
-    font-size:13px;
-}
-
-.episode-list{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.episode{
-    background:#181818;
-    border:1px solid #292929;
-    border-radius:8px;
-    padding:14px;
-    display:flex;
-    gap:12px;
-    align-items:center;
-    transition:.2s;
-}
-
-.episode:hover{
-    border-color:#e50914;
-}
-
-.episode-number{
-    width:38px;
-    height:38px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-    border-radius:6px;
-    background:#252525;
-    color:#fff;
-    font-weight:bold;
-}
-
-.episode-info{
-    min-width:0;
-    flex:1;
-}
-
-.episode-title{
-    color:#fff;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    font-weight:bold;
-    font-size:14px;
-}
-
-.episode-date{
-    color:#666;
-    font-size:11px;
-    margin-top:4px;
-}
-
-.episode-watched{
-    color:#65d67b;
-    font-size:11px;
-}
-
-.watch-episode-btn{
-    background:#e50914;
-    color:#fff;
-    border:0;
-    border-radius:6px;
-    padding:8px 10px;
-    font-size:12px;
-    white-space:nowrap;
-}
-
-.watch-episode-btn:hover{
-    background:#ff1b26;
-}
-
-.loading{
-    text-align:center;
-    padding:45px;
-    color:#777;
-}
-
-.legal-box{
-    margin-top:25px;
-    padding:18px;
-    background:#101010;
-    border:1px solid #292929;
-    border-radius:8px;
-}
-
-.legal-box h4{
-    margin-bottom:8px;
-}
-
-.legal-box p{
-    color:#777;
-    font-size:12px;
-    line-height:1.6;
-}
-
-.streaming-links{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-top:12px;
-}
-
-.stream-link{
-    display:inline-block;
-    text-decoration:none;
-    background:#222;
-    border:1px solid #333;
-    color:#fff;
-    padding:8px 11px;
-    border-radius:6px;
-    font-size:12px;
-}
-
-.stream-link:hover{
-    border-color:#e50914;
-}
-
-/* AUTH */
-
-.auth-modal .modal-box{
-    max-width:480px;
-}
-
-.auth-form-view,
-.auth-form{
-    width:100%;
-}
-
-.auth-logo{
-    text-align:center;
-    font-size:30px;
-    font-weight:900;
-    margin-bottom:8px;
-}
-
-.auth-logo span{
-    color:#e50914;
-}
-
-.auth-subtitle{
-    text-align:center;
-    color:#888;
-    margin-bottom:25px;
-}
-
-.auth-form{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-
-.auth-form label{
-    display:block;
-    color:#aaa;
-    font-size:13px;
-    margin-bottom:6px;
-}
-
-.auth-form input{
-    width:100%;
-    background:#171717;
-    border:1px solid #333;
-    border-radius:7px;
-    padding:13px;
-    color:#fff;
-    outline:none;
-}
-
-.auth-form input:focus{
-    border-color:#e50914;
-}
-
-.auth-submit{
-    width:100%;
-    padding:13px;
-    border:none;
-    border-radius:7px;
-    background:#e50914;
-    color:#fff;
-    font-weight:bold;
-}
-
-.auth-submit:disabled{
-    opacity:.5;
-    cursor:not-allowed;
-}
-
-.auth-link{
-    border:none;
-    background:none;
-    color:#e50914;
-    cursor:pointer;
-}
-
-.auth-switch{
-    text-align:center;
-    color:#777;
-    margin-top:20px;
-    font-size:13px;
-}
-
-.auth-message{
-    display:none;
-    padding:10px;
-    border-radius:6px;
-    margin-bottom:15px;
-    font-size:13px;
-    background:#301010;
-    color:#ff7777;
-}
-
-.auth-message.success{
-    background:#102d18;
-    color:#70e090;
-}
-
-.auth-message.show{
-    display:block;
-}
-
-.verify-box{
-    text-align:center;
-    width:100%;
-}
-
-.verify-icon{
-    font-size:45px;
-    margin-bottom:15px;
-}
-
-.verify-box p{
-    color:#888;
-    line-height:1.6;
-    margin-top:5px;
-}
-
-.verify-box strong{
-    color:#fff;
-}
-
-/* TOAST */
+/* ================= TOAST ================= */
 
 .toast{
     position:fixed;
     bottom:25px;
-    right:25px;
-    z-index:5000;
-    background:#181818;
+    left:50%;
+    transform:translate(-50%,30px);
+    background:#171717;
     border:1px solid #333;
     border-left:4px solid #e50914;
     color:#fff;
-    padding:13px 17px;
+    padding:13px 18px;
     border-radius:7px;
-    transform:translateY(100px);
     opacity:0;
-    transition:.3s;
+    pointer-events:none;
+    transition:.25s;
+    z-index:5000;
+    font-size:14px;
 }
 
 .toast.show{
-    transform:translateY(0);
     opacity:1;
+    transform:translate(-50%,0);
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 footer{
-    text-align:center;
-    padding:40px 20px;
+    background:#0c0c0c;
     border-top:1px solid #222;
-    background:#050505;
+    text-align:center;
+    padding:40px 5%;
     color:#666;
     line-height:2;
-    font-size:13px;
 }
 
 footer strong{
     color:#e50914;
 }
 
-/* RESPONSIVE */
+
+/* ================= AUTH SYSTEM ================= */
+.auth-actions{margin-left:0;display:flex;align-items:center;gap:8px}
+.auth-btn{border:1px solid #333;background:#171717;color:#fff;border-radius:20px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;white-space:nowrap}
+.auth-btn:hover{border-color:#e50914;background:#e50914}
+.auth-btn.signup{background:#e50914;border-color:#e50914}
+.auth-btn.signup:hover{background:#ff1b27}
+.user-menu{display:none;align-items:center;gap:8px}
+.user-email{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#aaa;font-size:12px}
+.auth-modal .modal-box{width:min(430px,100%);max-height:90vh}
+.auth-modal .modal-body{display:block;padding:30px}
+.auth-logo{text-align:center;font-size:30px;font-weight:800;margin-bottom:6px}
+.auth-logo span{color:#e50914}
+.auth-subtitle{text-align:center;color:#777;font-size:13px;margin-bottom:22px}
+.auth-form{display:flex;flex-direction:column;gap:12px}
+.auth-form label{color:#aaa;font-size:12px;font-weight:700}
+.auth-form input{width:100%;height:45px;background:#181818;border:1px solid #303030;border-radius:7px;color:#fff;padding:0 13px;outline:none}
+.auth-form input:focus{border-color:#e50914}
+.auth-submit{height:45px;border:0;border-radius:7px;background:#e50914;color:#fff;font-weight:800;cursor:pointer;margin-top:4px}
+.auth-submit:hover{background:#ff1b27}
+.auth-submit:disabled{background:#555;cursor:not-allowed}
+.auth-link{border:0;background:none;color:#e50914;cursor:pointer;font-size:12px;text-align:center;padding:3px}
+.auth-switch{text-align:center;color:#777;font-size:12px;margin-top:15px}
+.auth-message{display:none;padding:10px 12px;border-radius:7px;background:#1b1b1b;border:1px solid #333;color:#bbb;font-size:12px;line-height:1.5;margin-bottom:12px}
+.auth-message.show{display:block}
+.auth-message.error{border-color:#8f1d25;color:#ff8c92}
+.auth-message.success{border-color:#2f6f45;color:#8fe0aa}
+.verify-box{text-align:center;color:#aaa;line-height:1.7;font-size:13px}
+.verify-box strong{color:#fff;word-break:break-word}
+.verify-icon{font-size:42px;margin-bottom:10px}
+@media(max-width:800px){.auth-actions{margin-left:auto}.user-email{display:none}}
+@media(max-width:600px){.auth-btn{padding:8px 10px;font-size:12px}.auth-modal .modal-body{padding:24px 20px}}
+
+/* ================= MOBILE ================= */
 
 @media(max-width:1100px){
+
     .anime-grid{
         grid-template-columns:repeat(4,1fr);
     }
 
-    .nav-links{
-        gap:13px;
-    }
-
-    .search-box input{
-        width:120px;
-    }
 }
 
 @media(max-width:800px){
-    nav{
-        gap:15px;
-    }
 
     .nav-links{
+        display:none;
         position:absolute;
-        top:72px;
         left:0;
         right:0;
-        background:#0c0c0c;
+        top:70px;
+        background:#0d0d0d;
         border-bottom:1px solid #222;
-        display:none;
+        padding:20px 5%;
         flex-direction:column;
-        padding:20px;
+        gap:15px;
     }
 
     .nav-links.open{
@@ -906,34 +666,33 @@ footer strong{
         display:block;
     }
 
-    .auth-actions{
-        margin-left:auto;
+    .search-box input{
+        width:190px;
     }
 
-    .hero{
-        min-height:530px;
+    .anime-grid{
+        grid-template-columns:repeat(3,1fr);
     }
 
     .hero h1{
         font-size:50px;
     }
 
-    .anime-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
 }
 
 @media(max-width:600px){
+
     nav{
         padding:0 4%;
+        gap:10px;
     }
 
     .logo{
         font-size:21px;
     }
 
-    .search-box{
-        display:none;
+    .search-box input{
+        width:145px;
     }
 
     .hero{
@@ -942,12 +701,11 @@ footer strong{
     }
 
     .hero h1{
-        font-size:40px;
+        font-size:42px;
     }
 
-    .section,
-    .search-engine{
-        padding:40px 4%;
+    .section{
+        padding:38px 4%;
     }
 
     .anime-grid{
@@ -969,48 +727,52 @@ footer strong{
         font-size:27px;
     }
 
-    .episode-list{
-        grid-template-columns:1fr;
+    .search-engine-header h2{
+        font-size:24px;
     }
 
-    .watch-header,
-    .season-tabs,
-    .episode-area{
-        padding-left:20px;
-        padding-right:20px;
-    }
-
-    .episode{
-        flex-wrap:wrap;
-    }
-
-    .watch-episode-btn{
-        width:100%;
-    }
 }
 
 @media(max-width:380px){
+
+    .search-box input{
+        width:120px;
+    }
+
     .hero h1{
-        font-size:34px;
+        font-size:36px;
     }
 
-    .anime-grid{
-        gap:9px;
-    }
-
-    .card-info{
-        padding:9px;
-    }
-
-    .auth-actions .auth-btn{
-        padding:8px 9px;
-        font-size:11px;
-    }
 }
+
+/* ================= WATCH NOW ================= */
+.watch-now-btn{min-width:140px}
+.watch-modal .modal-box{width:min(1050px,100%);max-height:92vh}
+.watch-header{padding:28px 35px 15px;border-bottom:1px solid #242424}
+.watch-header h2{font-size:28px;margin-bottom:7px}
+.watch-header p{color:#888;font-size:13px}
+.watch-controls{display:flex;gap:10px;flex-wrap:wrap;padding:18px 35px;border-bottom:1px solid #222;background:#0d0d0d}
+.watch-select{background:#181818;color:#fff;border:1px solid #333;border-radius:7px;padding:10px 12px;min-width:180px;outline:none}
+.watch-status{color:#888;font-size:13px;align-self:center}
+.episode-list{padding:25px 35px;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.episode-btn{background:#181818;border:1px solid #303030;color:#ddd;padding:11px 8px;border-radius:7px;cursor:pointer;font-size:12px;text-align:left;transition:.2s}
+.episode-btn:hover,.episode-btn.active{background:#e50914;border-color:#e50914;color:#fff}
+.watch-info{padding:0 35px 28px;color:#777;font-size:12px;line-height:1.6}
+.watch-info strong{color:#ddd}
+.episode-empty{padding:45px 35px;text-align:center;color:#777}
+.episode-empty h3{color:#ddd;margin-bottom:8px}
+.legal-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.legal-link{display:inline-flex;text-decoration:none;background:#222;color:#fff;border:1px solid #444;border-radius:7px;padding:10px 14px;font-size:12px;font-weight:bold}
+.legal-link:hover{border-color:#e50914;background:#2a2a2a}
+@media(max-width:700px){.episode-list{grid-template-columns:repeat(3,1fr);padding:20px}.watch-header,.watch-controls,.watch-info{padding-left:20px;padding-right:20px}.watch-header h2{font-size:23px}}
+
 </style>
+<base target="_blank">
 </head>
 
 <body>
+
+<!-- ================= NAVBAR ================= -->
 
 <nav>
 
@@ -1028,2936 +790,791 @@ footer strong{
     </ul>
 
     <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input id="navSearch" type="search" placeholder="Quick search...">
+        <span class="search-icon">&#128269;</span>
+        <input
+            id="navSearch"
+            type="search"
+            placeholder="Quick search..."
+        >
     </div>
 
-    <div class="auth-actions">
-
-        <button
-            class="auth-btn"
-            id="loginNavBtn"
-            onclick="openAuthModal('login')">
-            Login
-        </button>
-
-        <button
-            class="auth-btn signup"
-            id="signupNavBtn"
-            onclick="openAuthModal('signup')">
-            Sign Up
-        </button>
-
+    <div class="auth-actions" id="authActions">
+        <button class="auth-btn" id="loginNavBtn" onclick="openAuthModal('login')">Login</button>
+        <button class="auth-btn signup" id="signupNavBtn" onclick="openAuthModal('signup')">Sign Up</button>
         <div class="user-menu" id="userMenu">
             <span class="user-email" id="userEmail"></span>
-            <button class="auth-btn" onclick="logoutUser()">
-                Logout
-            </button>
+            <button class="auth-btn" onclick="logoutUser()">Logout</button>
         </div>
-
     </div>
 
-    <button
-        class="menu"
-        onclick="toggleMenu()">
-        ☰
-    </button>
+    <button class="menu" id="menuBtn" onclick="toggleMenu()">&#9776;</button>
 
 </nav>
 
+
+<!-- ================= HERO ================= -->
 
 <section class="hero" id="home">
 
     <div class="hero-content">
 
-        <div class="hero-small">
-            WELCOME TO ANIMEFLEX
-        </div>
+        <div class="hero-small">WELCOME TO ANIMEFLEX</div>
 
-        <h1>
-            Discover Your
-            <span>Next Anime.</span>
-        </h1>
+        <h1>Discover Your <span>Next Anime.</span></h1>
 
-        <p>
-            Discover anime, explore seasons and episodes,
-            manage your watchlist and find legal viewing options.
-        </p>
+        <p>Discover trending anime, explore different genres and find your next favorite series using our powerful anime search engine.</p>
 
         <div class="buttons">
-
-            <button
-                class="btn primary"
-                onclick="scrollToSection('searchEngine')">
-                🔍 Search Anime
-            </button>
-
-            <button
-                class="btn secondary"
-                onclick="scrollToSection('explore')">
-                Explore Anime
-            </button>
-
-            <button
-                class="btn secondary"
-                onclick="scrollToSection('browse')">
-                Browse Anime
-            </button>
-
+            <button class="btn primary" onclick="scrollToSection('searchEngine')">Search Anime</button>
+            <button class="btn secondary" onclick="scrollToSection('explore')">Explore Anime</button>
+            <button class="btn secondary" onclick="scrollToSection('browse')">Browse Anime</button>
         </div>
 
     </div>
 
 </section>
 
+
+<!-- ================= SEARCH ENGINE ================= -->
 
 <section class="search-engine" id="searchEngine">
 
     <div class="search-engine-header">
-
-        <h2>🔍 Anime Search Engine</h2>
-
-        <p>
-            Search AnimeFlex's anime database
-        </p>
-
+        <h2>&#128269; Anime Search Engine</h2>
+        <p>Search from 25+ popular anime titles instantly</p>
     </div>
 
     <div class="search-bar-big">
-
-        <span class="search-icon">🔍</span>
-
+        <span class="search-icon">&#128269;</span>
         <input
             id="mainSearch"
             type="search"
-            placeholder="Type anime name..."
-            onkeydown="if(event.key==='Enter')performSearch()">
-
-        <button
-            class="search-btn"
-            onclick="performSearch()">
-            Search
-        </button>
-
+            placeholder="Type anime name... e.g. Attack on Titan, Naruto, One Piece"
+            onkeydown="if(event.key==='Enter')performSearch()"
+        >
+        <button class="search-btn" id="searchBtn" onclick="performSearch()">Search</button>
     </div>
 
-    <div id="searchResultsArea" style="margin-top:35px;">
-
+    <div id="searchResultsArea">
         <div class="section-header">
-            <h2 class="section-title">
-                Search Results
-            </h2>
+            <h2 class="section-title">Search Results</h2>
         </div>
-
-        <div
-            class="anime-grid"
-            id="searchGrid">
-        </div>
-
-        <div
-            class="no-results"
-            id="searchNoResults">
-
+        <div class="anime-grid" id="searchGrid"></div>
+        <div class="no-results" id="searchNoResults" style="display:none;">
             <h3>No anime found</h3>
-
-            <p>
-                Try a different search term.
-            </p>
-
+            <p>Try a different search term</p>
         </div>
-
     </div>
 
 </section>
 
+
+<!-- ================= TRENDING ================= -->
 
 <section class="section" id="trending">
 
     <div class="section-header">
-
-        <h2 class="section-title">
-            Trending Anime
-        </h2>
-
-        <button
-            class="view-all"
-            onclick="clearFilters()">
-            View All →
-        </button>
-
+        <h2 class="section-title">Trending Anime</h2>
+        <button class="view-all" onclick="clearFilters()">View All &rarr;</button>
     </div>
 
-    <div
-        class="search-message"
-        id="searchMessage">
-
-        Results for:
-        <strong id="searchText"></strong>
-
+    <div class="search-message" id="searchMessage">
+        Results for: <strong id="searchText"></strong>
     </div>
 
-    <div
-        class="no-results"
-        id="noResults">
-
+    <div class="no-results" id="noResults">
         <h3>No anime found</h3>
-
-        <p>Try a different search term.</p>
-
+        <p>Try a different search term</p>
     </div>
 
-    <div
-        class="anime-grid"
-        id="animeGrid">
+    <div class="anime-grid" id="animeGrid">
+
+        <!-- 1 Demon Slayer -->
+        <div class="anime-card" data-title="Demon Slayer" data-genre="Action Fantasy"
+            onclick="openAnimeStatic('Demon Slayer','2019','8.6','Action &bull; Fantasy','https://cdn.myanimelist.net/images/anime/1286/99889.jpg','A young swordsman begins a dangerous journey after tragedy strikes his family.')">
+            <div class="poster">
+                <img src="https://cdn.myanimelist.net/images/anime/1286/99889.jpg" alt="Demon Slayer" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27450%27%3E%3Crect width=%27300%27 height=%27450%27 fill=%27%231a1a1a%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%23666%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image%3C/text%3E%3C/svg%3E';">
+                <span class="badge">TRENDING</span>
+            </div>
+            <div class="card-info">
+                <div class="card-title">Demon Slayer</div>
+                <div class="card-meta">
+                    <span>2019</span>
+                    <span class="rating">&#11088; 8.6</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2 One Piece -->
+        <div class="anime-card" data-title="One Piece" data-genre="Adventure Action"
+            onclick="openAnimeStatic('One Piece','1999','9.0','Adventure &bull; Action','https://cdn.myanimelist.net/images/anime/6/73245.jpg','A young pirate and his crew travel across a vast world in search of legendary treasure.')">
+            <div class="poster">
+                <img src="https://cdn.myanimelist.net/images/anime/6/73245.jpg" alt="One Piece" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27450%27%3E%3Crect width=%27300%27 height=%27450%27 fill=%27%231a1a1a%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%23666%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image%3C/text%3E%3C/svg%3E';">
+                <span class="badge">9.0</span>
+            </div>
+            <div class="card-info">
+                <div class="card-title">One Piece</div>
+                <div class="card-meta">
+                    <span>1999</span>
+                    <span class="rating">&#11088; 9.0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 My Hero Academia -->
+        <div class="anime-card" data-title="My Hero Academia" data-genre="Action"
+            onclick="openAnimeStatic('My Hero Academia','2016','8.0','Action','https://cdn.myanimelist.net/images/anime/10/78745.jpg','In a world where special abilities are common, a determined student works hard to become a professional hero.')">
+            <div class="poster">
+                <img src="https://cdn.myanimelist.net/images/anime/10/78745.jpg" alt="My Hero Academia" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27450%27%3E%3Crect width=%27300%27 height=%27450%27 fill=%27%231a1a1a%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%23666%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="card-info">
+                <div class="card-title">My Hero Academia</div>
+                <div class="card-meta">
+                    <span>2016</span>
+                    <span class="rating">&#11088; 8.0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4 Spy Family -->
+        <div class="anime-card" data-title="Spy x Family" data-genre="Comedy Action"
+            onclick="openAnimeStatic('Spy x Family','2022','8.4','Comedy &bull; Action','https://cdn.myanimelist.net/images/anime/1441/122795.jpg','A secret agent creates a pretend family for an important mission, but every member has secrets.')">
+            <div class="poster">
+                <img src="https://cdn.myanimelist.net/images/anime/1441/122795.jpg" alt="Spy x Family" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27450%27%3E%3Crect width=%27300%27 height=%27450%27 fill=%27%231a1a1a%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%23666%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="card-info">
+                <div class="card-title">Spy x Family</div>
+                <div class="card-meta">
+                    <span>2022</span>
+                    <span class="rating">&#11088; 8.4</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5 Your Name -->
+        <div class="anime-card" data-title="Your Name" data-genre="Romance Fantasy"
+            onclick="openAnimeStatic('Your Name','2016','8.8','Romance &bull; Fantasy','https://cdn.myanimelist.net/images/anime/5/87048.jpg','Two teenagers discover an unusual connection that brings their lives together across distance and time.')">
+            <div class="poster">
+                <img src="https://cdn.myanimelist.net/images/anime/5/87048.jpg" alt="Your Name" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27450%27%3E%3Crect width=%27300%27 height=%27450%27 fill=%27%231a1a1a%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%23666%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="card-info">
+                <div class="card-title">Your Name</div>
+                <div class="card-meta">
+                    <span>2016</span>
+                    <span class="rating">&#11088; 8.8</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6 Haikyuu -->
+        <div class="anime-card" data-title="Haikyuu!!" data-genre="Sports Comedy"
+            onclick="openAnimeStatic('Haikyuu!!','2014','8.7','Sports &bull; Comedy','https://cdn.myanimelist.net/images/anime/7/76014.jpg','A passionate young volleyball player joins his school team and works to reach the highest level.')">
+            <div class="poster">
+                <img src="https://cdn.myanimelist.net/images/anime/7/76014.jpg" alt="Haikyuu!!" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27450%27%3E%3Crect width=%27300%27 height=%27450%27 fill=%27%231a1a1a%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%23666%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="card-info">
+                <div class="card-title">Haikyuu!!</div>
+                <div class="card-meta">
+                    <span>2014</span>
+                    <span class="rating">&#11088; 8.7</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7 Attack on Titan -->
+        <div class="anime-card" data-title="Attack on Titan" data-genre="Action Mystery"
+            onclick="openAnimeStatic('Attack on Titan','2013','9.1','Action &bull; Mystery','https://cdn.myanimelist.net/images/anime/10/47347.jpg','Humanity fights for survival while mysterious enemies threaten everything they know.')">
+            <div class="poster">
+                <img src="https://cdn.myanimelist.net/images/anime/10/47347.jpg" alt="Attack on Titan" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27450%27%3E%3Crect width=%27300%27 height=%27450%27 fill=%27%231a1a1a%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%23666%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="card-info">
+                <div class="card-title">Attack on Titan</div>
+                <div class="card-meta">
+                    <span>2013</span>
+                    <span class="rating">&#11088; 9.1</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8 Jujutsu Kaisen -->
+        <div class="anime-card" data-title="Jujutsu Kaisen" data-genre="Action Fantasy"
+            onclick="openAnimeStatic('Jujutsu Kaisen','2020','8.7','Action &bull; Fantasy','https://cdn.myanimelist.net/images/anime/1171/109222.jpg','A student enters the dangerous world of supernatural curses and learns to fight alongside powerful sorcerers.')">
+            <div class="poster">
+                <img src="https://cdn.myanimelist.net/images/anime/1171/109222.jpg" alt="Jujutsu Kaisen" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27450%27%3E%3Crect width=%27300%27 height=%27450%27 fill=%27%231a1a1a%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%23666%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="card-info">
+                <div class="card-title">Jujutsu Kaisen</div>
+                <div class="card-meta">
+                    <span>2020</span>
+                    <span class="rating">&#11088; 8.7</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9 Naruto -->
+        <div class="anime-card" data-title="Naruto" data-genre="Action Adventure"
+            onclick="openAnimeStatic('Naruto','2002','8.4','Action &bull; Adventure','https://cdn.myanimelist.net/images/anime/13/17405.jpg','A young ninja dreams of becoming the leader of his village while growing stronger and building friendships.')">
+            <div class="poster">
+                <img src="https://cdn.myanimelist.net/images/anime/13/17405.jpg" alt="Naruto" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27450%27%3E%3Crect width=%27300%27 height=%27450%27 fill=%27%231a1a1a%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%23666%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image%3C/text%3E%3C/svg%3E';">
+            </div>
+            <div class="card-info">
+                <div class="card-title">Naruto</div>
+                <div class="card-meta">
+                    <span>2002</span>
+                    <span class="rating">&#11088; 8.4</span>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </section>
 
+
+<!-- ================= EXPLORE ANIME ================= -->
 
 <section class="section" id="explore">
 
     <div class="section-header">
-
-        <h2 class="section-title">
-            Explore Anime
-        </h2>
-
-        <button
-            class="view-all"
-            onclick="loadExplore()">
-            🔄 Refresh
-        </button>
-
+        <h2 class="section-title">Explore Anime</h2>
+        <button class="view-all" onclick="loadExplore()">&#128260; Refresh</button>
     </div>
 
-    <div
-        class="anime-grid"
-        id="exploreGrid">
-    </div>
+    <div class="anime-grid" id="exploreGrid"></div>
 
 </section>
 
+
+<!-- ================= BROWSE ANIME ================= -->
 
 <section class="section" id="browse">
 
     <div class="section-header">
-
-        <h2 class="section-title">
-            Browse Anime
-        </h2>
-
-        <span style="color:#888;font-size:13px;">
-            Top Rated
-        </span>
-
+        <h2 class="section-title">Browse Anime</h2>
+        <span style="color:#888;font-size:13px;">Popular Picks</span>
     </div>
 
-    <div
-        class="anime-grid"
-        id="browseGrid">
-    </div>
+    <div class="anime-grid" id="browseGrid"></div>
 
 </section>
 
+
+<!-- ================= GENRES ================= -->
 
 <section class="section" id="genres">
 
     <div class="section-header">
-
-        <h2 class="section-title">
-            Browse Genres
-        </h2>
-
+        <h2 class="section-title">Browse Genres</h2>
     </div>
 
-    <div class="genre-list">
-
-        <button class="genre active"
-                onclick="filterByGenre('All',this)">
-            All
-        </button>
-
-        <button class="genre"
-                onclick="filterByGenre('Action',this)">
-            Action
-        </button>
-
-        <button class="genre"
-                onclick="filterByGenre('Adventure',this)">
-            Adventure
-        </button>
-
-        <button class="genre"
-                onclick="filterByGenre('Comedy',this)">
-            Comedy
-        </button>
-
-        <button class="genre"
-                onclick="filterByGenre('Fantasy',this)">
-            Fantasy
-        </button>
-
-        <button class="genre"
-                onclick="filterByGenre('Romance',this)">
-            Romance
-        </button>
-
-        <button class="genre"
-                onclick="filterByGenre('Sports',this)">
-            Sports
-        </button>
-
-        <button class="genre"
-                onclick="filterByGenre('Mystery',this)">
-            Mystery
-        </button>
-
-        <button class="genre"
-                onclick="filterByGenre('Sci-Fi',this)">
-            Sci-Fi
-        </button>
-
-        <button class="genre"
-                onclick="filterByGenre('Horror',this)">
-            Horror
-        </button>
-
+    <div class="genre-list" id="genreList">
+        <button class="genre active" onclick="filterByGenre('All', this)">All</button>
+        <button class="genre" onclick="filterByGenre('Action', this)">Action</button>
+        <button class="genre" onclick="filterByGenre('Adventure', this)">Adventure</button>
+        <button class="genre" onclick="filterByGenre('Comedy', this)">Comedy</button>
+        <button class="genre" onclick="filterByGenre('Fantasy', this)">Fantasy</button>
+        <button class="genre" onclick="filterByGenre('Romance', this)">Romance</button>
+        <button class="genre" onclick="filterByGenre('Sports', this)">Sports</button>
+        <button class="genre" onclick="filterByGenre('Mystery', this)">Mystery</button>
     </div>
 
 </section>
 
+
+<!-- ================= WATCHLIST ================= -->
 
 <section class="section" id="watchlist">
 
     <div class="section-header">
-
-        <h2 class="section-title">
-            My Watchlist
-        </h2>
-
+        <h2 class="section-title">My Watchlist</h2>
     </div>
 
     <div id="watchlistSection">
-
-        <div
-            class="anime-grid"
-            id="watchlistGrid">
-        </div>
-
-        <div
-            class="watch-empty"
-            id="watchEmpty">
-
+        <div class="anime-grid" id="watchlistGrid"></div>
+        <div class="watch-empty" id="watchEmpty">
             <h3>Your watchlist is empty</h3>
-
-            <p>
-                Open an anime and click
-                "Add to Watchlist".
-            </p>
-
+            <p>Click &quot;Add to Watchlist&quot; on any anime to save it here</p>
         </div>
-
     </div>
 
 </section>
 
 
-<!-- ANIME INFO MODAL -->
+<!-- ================= MODAL ================= -->
 
-<div
-    class="modal"
-    id="animeModal">
-
+<div class="modal" id="animeModal">
     <div class="modal-box">
-
-        <button
-            class="close"
-            onclick="closeModal()">
-            ×
-        </button>
-
+        <button class="close" onclick="closeModal()">&times;</button>
         <div class="modal-body">
-
-            <img
-                class="modal-poster"
-                id="modalPoster"
-                src=""
-                alt="">
-
+            <img class="modal-poster" id="modalPoster" src="" alt="">
             <div class="modal-info">
-
                 <h2 id="modalTitle"></h2>
-
                 <div class="details">
-
-                    <span
-                        class="detail"
-                        id="modalYear">
-                    </span>
-
-                    <span
-                        class="detail"
-                        id="modalRating">
-                    </span>
-
-                    <span
-                        class="detail"
-                        id="modalGenre">
-                    </span>
-
-                    <span
-                        class="detail"
-                        id="modalType">
-                    </span>
-
+                    <span class="detail" id="modalYear"></span>
+                    <span class="detail" id="modalRating"></span>
+                    <span class="detail" id="modalGenre"></span>
+                    <span class="detail" id="modalType"></span>
                 </div>
-
-                <p
-                    class="description"
-                    id="modalDesc">
-                </p>
-
+                <p class="description" id="modalDesc"></p>
                 <div class="modal-buttons">
-
-                    <button
-                        class="btn primary"
-                        onclick="openWatchModal()">
-                        ▶ Watch Now
-                    </button>
-
-                    <button
-                        class="btn secondary"
-                        id="watchlistBtn"
-                        onclick="toggleCurrentWatchlist()">
-                        Add to Watchlist
-                    </button>
-
-                    <button
-                        class="btn secondary"
-                        onclick="closeModal()">
-                        Close
-                    </button>
-
+                    <button class="btn primary watch-now-btn" onclick="openWatchNow()">▶ Watch Now</button>
+                    <button class="btn secondary" id="watchlistBtn" onclick="toggleCurrentWatchlist()">Add to Watchlist</button>
+                    <button class="btn secondary" onclick="closeModal()">Close</button>
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 
-<!-- WATCH MODAL -->
-
-<div
-    class="modal"
-    id="watchModal">
-
-    <div class="modal-box watch-modal-box">
-
-        <button
-            class="close"
-            onclick="closeWatchModal()">
-            ×
-        </button>
-
-        <div class="watch-header">
-
-            <h2 id="watchTitle">
-                Watch
-            </h2>
-
-            <p id="watchSubtitle">
-                Loading seasons...
-            </p>
-
-        </div>
-
-        <div
-            class="season-tabs"
-            id="seasonTabs">
-        </div>
-
-        <div class="episode-area">
-
-            <div class="episode-toolbar">
-
-                <h3 id="episodeHeading">
-                    Episodes
-                </h3>
-
-                <span
-                    class="episode-count"
-                    id="episodeCount">
-                </span>
-
-            </div>
-
-            <div
-                class="episode-list"
-                id="episodeList">
-
-                <div class="loading">
-                    Loading episodes...
-                </div>
-
-            </div>
-
-            <div
-                class="legal-box"
-                id="legalBox">
-
-                <h4>
-                    ⚖️ Legal viewing
-                </h4>
-
-                <p>
-                    AnimeFlex does not host or copy anime episodes.
-                    When official/licensed viewing information is
-                    available, links supplied by the data source are
-                    shown below.
-                </p>
-
-                <div
-                    class="streaming-links"
-                    id="streamingLinks">
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- AUTH MODAL -->
-
-<div
-    class="modal"
-    id="authModal">
-
+<!-- ================= AUTH MODALS ================= -->
+<div class="modal auth-modal" id="authModal">
     <div class="modal-box">
+        <button class="close" onclick="closeAuthModal()">&times;</button>
 
-        <button
-            class="close"
-            onclick="closeAuthModal()">
-            ×
-        </button>
+        <div id="authFormView" class="modal-body">
+            <div class="auth-logo">Anime<span>Flex</span></div>
+            <div class="auth-subtitle" id="authSubtitle">Login to your AnimeFlex account</div>
 
-        <div
-            id="authFormView"
-            class="modal-body">
+            <div class="auth-message" id="authMessage"></div>
 
-            <div style="width:100%;">
-
-                <div class="auth-logo">
-                    Anime<span>Flex</span>
+            <form class="auth-form" id="authForm">
+                <div id="nameField" style="display:none;">
+                    <label for="authName">Name</label>
+                    <input id="authName" type="text" autocomplete="name" placeholder="Your name">
                 </div>
 
-                <div
-                    class="auth-subtitle"
-                    id="authSubtitle">
-                    Login to your AnimeFlex account
+                <div>
+                    <label for="authEmail">Email</label>
+                    <input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
                 </div>
 
-                <div
-                    class="auth-message"
-                    id="authMessage">
+                <div>
+                    <label for="authPassword">Password</label>
+                    <input id="authPassword" type="password" autocomplete="current-password" placeholder="At least 6 characters" required>
                 </div>
 
-                <form
-                    class="auth-form"
-                    id="authForm">
+                <button class="auth-submit" id="authSubmit" type="submit">Login</button>
+                <button class="auth-link" id="forgotBtn" type="button" onclick="openResetView()">Forgot password?</button>
+            </form>
 
-                    <div
-                        id="nameField"
-                        style="display:none;">
-
-                        <label for="authName">
-                            Name
-                        </label>
-
-                        <input
-                            id="authName"
-                            type="text"
-                            placeholder="Your name">
-
-                    </div>
-
-                    <div>
-
-                        <label for="authEmail">
-                            Email
-                        </label>
-
-                        <input
-                            id="authEmail"
-                            type="email"
-                            placeholder="you@example.com"
-                            required>
-
-                    </div>
-
-                    <div>
-
-                        <label for="authPassword">
-                            Password
-                        </label>
-
-                        <input
-                            id="authPassword"
-                            type="password"
-                            placeholder="At least 6 characters"
-                            required>
-
-                    </div>
-
-                    <button
-                        class="auth-submit"
-                        id="authSubmit"
-                        type="submit">
-                        Login
-                    </button>
-
-                    <button
-                        class="auth-link"
-                        id="forgotBtn"
-                        type="button"
-                        onclick="openResetView()">
-                        Forgot password?
-                    </button>
-
-                </form>
-
-                <div
-                    class="auth-switch"
-                    id="authSwitch">
-                </div>
-
+            <div class="auth-switch" id="authSwitch">
+                Don't have an account? <button class="auth-link" type="button" onclick="openAuthModal('signup')">Create one</button>
             </div>
-
         </div>
 
-
-        <!-- RESET -->
-
-        <div
-            id="resetView"
-            class="modal-body"
-            style="display:none;">
-
-            <div style="width:100%;">
-
-                <div class="auth-logo">
-                    Reset <span>Password</span>
+        <div id="resetView" class="modal-body" style="display:none;">
+            <div class="auth-logo">Reset <span>Password</span></div>
+            <div class="auth-subtitle">We'll send a password reset link to your email.</div>
+            <div class="auth-message" id="resetMessage"></div>
+            <form class="auth-form" id="resetForm">
+                <div>
+                    <label for="resetEmail">Email</label>
+                    <input id="resetEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
                 </div>
-
-                <div class="auth-subtitle">
-                    We'll send a password reset link to your email.
-                </div>
-
-                <div
-                    class="auth-message"
-                    id="resetMessage">
-                </div>
-
-                <form
-                    class="auth-form"
-                    id="resetForm">
-
-                    <div>
-
-                        <label for="resetEmail">
-                            Email
-                        </label>
-
-                        <input
-                            id="resetEmail"
-                            type="email"
-                            placeholder="you@example.com"
-                            required>
-
-                    </div>
-
-                    <button
-                        class="auth-submit"
-                        id="resetSubmit"
-                        type="submit">
-                        Send Reset Email
-                    </button>
-
-                    <button
-                        class="auth-link"
-                        type="button"
-                        onclick="openAuthModal('login')">
-                        Back to Login
-                    </button>
-
-                </form>
-
-            </div>
-
+                <button class="auth-submit" id="resetSubmit" type="submit">Send Reset Email</button>
+                <button class="auth-link" type="button" onclick="openAuthModal('login')">Back to Login</button>
+            </form>
         </div>
 
-
-        <!-- VERIFY -->
-
-        <div
-            id="verifyView"
-            class="modal-body"
-            style="display:none;">
-
+        <div id="verifyView" class="modal-body" style="display:none;">
             <div class="verify-box">
-
-                <div class="verify-icon">
-                    📧
-                </div>
-
-                <h2>
-                    Verify your email
-                </h2>
-
-                <p>
-                    A verification email has been sent to:
-                </p>
-
-                <p>
-                    <strong id="verifyEmail"></strong>
-                </p>
-
-                <p>
-                    Open the email and click the verification link.
-                </p>
-
-                <button
-                    class="auth-submit"
-                    style="margin-top:18px;"
-                    onclick="checkEmailVerification()">
-                    I've Verified My Email
-                </button>
-
-                <button
-                    class="auth-link"
-                    style="margin-top:10px;"
-                    onclick="resendVerificationEmail()">
-                    Resend Verification Email
-                </button>
-
-                <br>
-
-                <button
-                    class="auth-link"
-                    style="margin-top:8px;"
-                    onclick="logoutUser()">
-                    Use another account
-                </button>
-
+                <div class="verify-icon">&#128231;</div>
+                <h2 style="color:#fff;margin-bottom:10px;">Verify your email</h2>
+                <p>A verification email has been sent to:</p>
+                <p><strong id="verifyEmail"></strong></p>
+                <p style="margin-top:12px;">Open that email and click the verification link, then return here and press the button below.</p>
+                <button class="auth-submit" style="width:100%;margin-top:18px;" onclick="checkEmailVerification()">I've Verified My Email</button>
+                <button class="auth-link" style="width:100%;margin-top:8px;" onclick="resendVerificationEmail()">Resend Verification Email</button>
+                <button class="auth-link" style="width:100%;margin-top:4px;" onclick="logoutUser()">Use another account</button>
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 
-<div
-    class="toast"
-    id="toast">
+<!-- ================= WATCH NOW MODAL ================= -->
+<div class="modal watch-modal" id="watchModal">
+    <div class="modal-box">
+        <button class="close" onclick="closeWatchNow()">&times;</button>
+        <div class="watch-header">
+            <h2 id="watchTitle">Watch Anime</h2>
+            <p id="watchSubtitle">Choose a season and episode.</p>
+        </div>
+        <div class="watch-controls">
+            <select id="seasonSelect" class="watch-select" onchange="loadSeasonEpisodes()"></select>
+            <span class="watch-status" id="watchStatus">Loading episodes...</span>
+        </div>
+        <div id="episodeList" class="episode-list"></div>
+        <div id="episodeEmpty" class="episode-empty" style="display:none;">
+            <h3>No episode data available</h3>
+            <p>We couldn't get episode metadata right now. You can still find the anime on legal services below.</p>
+            <div class="legal-links" id="fallbackLegalLinks"></div>
+        </div>
+        <div class="watch-info" id="watchInfo" style="display:none;">
+            <strong id="selectedEpisodeLabel"></strong>
+            <div>AnimeFlex does not host or copy anime episodes. Use a legal provider to watch the selected episode.</div>
+            <div class="legal-links" id="legalLinks"></div>
+        </div>
+    </div>
 </div>
 
+<!-- ================= TOAST ================= -->
+
+<div class="toast" id="toast"></div>
+
+
+<!-- ================= FOOTER ================= -->
 
 <footer>
-
-    <p>
-        Made with <strong>♥</strong> for anime fans
-    </p>
-
-    <p>
-        © 2026 AnimeFlex. All rights reserved.
-    </p>
-
+    <p>Made with <strong>&hearts;</strong> for anime fans</p>
+    <p>&copy; 2026 AnimeFlex. All rights reserved.</p>
 </footer>
 
 
+<!-- ================= JAVASCRIPT ================= -->
+
 <script>
 
-/* =========================================================
-   ANIME DATABASE
-   MAL IDs are used for Jikan API episode/metadata requests.
-========================================================= */
-
+// ====== BUILT-IN ANIME DATABASE (25 Anime) ======
 const ANIME_DB = [
-
-    {
-        id:1,
-        malId:38000,
-        title:"Demon Slayer",
-        year:"2019",
-        rating:"8.6",
-        genre:"Action • Fantasy",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/1286/99889.jpg",
-        desc:"A young swordsman begins a dangerous journey after tragedy strikes his family."
-    },
-
-    {
-        id:2,
-        malId:21,
-        title:"One Piece",
-        year:"1999",
-        rating:"9.0",
-        genre:"Adventure • Action",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/6/73245.jpg",
-        desc:"A young pirate and his crew travel across a vast world in search of legendary treasure."
-    },
-
-    {
-        id:3,
-        malId:31964,
-        title:"My Hero Academia",
-        year:"2016",
-        rating:"8.0",
-        genre:"Action",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/10/78745.jpg",
-        desc:"In a world where special abilities are common, a determined student works hard to become a professional hero."
-    },
-
-    {
-        id:4,
-        malId:50265,
-        title:"Spy x Family",
-        year:"2022",
-        rating:"8.4",
-        genre:"Comedy • Action",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/1441/122795.jpg",
-        desc:"A secret agent creates a pretend family for an important mission, but every member has secrets."
-    },
-
-    {
-        id:5,
-        malId:32281,
-        title:"Your Name",
-        year:"2016",
-        rating:"8.8",
-        genre:"Romance • Fantasy",
-        type:"Movie",
-        poster:"https://cdn.myanimelist.net/images/anime/5/87048.jpg",
-        desc:"Two teenagers discover an unusual connection that brings their lives together across distance and time."
-    },
-
-    {
-        id:6,
-        malId:20583,
-        title:"Haikyuu!!",
-        year:"2014",
-        rating:"8.7",
-        genre:"Sports • Comedy",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/7/76014.jpg",
-        desc:"A passionate young volleyball player joins his school team and works to reach the highest level."
-    },
-
-    {
-        id:7,
-        malId:16498,
-        title:"Attack on Titan",
-        year:"2013",
-        rating:"9.1",
-        genre:"Action • Mystery",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/10/47347.jpg",
-        desc:"Humanity fights for survival while mysterious enemies threaten everything they know."
-    },
-
-    {
-        id:8,
-        malId:40748,
-        title:"Jujutsu Kaisen",
-        year:"2020",
-        rating:"8.7",
-        genre:"Action • Fantasy",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/1171/109222.jpg",
-        desc:"A student enters the dangerous world of supernatural curses and learns to fight alongside powerful sorcerers."
-    },
-
-    {
-        id:9,
-        malId:20,
-        title:"Naruto",
-        year:"2002",
-        rating:"8.4",
-        genre:"Action • Adventure",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/13/17405.jpg",
-        desc:"A young ninja dreams of becoming the leader of his village while growing stronger and building friendships."
-    },
-
-    {
-        id:10,
-        malId:1535,
-        title:"Death Note",
-        year:"2006",
-        rating:"8.6",
-        genre:"Mystery • Thriller",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/9/9453.jpg",
-        desc:"A high school student discovers a supernatural notebook and becomes involved in a dangerous battle of minds."
-    },
-
-    {
-        id:11,
-        malId:5114,
-        title:"Fullmetal Alchemist Brotherhood",
-        year:"2009",
-        rating:"9.1",
-        genre:"Action • Adventure • Fantasy",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/1208/94735.jpg",
-        desc:"Two brothers search for the Philosopher's Stone after an alchemy experiment goes wrong."
-    },
-
-    {
-        id:12,
-        malId:9253,
-        title:"Steins;Gate",
-        year:"2011",
-        rating:"8.8",
-        genre:"Sci-Fi • Thriller",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/5/73199.jpg",
-        desc:"A group of friends accidentally discovers a way to influence events across time."
-    },
-
-    {
-        id:13,
-        malId:11061,
-        title:"Hunter x Hunter",
-        year:"2011",
-        rating:"9.0",
-        genre:"Action • Adventure",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/11/33657.jpg",
-        desc:"A young boy sets out to become a Hunter and find his missing father."
-    },
-
-    {
-        id:14,
-        malId:11757,
-        title:"Sword Art Online",
-        year:"2012",
-        rating:"7.5",
-        genre:"Action • Fantasy • Romance",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/11/39717.jpg",
-        desc:"Players trapped in a virtual reality game must find a way to escape."
-    },
-
-    {
-        id:15,
-        malId:22319,
-        title:"Tokyo Ghoul",
-        year:"2014",
-        rating:"7.8",
-        genre:"Action • Horror • Mystery",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/5/64449.jpg",
-        desc:"A college student is forced to adapt to a dangerous supernatural world."
-    },
-
-    {
-        id:16,
-        malId:813,
-        title:"Dragon Ball Z",
-        year:"1989",
-        rating:"8.7",
-        genre:"Action • Adventure • Fantasy",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/6/20936.jpg",
-        desc:"Goku and his friends defend Earth from powerful enemies."
-    },
-
-    {
-        id:17,
-        malId:269,
-        title:"Bleach",
-        year:"2004",
-        rating:"7.9",
-        genre:"Action • Adventure • Fantasy",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/3/20365.jpg",
-        desc:"A teenager gains supernatural powers and becomes responsible for protecting others."
-    },
-
-    {
-        id:18,
-        malId:2904,
-        title:"Code Geass",
-        year:"2006",
-        rating:"8.7",
-        genre:"Action • Thriller • Mecha",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/5/50331.jpg",
-        desc:"An exiled prince gains a mysterious power and begins a rebellion."
-    },
-
-    {
-        id:19,
-        malId:1,
-        title:"Cowboy Bebop",
-        year:"1998",
-        rating:"8.9",
-        genre:"Action • Sci-Fi",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/4/19644.jpg",
-        desc:"Bounty hunters travel through space while dealing with their complicated pasts."
-    },
-
-    {
-        id:20,
-        malId:30,
-        title:"Neon Genesis Evangelion",
-        year:"1995",
-        rating:"8.5",
-        genre:"Action • Mecha • Psychological",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/1314/108941.jpg",
-        desc:"Teenagers pilot giant machines to protect Earth from mysterious enemies."
-    },
-
-    {
-        id:21,
-        malId:30276,
-        title:"One Punch Man",
-        year:"2015",
-        rating:"8.5",
-        genre:"Action • Comedy",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/12/76049.jpg",
-        desc:"A hero capable of defeating enemies with one punch searches for a worthy opponent."
-    },
-
-    {
-        id:22,
-        malId:34572,
-        title:"Black Clover",
-        year:"2017",
-        rating:"8.1",
-        genre:"Action • Fantasy",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/2/88336.jpg",
-        desc:"A boy born without magic dreams of becoming the Wizard King."
-    },
-
-    {
-        id:23,
-        malId:6702,
-        title:"Fairy Tail",
-        year:"2009",
-        rating:"7.9",
-        genre:"Action • Adventure • Fantasy",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/3/21736.jpg",
-        desc:"A powerful wizard joins a famous guild and takes on dangerous missions."
-    },
-
-    {
-        id:24,
-        malId:52299,
-        title:"Solo Leveling",
-        year:"2024",
-        rating:"8.5",
-        genre:"Action • Fantasy",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/1448/147351.jpg",
-        desc:"The weakest hunter gains a mysterious ability that allows him to become stronger."
-    },
-
-    {
-        id:25,
-        malId:44511,
-        title:"Chainsaw Man",
-        year:"2022",
-        rating:"8.5",
-        genre:"Action • Horror",
-        type:"TV",
-        poster:"https://cdn.myanimelist.net/images/anime/1806/126216.jpg",
-        desc:"A young devil hunter gains a strange new power and enters a dangerous world."
-    }
-
+    {id:1,title:"Demon Slayer",year:"2019",rating:"8.6",genre:"Action &bull; Fantasy",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/1286/99889.jpg",desc:"A young swordsman begins a dangerous journey after tragedy strikes his family."},
+    {id:2,title:"One Piece",year:"1999",rating:"9.0",genre:"Adventure &bull; Action",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/6/73245.jpg",desc:"A young pirate and his crew travel across a vast world in search of legendary treasure."},
+    {id:3,title:"My Hero Academia",year:"2016",rating:"8.0",genre:"Action",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/10/78745.jpg",desc:"In a world where special abilities are common, a determined student works hard to become a professional hero."},
+    {id:4,title:"Spy x Family",year:"2022",rating:"8.4",genre:"Comedy &bull; Action",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/1441/122795.jpg",desc:"A secret agent creates a pretend family for an important mission, but every member has secrets."},
+    {id:5,title:"Your Name",year:"2016",rating:"8.8",genre:"Romance &bull; Fantasy",type:"Movie",poster:"https://cdn.myanimelist.net/images/anime/5/87048.jpg",desc:"Two teenagers discover an unusual connection that brings their lives together across distance and time."},
+    {id:6,title:"Haikyuu!!",year:"2014",rating:"8.7",genre:"Sports &bull; Comedy",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/7/76014.jpg",desc:"A passionate young volleyball player joins his school team and works to reach the highest level."},
+    {id:7,title:"Attack on Titan",year:"2013",rating:"9.1",genre:"Action &bull; Mystery",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/10/47347.jpg",desc:"Humanity fights for survival while mysterious enemies threaten everything they know."},
+    {id:8,title:"Jujutsu Kaisen",year:"2020",rating:"8.7",genre:"Action &bull; Fantasy",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/1171/109222.jpg",desc:"A student enters the dangerous world of supernatural curses and learns to fight alongside powerful sorcerers."},
+    {id:9,title:"Naruto",year:"2002",rating:"8.4",genre:"Action &bull; Adventure",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/13/17405.jpg",desc:"A young ninja dreams of becoming the leader of his village while growing stronger and building friendships."},
+    {id:10,title:"Death Note",year:"2006",rating:"8.6",genre:"Mystery &bull; Thriller",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/9/9453.jpg",desc:"A high school student discovers a supernatural notebook that allows him to kill anyone by writing their name."},
+    {id:11,title:"Fullmetal Alchemist: Brotherhood",year:"2009",rating:"9.1",genre:"Action &bull; Adventure &bull; Fantasy",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/1208/94735.jpg",desc:"Two brothers search for the Philosopher's Stone after an alchemy experiment goes wrong."},
+    {id:12,title:"Steins;Gate",year:"2011",rating:"8.8",genre:"Sci-Fi &bull; Thriller",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/5/73199.jpg",desc:"A self-proclaimed mad scientist accidentally discovers time travel and must prevent a dystopian future."},
+    {id:13,title:"Hunter x Hunter",year:"2011",rating:"9.0",genre:"Action &bull; Adventure",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/11/33657.jpg",desc:"A young boy sets out to become a Hunter and find his missing father in a world full of danger."},
+    {id:14,title:"Sword Art Online",year:"2012",rating:"7.5",genre:"Action &bull; Fantasy &bull; Romance",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/11/39717.jpg",desc:"Players trapped in a virtual reality MMORPG must clear the game to escape or die trying."},
+    {id:15,title:"Tokyo Ghoul",year:"2014",rating:"7.8",genre:"Action &bull; Horror &bull; Mystery",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/5/64449.jpg",desc:"A college student becomes a half-ghoul after a deadly encounter and must adapt to his new life."},
+    {id:16,title:"Dragon Ball Z",year:"1989",rating:"8.7",genre:"Action &bull; Adventure &bull; Fantasy",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/6/20936.jpg",desc:"Goku and his friends defend Earth from powerful aliens, androids, and other threats."},
+    {id:17,title:"Bleach",year:"2004",rating:"7.9",genre:"Action &bull; Adventure &bull; Fantasy",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/3/20365.jpg",desc:"A teenager gains the powers of a Soul Reaper and must protect the living world from evil spirits."},
+    {id:18,title:"Code Geass",year:"2006",rating:"8.7",genre:"Action &bull; Mecha &bull; Thriller",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/5/50331.jpg",desc:"An exiled prince gains the power of absolute obedience and leads a rebellion against a corrupt empire."},
+    {id:19,title:"Cowboy Bebop",year:"1998",rating:"8.9",genre:"Action &bull; Sci-Fi",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/4/19644.jpg",desc:"Bounty hunters travel through space in pursuit of criminals while dealing with their troubled pasts."},
+    {id:20,title:"Neon Genesis Evangelion",year:"1995",rating:"8.5",genre:"Action &bull; Mecha &bull; Psychological",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/1314/108941.jpg",desc:"Teenagers pilot giant bio-machines to protect Earth from mysterious beings called Angels."},
+    {id:21,title:"One Punch Man",year:"2015",rating:"8.5",genre:"Action &bull; Comedy",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/12/76049.jpg",desc:"A hero who can defeat any enemy with a single punch searches for a worthy opponent."},
+    {id:22,title:"Black Clover",year:"2017",rating:"8.1",genre:"Action &bull; Fantasy",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/2/88336.jpg",desc:"A boy born without magic in a world where magic is everything strives to become the Wizard King."},
+    {id:23,title:"Fairy Tail",year:"2009",rating:"7.9",genre:"Action &bull; Adventure &bull; Fantasy",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/3/21736.jpg",desc:"A powerful wizard joins a rowdy guild and takes on dangerous missions with her friends."},
+    {id:24,title:"Solo Leveling",year:"2024",rating:"8.5",genre:"Action &bull; Fantasy",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/1448/147351.jpg",desc:"The weakest hunter in the world gains a mysterious power that allows him to level up infinitely."},
+    {id:25,title:"Chainsaw Man",year:"2022",rating:"8.5",genre:"Action &bull; Horror",type:"TV",poster:"https://cdn.myanimelist.net/images/anime/1806/126216.jpg",desc:"A young man merges with a devil dog and becomes a devil hunter to pay off his father's debt."}
 ];
 
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
 let currentAnime = null;
+let watchlist = JSON.parse(localStorage.getItem('animeWatchlist')) || [];
 
-let currentWatchAnime = null;
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open')}
+function goHome(){window.scrollTo({top:0,behavior:'smooth'});document.getElementById('navLinks').classList.remove('open')}
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});document.getElementById('navLinks').classList.remove('open')}
 
-let currentSeason = null;
-
-let watchlist =
-    JSON.parse(
-        localStorage.getItem("animeWatchlist") || "[]"
-    );
-
-let watchProgress =
-    JSON.parse(
-        localStorage.getItem("animeWatchProgress") || "{}"
-    );
-
-
-/* =========================================================
-   FALLBACK
-========================================================= */
-
-function fallbackImage(){
-
-    return "data:image/svg+xml;charset=UTF-8," +
-        encodeURIComponent(`
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 width="300"
-                 height="450">
-
-                <rect
-                    width="300"
-                    height="450"
-                    fill="#151515"/>
-
-                <text
-                    x="150"
-                    y="215"
-                    text-anchor="middle"
-                    fill="#e50914"
-                    font-family="Arial"
-                    font-size="20"
-                    font-weight="bold">
-                    AnimeFlex
-                </text>
-
-                <text
-                    x="150"
-                    y="245"
-                    text-anchor="middle"
-                    fill="#777"
-                    font-family="Arial"
-                    font-size="13">
-                    Poster unavailable
-                </text>
-
-            </svg>
-        `);
+function createCardHTML(anime){
+    return '<div class="anime-card" data-title="'+anime.title+'" data-genre="'+anime.genre+'" onclick="openAnimeFromDB('+anime.id+')" style="cursor:pointer;"><div class="poster"><img src="'+anime.poster+'" alt="'+anime.title+'" loading="lazy" onerror="this.onerror=null;this.src=\'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27450%27%3E%3Crect width=%27300%27 height=%27450%27 fill=%27%231a1a1a%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%23666%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image%3C/text%3E%3C/svg%3E\';">'+(anime.rating?'<span class="badge">'+anime.rating+'</span>':'')+'</div><div class="card-info"><div class="card-title">'+anime.title+'</div><div class="card-meta"><span>'+anime.year+'</span><span class="rating">'+(anime.rating?'&#11088; '+anime.rating:'')+'</span></div></div></div>';
 }
 
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-function toggleMenu(){
-
-    document
-        .getElementById("navLinks")
-        .classList.toggle("open");
-
-}
-
-function goHome(){
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
+function performSearch(){
+    var query = document.getElementById('mainSearch').value.trim().toLowerCase();
+    if(!query){showToast('Please enter an anime name');return;}
+    var grid = document.getElementById('searchGrid');
+    var noResults = document.getElementById('searchNoResults');
+    grid.innerHTML = '';noResults.style.display = 'none';
+    var results = ANIME_DB.filter(function(a){
+        return a.title.toLowerCase().includes(query) || a.genre.toLowerCase().includes(query) || a.year.toString().includes(query);
     });
-
-    document
-        .getElementById("navLinks")
-        .classList.remove("open");
-}
-
-function scrollToSection(id){
-
-    const element =
-        document.getElementById(id);
-
-    if(element){
-
-        element.scrollIntoView({
-            behavior:"smooth"
-        });
-
-    }
-
-    document
-        .getElementById("navLinks")
-        .classList.remove("open");
-}
-
-
-/* =========================================================
-   CARD
-========================================================= */
-
-function createCard(anime){
-
-    const card =
-        document.createElement("div");
-
-    card.className = "anime-card";
-
-    card.dataset.title =
-        anime.title;
-
-    card.dataset.genre =
-        anime.genre;
-
-    card.onclick = function(){
-
-        openAnime(anime);
-
-    };
-
-
-    const poster =
-        document.createElement("div");
-
-    poster.className = "poster";
-
-
-    const img =
-        document.createElement("img");
-
-    img.src =
-        anime.poster;
-
-    img.alt =
-        anime.title;
-
-    img.loading =
-        "lazy";
-
-    img.onerror =
-        function(){
-
-            this.onerror = null;
-
-            this.src =
-                fallbackImage();
-
-        };
-
-
-    const badge =
-        document.createElement("span");
-
-    badge.className =
-        "badge";
-
-    badge.textContent =
-        "⭐ " + anime.rating;
-
-
-    poster.appendChild(img);
-    poster.appendChild(badge);
-
-
-    const info =
-        document.createElement("div");
-
-    info.className =
-        "card-info";
-
-
-    const title =
-        document.createElement("div");
-
-    title.className =
-        "card-title";
-
-    title.textContent =
-        anime.title;
-
-
-    const meta =
-        document.createElement("div");
-
-    meta.className =
-        "card-meta";
-
-
-    const year =
-        document.createElement("span");
-
-    year.textContent =
-        anime.year;
-
-
-    const rating =
-        document.createElement("span");
-
-    rating.className =
-        "rating";
-
-    rating.textContent =
-        "⭐ " + anime.rating;
-
-
-    meta.appendChild(year);
-    meta.appendChild(rating);
-
-    info.appendChild(title);
-    info.appendChild(meta);
-
-    card.appendChild(poster);
-    card.appendChild(info);
-
-    return card;
-}
-
-
-/* =========================================================
-   GRID
-========================================================= */
-
-function renderGrid(gridId,list){
-
-    const grid =
-        document.getElementById(gridId);
-
-    if(!grid)
-        return;
-
-    grid.innerHTML = "";
-
-    list.forEach(function(anime){
-
-        grid.appendChild(
-            createCard(anime)
-        );
-
-    });
-
-}
-
-
-/* =========================================================
-   LOAD SECTIONS
-========================================================= */
-
-function loadTrending(){
-
-    renderGrid(
-        "animeGrid",
-        ANIME_DB.slice(0,9)
-    );
-
+    if(results.length === 0){noResults.style.display = 'block';return;}
+    var html = '';
+    results.forEach(function(a){html += createCardHTML(a)});
+    grid.innerHTML = html;
+    showToast('Found ' + results.length + ' results for "' + query + '"');
 }
 
 function loadExplore(){
-
-    const shuffled =
-        [...ANIME_DB].sort(
-            () => Math.random() - 0.5
-        );
-
-    renderGrid(
-        "exploreGrid",
-        shuffled.slice(0,12)
-    );
-
+    var grid = document.getElementById('exploreGrid');
+    grid.innerHTML = '';
+    var shuffled = [...ANIME_DB].sort(function(){return 0.5-Math.random()});
+    var selected = shuffled.slice(0,12);
+    var html = '';
+    selected.forEach(function(a){html += createCardHTML(a)});
+    grid.innerHTML = html;
 }
 
 function loadBrowse(){
-
-    const sorted =
-        [...ANIME_DB].sort(
-            (a,b) =>
-                parseFloat(b.rating) -
-                parseFloat(a.rating)
-        );
-
-    renderGrid(
-        "browseGrid",
-        sorted.slice(0,12)
-    );
-
+    var grid = document.getElementById('browseGrid');
+    grid.innerHTML = '';
+    var sorted = [...ANIME_DB].sort(function(a,b){return parseFloat(b.rating)-parseFloat(a.rating)});
+    var selected = sorted.slice(0,12);
+    var html = '';
+    selected.forEach(function(a){html += createCardHTML(a)});
+    grid.innerHTML = html;
 }
 
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-function performSearch(){
-
-    const query =
-        document
-            .getElementById("mainSearch")
-            .value
-            .trim()
-            .toLowerCase();
-
-    const grid =
-        document.getElementById(
-            "searchGrid"
-        );
-
-    const empty =
-        document.getElementById(
-            "searchNoResults"
-        );
-
-    grid.innerHTML = "";
-
-    empty.style.display =
-        "none";
-
-    if(!query){
-
-        showToast(
-            "Please enter an anime name."
-        );
-
-        return;
-    }
-
-    const results =
-        ANIME_DB.filter(function(anime){
-
-            return (
-                anime.title
-                    .toLowerCase()
-                    .includes(query)
-                ||
-                anime.genre
-                    .toLowerCase()
-                    .includes(query)
-                ||
-                anime.year.includes(query)
-            );
-
-        });
-
-    if(results.length === 0){
-
-        empty.style.display =
-            "block";
-
-        showToast(
-            "No anime found."
-        );
-
-        return;
-    }
-
-    renderGrid(
-        "searchGrid",
-        results
-    );
-
-    showToast(
-        "Found " +
-        results.length +
-        " anime."
-    );
-
-    document
-        .getElementById("searchResultsArea")
-        .scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-        });
-
-}
-
-
-/* =========================================================
-   NAV SEARCH
-========================================================= */
-
-document
-    .getElementById("navSearch")
-    .addEventListener(
-        "input",
-        function(){
-
-            const query =
-                this.value
-                    .trim()
-                    .toLowerCase();
-
-            const cards =
-                document.querySelectorAll(
-                    "#animeGrid .anime-card"
-                );
-
-            const message =
-                document.getElementById(
-                    "searchMessage"
-                );
-
-            const text =
-                document.getElementById(
-                    "searchText"
-                );
-
-            const empty =
-                document.getElementById(
-                    "noResults"
-                );
-
-            let visible = 0;
-
-            if(query){
-
-                message.style.display =
-                    "block";
-
-                text.textContent =
-                    this.value;
-
-            }else{
-
-                message.style.display =
-                    "none";
-
-            }
-
-            cards.forEach(function(card){
-
-                const title =
-                    card.dataset.title
-                        .toLowerCase();
-
-                const genre =
-                    card.dataset.genre
-                        .toLowerCase();
-
-                if(
-                    title.includes(query) ||
-                    genre.includes(query)
-                ){
-
-                    card.classList.remove(
-                        "hidden"
-                    );
-
-                    visible++;
-
-                }else{
-
-                    card.classList.add(
-                        "hidden"
-                    );
-
-                }
-
-            });
-
-            empty.style.display =
-                query && visible === 0
-                    ? "block"
-                    : "none";
-
-        }
-    );
-
-
-/* =========================================================
-   GENRE
-========================================================= */
-
-function filterByGenre(genre,button){
-
-    document
-        .querySelectorAll(".genre")
-        .forEach(function(btn){
-
-            btn.classList.remove(
-                "active"
-            );
-
-        });
-
-    button.classList.add(
-        "active"
-    );
-
-    const cards =
-        document.querySelectorAll(
-            "#animeGrid .anime-card"
-        );
-
-    let visible = 0;
-
-    document
-        .getElementById("navSearch")
-        .value = "";
-
-    document
-        .getElementById("searchMessage")
-        .style.display = "none";
-
-    cards.forEach(function(card){
-
-        const cardGenre =
-            card.dataset.genre;
-
-        if(
-            genre === "All" ||
-            cardGenre.includes(genre)
-        ){
-
-            card.classList.remove(
-                "hidden"
-            );
-
-            visible++;
-
-        }else{
-
-            card.classList.add(
-                "hidden"
-            );
-
-        }
-
-    });
-
-    document
-        .getElementById("noResults")
-        .style.display =
-            visible === 0
-                ? "block"
-                : "none";
-}
-
-
-function clearFilters(){
-
-    document
-        .querySelectorAll(".genre")
-        .forEach(function(btn){
-
-            btn.classList.remove(
-                "active"
-            );
-
-        });
-
-    document
-        .querySelector(".genre")
-        .classList.add(
-            "active"
-        );
-
-    document
-        .getElementById("navSearch")
-        .value = "";
-
-    document
-        .getElementById("searchMessage")
-        .style.display = "none";
-
-    document
-        .querySelectorAll(
-            "#animeGrid .anime-card"
-        )
-        .forEach(function(card){
-
-            card.classList.remove(
-                "hidden"
-            );
-
-        });
-
-    document
-        .getElementById("noResults")
-        .style.display = "none";
-}
-
-
-/* =========================================================
-   ANIME INFO MODAL
-========================================================= */
-
-function openAnime(anime){
-
-    currentAnime =
-        anime;
-
-    document
-        .getElementById("modalTitle")
-        .textContent =
-        anime.title;
-
-    document
-        .getElementById("modalYear")
-        .textContent =
-        anime.year;
-
-    document
-        .getElementById("modalRating")
-        .textContent =
-        "⭐ " + anime.rating;
-
-    document
-        .getElementById("modalGenre")
-        .textContent =
-        anime.genre;
-
-    document
-        .getElementById("modalType")
-        .textContent =
-        anime.type;
-
-    document
-        .getElementById("modalDesc")
-        .textContent =
-        anime.desc;
-
-    const poster =
-        document.getElementById(
-            "modalPoster"
-        );
-
-    poster.src =
-        anime.poster;
-
-    poster.alt =
-        anime.title;
-
-    poster.onerror =
-        function(){
-
-            this.onerror = null;
-
-            this.src =
-                fallbackImage();
-
-        };
-
+function openAnimeFromDB(id){
+    var anime = ANIME_DB.find(function(a){return a.id === id});
+    if(!anime)return;
+    currentAnime = {title:anime.title,year:anime.year,rating:anime.rating,genre:anime.genre,poster:anime.poster,desc:anime.desc,type:anime.type};
+    document.getElementById('modalTitle').textContent = anime.title;
+    document.getElementById('modalYear').textContent = anime.year;
+    document.getElementById('modalRating').textContent = '\u2B50 ' + anime.rating;
+    document.getElementById('modalGenre').textContent = anime.genre;
+    document.getElementById('modalType').textContent = anime.type;
+    document.getElementById('modalDesc').textContent = anime.desc;
+    document.getElementById('modalPoster').src = anime.poster;
+    document.getElementById('modalPoster').alt = anime.title;
     updateWatchlistButton();
-
-    document
-        .getElementById("animeModal")
-        .classList.add("active");
-
-    document.body.style.overflow =
-        "hidden";
+    document.getElementById('animeModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
 
+function openAnimeStatic(title,year,rating,genre,poster,desc){
+    currentAnime = {title:title,year:year,rating:rating,genre:genre,poster:poster,desc:desc,type:''};
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalYear').textContent = year;
+    document.getElementById('modalRating').textContent = '\u2B50 ' + rating;
+    document.getElementById('modalGenre').textContent = genre;
+    document.getElementById('modalType').textContent = '';
+    document.getElementById('modalDesc').textContent = desc;
+    document.getElementById('modalPoster').src = poster;
+    document.getElementById('modalPoster').alt = title;
+    updateWatchlistButton();
+    document.getElementById('animeModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
 function closeModal(){
-
-    document
-        .getElementById("animeModal")
-        .classList.remove("active");
-
-    if(
-        !document
-            .getElementById("watchModal")
-            .classList.contains("active") &&
-        !document
-            .getElementById("authModal")
-            .classList.contains("active")
-    ){
-
-        document.body.style.overflow =
-            "";
-
-    }
-
-    currentAnime =
-        null;
+    document.getElementById('animeModal').classList.remove('active');
+    document.body.style.overflow = '';
+    currentAnime = null;
 }
 
+document.getElementById('animeModal').addEventListener('click',function(e){if(e.target === this)closeModal()});
+document.addEventListener('keydown',function(e){if(e.key === 'Escape' && !document.getElementById('watchModal').classList.contains('active'))closeModal()});
 
-document
-    .getElementById("animeModal")
-    .addEventListener(
-        "click",
-        function(event){
+var navSearchInput = document.getElementById('navSearch');
+var searchMessage = document.getElementById('searchMessage');
+var searchText = document.getElementById('searchText');
+var noResults = document.getElementById('noResults');
 
-            if(event.target === this){
+navSearchInput.addEventListener('input',function(){
+    var query = this.value.toLowerCase().trim();
+    var cards = document.querySelectorAll('#animeGrid .anime-card');
+    var visible = 0;
+    if(query){searchMessage.style.display = 'block';searchText.textContent = this.value;}else{searchMessage.style.display = 'none';}
+    cards.forEach(function(card){
+        var title = card.getAttribute('data-title').toLowerCase();
+        var genre = card.getAttribute('data-genre').toLowerCase();
+        if(title.includes(query) || genre.includes(query)){card.classList.remove('hidden');visible++;}else{card.classList.add('hidden');}
+    });
+    noResults.style.display = (visible === 0 && query !== '') ? 'block' : 'none';
+});
 
-                closeModal();
+function filterByGenre(genre,btn){
+    document.querySelectorAll('.genre').forEach(function(g){g.classList.remove('active')});
+    btn.classList.add('active');
+    var cards = document.querySelectorAll('#animeGrid .anime-card');
+    var visible = 0;
+    navSearchInput.value = '';searchMessage.style.display = 'none';
+    cards.forEach(function(card){
+        var cardGenre = card.getAttribute('data-genre');
+        if(genre === 'All' || cardGenre.includes(genre)){card.classList.remove('hidden');visible++;}else{card.classList.add('hidden');}
+    });
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+}
 
-            }
-
-        }
-    );
-
-
-/* =========================================================
-   WATCHLIST
-========================================================= */
+function clearFilters(){
+    document.querySelectorAll('.genre').forEach(function(g){g.classList.remove('active')});
+    document.querySelector('.genre-list .genre').classList.add('active');
+    navSearchInput.value = '';searchMessage.style.display = 'none';
+    document.querySelectorAll('#animeGrid .anime-card').forEach(function(c){c.classList.remove('hidden')});
+    noResults.style.display = 'none';
+}
 
 function toggleCurrentWatchlist(){
-
-    if(!currentAnime)
-        return;
-
-    const index =
-        watchlist.findIndex(
-            anime =>
-                anime.title ===
-                currentAnime.title
-        );
-
-    if(index !== -1){
-
-        watchlist.splice(
-            index,
-            1
-        );
-
-        showToast(
-            currentAnime.title +
-            " removed from watchlist."
-        );
-
-    }else{
-
-        watchlist.push(
-            currentAnime
-        );
-
-        showToast(
-            currentAnime.title +
-            " added to watchlist."
-        );
-
-    }
-
-    localStorage.setItem(
-        "animeWatchlist",
-        JSON.stringify(
-            watchlist
-        )
-    );
-
+    if(!currentAnime)return;
+    var index = watchlist.findIndex(function(a){return a.title === currentAnime.title});
+    if(index > -1){watchlist.splice(index,1);showToast(currentAnime.title + ' removed from watchlist');}else{watchlist.push(currentAnime);showToast(currentAnime.title + ' added to watchlist');}
+    localStorage.setItem('animeWatchlist',JSON.stringify(watchlist));
     updateWatchlistButton();
-
     renderWatchlist();
 }
 
-
 function updateWatchlistButton(){
-
-    if(!currentAnime)
-        return;
-
-    const button =
-        document.getElementById(
-            "watchlistBtn"
-        );
-
-    const exists =
-        watchlist.some(
-            anime =>
-                anime.title ===
-                currentAnime.title
-        );
-
-    button.textContent =
-        exists
-            ? "Remove from Watchlist"
-            : "Add to Watchlist";
+    var btn = document.getElementById('watchlistBtn');
+    if(!currentAnime)return;
+    var inList = watchlist.some(function(a){return a.title === currentAnime.title});
+    btn.textContent = inList ? 'Remove from Watchlist' : 'Add to Watchlist';
 }
-
 
 function renderWatchlist(){
-
-    const grid =
-        document.getElementById(
-            "watchlistGrid"
-        );
-
-    const empty =
-        document.getElementById(
-            "watchEmpty"
-        );
-
-    grid.innerHTML = "";
-
-    if(watchlist.length === 0){
-
-        grid.style.display =
-            "none";
-
-        empty.style.display =
-            "block";
-
-        return;
-    }
-
-    grid.style.display =
-        "grid";
-
-    empty.style.display =
-        "none";
-
-    watchlist.forEach(
-        function(anime){
-
-            grid.appendChild(
-                createCard(anime)
-            );
-
-        }
-    );
-}
-
-
-/* =========================================================
-   JIKAN API
-========================================================= */
-
-const JIKAN_BASE =
-    "https://api.jikan.moe/v4";
-
-
-async function jikanFetch(url){
-
-    const response =
-        await fetch(url);
-
-    if(!response.ok){
-
-        throw new Error(
-            "Jikan request failed: " +
-            response.status
-        );
-
-    }
-
-    return response.json();
-}
-
-
-/* =========================================================
-   WATCH NOW
-========================================================= */
-
-async function openWatchModal(){
-
-    if(!currentAnime){
-
-        showToast(
-            "Please select an anime first."
-        );
-
-        return;
-    }
-
-    currentWatchAnime =
-        currentAnime;
-
-    document
-        .getElementById("animeModal")
-        .classList.remove("active");
-
-    document
-        .getElementById("watchModal")
-        .classList.add("active");
-
-    document.body.style.overflow =
-        "hidden";
-
-    document
-        .getElementById("watchTitle")
-        .textContent =
-        currentWatchAnime.title;
-
-    document
-        .getElementById("watchSubtitle")
-        .textContent =
-        "Loading seasons...";
-
-    document
-        .getElementById("seasonTabs")
-        .innerHTML = "";
-
-    document
-        .getElementById("episodeList")
-        .innerHTML =
-        `<div class="loading">
-            Loading seasons and episodes...
-         </div>`;
-
-    document
-        .getElementById("episodeCount")
-        .textContent = "";
-
-    document
-        .getElementById("streamingLinks")
-        .innerHTML = "";
-
-    try{
-
-        const data =
-            await jikanFetch(
-                `${JIKAN_BASE}/anime/${currentWatchAnime.malId}/full`
-            );
-
-        const animeData =
-            data.data;
-
-        currentWatchAnime.jikan =
-            animeData;
-
-        /*
-         * The API's related entries can contain sequels,
-         * prequels and other related works.
-         * We use them to discover additional TV seasons.
-         */
-
-        const seasons =
-            await buildSeasonList(
-                currentWatchAnime,
-                animeData
-            );
-
-        renderSeasonTabs(
-            seasons
-        );
-
-        if(seasons.length > 0){
-
-            await loadSeason(
-                seasons[0]
-            );
-
-        }else{
-
-            document
-                .getElementById("episodeList")
-                .innerHTML =
-                `<div class="loading">
-                    No episode information available.
-                 </div>`;
-
-        }
-
-        renderStreamingOptions(
-            animeData
-        );
-
-    }catch(error){
-
-        console.error(error);
-
-        document
-            .getElementById("episodeList")
-            .innerHTML =
-            `<div class="loading">
-                Could not load episode data right now.
-                Please try again.
-             </div>`;
-
-        document
-            .getElementById("watchSubtitle")
-            .textContent =
-            "Episode service temporarily unavailable.";
-
-        showToast(
-            "Could not load anime data."
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   SEASON DISCOVERY
-========================================================= */
-
-async function buildSeasonList(
-    anime,
-    mainData
-){
-
-    const seasons = [];
-
-    /*
-     * Main MAL entry becomes Season 1.
-     */
-
-    seasons.push({
-        number:1,
-        malId:anime.malId,
-        title:mainData.title || anime.title,
-        year:
-            mainData.aired?.from
-                ? new Date(
-                    mainData.aired.from
-                  ).getFullYear()
-                : anime.year
+    var grid = document.getElementById('watchlistGrid');
+    var empty = document.getElementById('watchEmpty');
+    var section = document.getElementById('watchlistSection');
+    section.classList.add('active');
+    grid.innerHTML = '';
+    if(watchlist.length === 0){empty.style.display = 'block';grid.style.display = 'none';return;}
+    empty.style.display = 'none';grid.style.display = 'grid';
+    watchlist.forEach(function(anime){
+        var card = document.createElement('div');
+        card.className = 'anime-card';
+        card.setAttribute('data-title',anime.title || '');
+        card.setAttribute('data-genre',anime.genre || '');
+        card.onclick = function(){openAnimeStatic(anime.title,anime.year,anime.rating,anime.genre,anime.poster,anime.desc)};
+        card.innerHTML = '<div class="poster"><img src="'+(anime.poster || '')+'" alt="'+(anime.title || '')+'" loading="lazy" onerror="this.onerror=null;this.src=\'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27450%27%3E%3Crect width=%27300%27 height=%27450%27 fill=%27%231a1a1a%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%23666%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image%3C/text%3E%3C/svg%3E\';"></div><div class="card-info"><div class="card-title">'+(anime.title || 'Unknown')+'</div><div class="card-meta"><span>'+(anime.year || '')+'</span><span class="rating">'+(anime.rating ? '&#11088; '+anime.rating : '')+'</span></div></div>';
+        grid.appendChild(card);
     });
-
-    /*
-     * Find sequel TV entries.
-     */
-
-    const relations =
-        mainData.relations || [];
-
-    const candidates = [];
-
-    relations.forEach(
-        relation => {
-
-            if(
-                relation.relation !==
-                "Sequel"
-            )
-                return;
-
-            (relation.entry || [])
-                .forEach(entry => {
-
-                    if(
-                        entry.type === "anime"
-                    ){
-
-                        candidates.push(
-                            entry.mal_id
-                        );
-
-                    }
-
-                });
-
-        }
-    );
-
-    /*
-     * We only request a small number of sequel
-     * entries to avoid hammering the public API.
-     */
-
-    const unique =
-        [...new Set(candidates)];
-
-    for(
-        let i = 0;
-        i < Math.min(unique.length,8);
-        i++
-    ){
-
-        try{
-
-            const result =
-                await jikanFetch(
-                    `${JIKAN_BASE}/anime/${unique[i]}/full`
-                );
-
-            const item =
-                result.data;
-
-            /*
-             * Keep TV seasons here.
-             * Movies and specials are not treated as seasons.
-             */
-
-            if(
-                item.type === "TV"
-            ){
-
-                seasons.push({
-                    number:
-                        seasons.length + 1,
-
-                    malId:
-                        item.mal_id,
-
-                    title:
-                        item.title,
-
-                    year:
-                        item.aired?.from
-                            ? new Date(
-                                item.aired.from
-                              ).getFullYear()
-                            : ""
-                });
-
-            }
-
-        }catch(error){
-
-            console.warn(
-                "Could not load sequel:",
-                unique[i]
-            );
-
-        }
-
-    }
-
-    /*
-     * Remove duplicate MAL IDs.
-     */
-
-    const seen =
-        new Set();
-
-    return seasons.filter(
-        season => {
-
-            if(
-                seen.has(
-                    season.malId
-                )
-            ){
-
-                return false;
-
-            }
-
-            seen.add(
-                season.malId
-            );
-
-            return true;
-
-        }
-    );
 }
 
 
-/* =========================================================
-   SEASON TABS
-========================================================= */
+/* ================= WATCH NOW / LEGAL SOURCES ================= */
+const JIKAN_API = 'https://api.jikan.moe/v4';
+let watchAnime = null;
+let watchSeasons = [];
+let selectedEpisode = null;
 
-function renderSeasonTabs(seasons){
-
-    const tabs =
-        document.getElementById(
-            "seasonTabs"
-        );
-
-    tabs.innerHTML = "";
-
-    seasons.forEach(
-        function(season){
-
-            const button =
-                document.createElement(
-                    "button"
-                );
-
-            button.className =
-                "season-btn";
-
-            button.textContent =
-                "Season " +
-                season.number;
-
-            button.onclick =
-                function(){
-
-                    document
-                        .querySelectorAll(
-                            ".season-btn"
-                        )
-                        .forEach(
-                            btn =>
-                                btn.classList.remove(
-                                    "active"
-                                )
-                        );
-
-                    button.classList.add(
-                        "active"
-                    );
-
-                    loadSeason(
-                        season
-                    );
-
-                };
-
-            tabs.appendChild(
-                button
-            );
-
-        }
-    );
-
-    const first =
-        tabs.querySelector(
-            ".season-btn"
-        );
-
-    if(first){
-
-        first.classList.add(
-            "active"
-        );
-
-    }
-
+function legalSearchLinks(title, episodeNumber){
+    const q = encodeURIComponent(title + (episodeNumber ? ' episode ' + episodeNumber : ''));
+    const full = encodeURIComponent(title);
+    return [
+        {name:'Crunchyroll',url:'https://www.crunchyroll.com/search?q='+full},
+        {name:'JustWatch',url:'https://www.justwatch.com/search?q='+full}
+    ];
 }
 
+function renderLegalLinks(targetId, title, episodeNumber){
+    const target = document.getElementById(targetId);
+    if(!target)return;
+    target.innerHTML = '';
+    legalSearchLinks(title,episodeNumber).forEach(function(item){
+        const a=document.createElement('a');
+        a.className='legal-link';
+        a.href=item.url;
+        a.target='_blank';
+        a.rel='noopener noreferrer';
+        a.textContent='Open '+item.name+' ↗';
+        target.appendChild(a);
+    });
+}
 
-/* =========================================================
-   LOAD SEASON EPISODES
-========================================================= */
+function closeWatchNow(){
+    document.getElementById('watchModal').classList.remove('active');
+    selectedEpisode=null;
+    if(!document.getElementById('animeModal').classList.contains('active')){
+        document.body.style.overflow='';
+    }
+}
 
-async function loadSeason(season){
-
-    currentSeason =
-        season;
-
-    const list =
-        document.getElementById(
-            "episodeList"
-        );
-
-    const heading =
-        document.getElementById(
-            "episodeHeading"
-        );
-
-    const count =
-        document.getElementById(
-            "episodeCount"
-        );
-
-    list.innerHTML =
-        `<div class="loading">
-            Loading episodes...
-         </div>`;
-
-    heading.textContent =
-        "Season " +
-        season.number;
-
+async function openWatchNow(){
+    if(!currentAnime){showToast('Open an anime first.');return;}
+    watchAnime={...currentAnime};
+    selectedEpisode=null;
+    document.getElementById('watchTitle').textContent='Watch '+watchAnime.title;
+    document.getElementById('watchSubtitle').textContent='Loading seasons and episode counts...';
+    document.getElementById('watchStatus').textContent='Loading...';
+    document.getElementById('seasonSelect').innerHTML='<option>Loading...</option>';
+    document.getElementById('episodeList').innerHTML='';
+    document.getElementById('episodeEmpty').style.display='none';
+    document.getElementById('watchInfo').style.display='none';
+    document.getElementById('watchModal').classList.add('active');
+    document.body.style.overflow='hidden';
+    renderLegalLinks('fallbackLegalLinks',watchAnime.title);
     try{
-
-        const episodes =
-            await fetchAllEpisodes(
-                season.malId
-            );
-
-        count.textContent =
-            episodes.length +
-            " episode" +
-            (
-                episodes.length === 1
-                    ? ""
-                    : "s"
-            );
-
-        renderEpisodes(
-            episodes,
-            season
-        );
-
+        const url=JIKAN_API+'/anime?q='+encodeURIComponent(watchAnime.title)+'&limit=10&sfw=true&order_by=popularity&sort=asc';
+        const response=await fetch(url,{headers:{'Accept':'application/json'}});
+        if(!response.ok)throw new Error('Jikan request failed');
+        const json=await response.json();
+        const results=(json.data||[]).filter(function(a){
+            return a.type==='TV' && a.episodes;
+        });
+        if(!results.length)throw new Error('No TV seasons found');
+        results.sort(function(a,b){
+            return new Date(a.aired?.from||'9999-12-31')-new Date(b.aired?.from||'9999-12-31');
+        });
+        watchSeasons=results;
+        const select=document.getElementById('seasonSelect');
+        select.innerHTML='';
+        results.forEach(function(season,index){
+            const option=document.createElement('option');
+            option.value=String(index);
+            option.textContent='Season '+(index+1)+' — '+(season.episodes||0)+' episodes';
+            select.appendChild(option);
+        });
+        document.getElementById('watchSubtitle').textContent=results.length+' season'+(results.length===1?'':'s')+' found';
+        document.getElementById('watchStatus').textContent='Select an episode';
+        loadSeasonEpisodes();
     }catch(error){
-
-        console.error(error);
-
-        list.innerHTML =
-            `<div class="loading">
-                Could not load episodes.
-             </div>`;
-
-        count.textContent = "";
-
+        console.warn('Episode metadata error:',error);
+        watchSeasons=[];
+        document.getElementById('seasonSelect').innerHTML='<option>Unavailable right now</option>';
+        document.getElementById('watchStatus').textContent='Episode data unavailable';
+        document.getElementById('episodeList').innerHTML='';
+        document.getElementById('episodeEmpty').style.display='block';
     }
-
 }
 
-
-/* =========================================================
-   EPISODE PAGINATION
-========================================================= */
-
-async function fetchAllEpisodes(malId){
-
-    let page = 1;
-
-    let allEpisodes = [];
-
-    while(page <= 20){
-
-        const result =
-            await jikanFetch(
-                `${JIKAN_BASE}/anime/${malId}/episodes?page=${page}`
-            );
-
-        const pageEpisodes =
-            result.data || [];
-
-        allEpisodes =
-            allEpisodes.concat(
-                pageEpisodes
-            );
-
-        if(
-            !result.pagination ||
-            !result.pagination.has_next_page
-        ){
-
-            break;
-
-        }
-
-        page++;
-
-        /*
-         * Small delay to be polite to a public API.
-         */
-
-        await delay(250);
-
-    }
-
-    return allEpisodes;
-}
-
-
-function delay(ms){
-
-    return new Promise(
-        resolve =>
-            setTimeout(
-                resolve,
-                ms
-            )
-    );
-
-}
-
-
-/* =========================================================
-   EPISODES UI
-========================================================= */
-
-function renderEpisodes(
-    episodes,
-    season
-){
-
-    const list =
-        document.getElementById(
-            "episodeList"
-        );
-
-    list.innerHTML = "";
-
-    if(!episodes.length){
-
-        list.innerHTML =
-            `<div class="loading">
-                No episodes listed for this season.
-             </div>`;
-
+function loadSeasonEpisodes(){
+    const index=parseInt(document.getElementById('seasonSelect').value,10);
+    const season=watchSeasons[index];
+    const list=document.getElementById('episodeList');
+    const empty=document.getElementById('episodeEmpty');
+    const info=document.getElementById('watchInfo');
+    if(!season || !season.episodes){
+        list.innerHTML='';
+        empty.style.display='block';
+        info.style.display='none';
         return;
     }
-
-    episodes.forEach(
-        function(episode){
-
-            const wrapper =
-                document.createElement(
-                    "div"
-                );
-
-            wrapper.className =
-                "episode";
-
-
-            const number =
-                document.createElement(
-                    "div"
-                );
-
-            number.className =
-                "episode-number";
-
-            number.textContent =
-                episode.mal_id ||
-                "?";
-
-
-            const info =
-                document.createElement(
-                    "div"
-                );
-
-            info.className =
-                "episode-info";
-
-
-            const title =
-                document.createElement(
-                    "div"
-                );
-
-            title.className =
-                "episode-title";
-
-            title.textContent =
-                episode.title ||
-                "Episode " +
-                episode.mal_id;
-
-
-            const date =
-                document.createElement(
-                    "div"
-                );
-
-            date.className =
-                "episode-date";
-
-            date.textContent =
-                episode.aired
-                    ? formatDate(
-                        episode.aired
-                    )
-                    : "";
-
-
-            const progressKey =
-                getProgressKey(
-                    season.malId
-                );
-
-
-            const watched =
-                watchProgress[
-                    progressKey
-                ] === episode.mal_id;
-
-
-            const watchedText =
-                document.createElement(
-                    "div"
-                );
-
-            watchedText.className =
-                "episode-watched";
-
-            watchedText.textContent =
-                watched
-                    ? "✓ Watched"
-                    : "";
-
-
-            info.appendChild(
-                title
-            );
-
-            info.appendChild(
-                date
-            );
-
-            info.appendChild(
-                watchedText
-            );
-
-
-            const button =
-                document.createElement(
-                    "button"
-                );
-
-            button.className =
-                "watch-episode-btn";
-
-            button.textContent =
-                watched
-                    ? "Watch Again"
-                    : "Watch";
-
-
-            button.onclick =
-                function(){
-
-                    markEpisodeWatched(
-                        season.malId,
-                        episode.mal_id
-                    );
-
-                    openLegalAnimePage(
-                        currentWatchAnime
-                    );
-
-                };
-
-
-            wrapper.appendChild(
-                number
-            );
-
-            wrapper.appendChild(
-                info
-            );
-
-            wrapper.appendChild(
-                button
-            );
-
-            list.appendChild(
-                wrapper
-            );
-
-        }
-    );
-}
-
-
-/* =========================================================
-   WATCH PROGRESS
-========================================================= */
-
-function getProgressKey(
-    malId
-){
-
-    return String(
-        malId
-    );
-
-}
-
-
-function markEpisodeWatched(
-    malId,
-    episodeNumber
-){
-
-    watchProgress[
-        getProgressKey(malId)
-    ] =
-        episodeNumber;
-
-    localStorage.setItem(
-        "animeWatchProgress",
-        JSON.stringify(
-            watchProgress
-        )
-    );
-
-    showToast(
-        "Episode marked as watched."
-    );
-
-}
-
-
-/* =========================================================
-   DATE
-========================================================= */
-
-function formatDate(date){
-
-    try{
-
-        return new Date(date)
-            .toLocaleDateString(
-                undefined,
-                {
-                    year:"numeric",
-                    month:"short",
-                    day:"numeric"
-                }
-            );
-
-    }catch(error){
-
-        return "";
-
+    empty.style.display='none';
+    list.innerHTML='';
+    info.style.display='none';
+    document.getElementById('watchStatus').textContent=(season.episodes)+' episodes';
+    for(let i=1;i<=season.episodes;i++){
+        const btn=document.createElement('button');
+        btn.className='episode-btn';
+        btn.textContent='Episode '+i;
+        btn.onclick=function(){selectEpisode(season,i,btn);};
+        list.appendChild(btn);
     }
-
 }
 
-
-/* =========================================================
-   LEGAL STREAMING OPTIONS
-========================================================= */
-
-function renderStreamingOptions(
-    animeData
-){
-
-    const container =
-        document.getElementById(
-            "streamingLinks"
-        );
-
-    container.innerHTML = "";
-
-    /*
-     * Jikan may expose streaming entries associated
-     * with the MAL anime entry. We display only URLs
-     * supplied by the API instead of inventing links.
-     */
-
-    const streams =
-        Array.isArray(
-            animeData.streaming
-        )
-            ? animeData.streaming
-            : [];
-
-    const unique =
-        new Set();
-
-    streams.forEach(
-        function(stream){
-
-            if(
-                !stream ||
-                !stream.url
-            )
-                return;
-
-            if(
-                unique.has(
-                    stream.url
-                )
-            )
-                return;
-
-            unique.add(
-                stream.url
-            );
-
-            const link =
-                document.createElement(
-                    "a"
-                );
-
-            link.className =
-                "stream-link";
-
-            link.href =
-                stream.url;
-
-            link.target =
-                "_blank";
-
-            link.rel =
-                "noopener noreferrer";
-
-            link.textContent =
-                "Open " +
-                (
-                    stream.name ||
-                    "Viewing Source"
-                );
-
-            container.appendChild(
-                link
-            );
-
-        }
-    );
-
-    if(!container.children.length){
-
-        const text =
-            document.createElement(
-                "span"
-            );
-
-        text.style.color =
-            "#666";
-
-        text.style.fontSize =
-            "12px";
-
-        text.textContent =
-            "No streaming link was supplied by the data source for this title.";
-
-        container.appendChild(
-            text
-        );
-
-    }
-
+function selectEpisode(season,episode,button){
+    document.querySelectorAll('#episodeList .episode-btn').forEach(function(b){b.classList.remove('active')});
+    button.classList.add('active');
+    selectedEpisode={season:season,number:episode};
+    document.getElementById('selectedEpisodeLabel').textContent='Season '+(watchSeasons.indexOf(season)+1)+' • Episode '+episode;
+    document.getElementById('watchInfo').style.display='block';
+    renderLegalLinks('legalLinks',watchAnime.title,episode);
+    document.getElementById('watchInfo').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
+document.getElementById('watchModal').addEventListener('click',function(e){
+    if(e.target===this)closeWatchNow();
+});
 
-/*
- * We don't manufacture streaming URLs.
- * This function opens the anime's MAL page, which is
- * the safest fallback when no streaming entry is supplied.
- */
-
-function openLegalAnimePage(
-    anime
-){
-
-    const url =
-        anime.jikan?.url ||
-        `https://myanimelist.net/anime/${anime.malId}`;
-
-    window.open(
-        url,
-        "_blank",
-        "noopener,noreferrer"
-    );
-
-}
-
-
-/* =========================================================
-   CLOSE WATCH MODAL
-========================================================= */
-
-function closeWatchModal(){
-
-    document
-        .getElementById("watchModal")
-        .classList.remove(
-            "active"
-        );
-
-    document.body.style.overflow =
-        "";
-
-    currentWatchAnime =
-        null;
-
-    currentSeason =
-        null;
-}
-
-
-document
-    .getElementById("watchModal")
-    .addEventListener(
-        "click",
-        function(event){
-
-            if(event.target === this){
-
-                closeWatchModal();
-
-            }
-
-        }
-    );
-
-
-/* =========================================================
-   TOAST
-========================================================= */
+document.addEventListener('keydown',function(e){
+    if(e.key==='Escape' && document.getElementById('watchModal').classList.contains('active'))closeWatchNow();
+});
 
 function showToast(message){
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
-
-    toast.textContent =
-        message;
-
-    toast.classList.add(
-        "show"
-    );
-
-    clearTimeout(
-        window.toastTimer
-    );
-
-    window.toastTimer =
-        setTimeout(
-            function(){
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            2500
-        );
-
+    var toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(function(){toast.classList.remove('show')},2500);
 }
 
-
-/* =========================================================
-   ESC
-========================================================= */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key !== "Escape")
-            return;
-
-        closeModal();
-
-        closeWatchModal();
-
-        if(
-            document
-                .getElementById("authModal")
-                .classList
-                .contains("active")
-        ){
-
-            closeAuthModal();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   INITIAL LOAD
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
-
-        loadTrending();
-
-        loadExplore();
-
-        loadBrowse();
-
-        renderWatchlist();
-
-    }
-);
+document.addEventListener('DOMContentLoaded',function(){
+    renderWatchlist();
+    loadExplore();
+    loadBrowse();
+});
 
 </script>
 
-
-<!-- =========================================================
-     FIREBASE AUTHENTICATION
-========================================================= -->
-
+<!-- ================= FIREBASE AUTHENTICATION ================= -->
 <script type="module">
-
-import {
-    initializeApp
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -3967,834 +1584,234 @@ import {
     onAuthStateChanged,
     signOut,
     updateProfile
-}
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 const firebaseConfig = {
-
-    apiKey:
-    "AIzaSyBOvKunuAyoIagdYPicEwGoK27PATypGJw",
-
-    authDomain:
-    "anime-flex-690bd.firebaseapp.com",
-
-    projectId:
-    "anime-flex-690bd",
-
-    storageBucket:
-    "anime-flex-690bd.firebasestorage.app",
-
-    messagingSenderId:
-    "395545101038",
-
-    appId:
-    "1:395545101038:web:1e78af9d102e236d9ca9ff",
-
-    measurementId:
-    "G-X0Q5LYQ3Y3"
-
+    apiKey: "AIzaSyDRhUpUevm1KwP05FFuZZMBwMvsKRlHIgE",
+    authDomain: "anime-flex-16788.firebaseapp.com",
+    projectId: "anime-flex-16788",
+    storageBucket: "anime-flex-16788.firebasestorage.app",
+    messagingSenderId: "647736007153",
+    appId: "1:647736007153:web:bcbfbf547da7771d2f4c50",
+    measurementId: "G-8W58DDX0YQ"
 };
 
+const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
 
-const app =
-    initializeApp(
-        firebaseConfig
-    );
+const authModal = document.getElementById('authModal');
+const authFormView = document.getElementById('authFormView');
+const resetView = document.getElementById('resetView');
+const verifyView = document.getElementById('verifyView');
+const authForm = document.getElementById('authForm');
+const resetForm = document.getElementById('resetForm');
+const authName = document.getElementById('authName');
+const authEmail = document.getElementById('authEmail');
+const authPassword = document.getElementById('authPassword');
+const authSubmit = document.getElementById('authSubmit');
+const forgotBtn = document.getElementById('forgotBtn');
+const nameField = document.getElementById('nameField');
+const authSubtitle = document.getElementById('authSubtitle');
+const authSwitch = document.getElementById('authSwitch');
+const authMessage = document.getElementById('authMessage');
+const resetMessage = document.getElementById('resetMessage');
+let authMode = 'login';
 
-const auth =
-    getAuth(app);
-
-
-/* =========================================================
-   ELEMENTS
-========================================================= */
-
-const authModal =
-    document.getElementById(
-        "authModal"
-    );
-
-const authFormView =
-    document.getElementById(
-        "authFormView"
-    );
-
-const resetView =
-    document.getElementById(
-        "resetView"
-    );
-
-const verifyView =
-    document.getElementById(
-        "verifyView"
-    );
-
-const authForm =
-    document.getElementById(
-        "authForm"
-    );
-
-const resetForm =
-    document.getElementById(
-        "resetForm"
-    );
-
-const authName =
-    document.getElementById(
-        "authName"
-    );
-
-const authEmail =
-    document.getElementById(
-        "authEmail"
-    );
-
-const authPassword =
-    document.getElementById(
-        "authPassword"
-    );
-
-const authSubmit =
-    document.getElementById(
-        "authSubmit"
-    );
-
-const forgotBtn =
-    document.getElementById(
-        "forgotBtn"
-    );
-
-const nameField =
-    document.getElementById(
-        "nameField"
-    );
-
-const authSubtitle =
-    document.getElementById(
-        "authSubtitle"
-    );
-
-const authSwitch =
-    document.getElementById(
-        "authSwitch"
-    );
-
-const authMessage =
-    document.getElementById(
-        "authMessage"
-    );
-
-const resetMessage =
-    document.getElementById(
-        "resetMessage"
-    );
-
-let authMode =
-    "login";
-
-
-/* =========================================================
-   MESSAGES
-========================================================= */
-
-function showAuthMessage(
-    element,
-    message,
-    type="error"
-){
-
-    element.textContent =
-        message;
-
-    element.className =
-        "auth-message show " +
-        type;
-
+function showAuthMessage(el, message, type='error') {
+    el.textContent = message;
+    el.className = 'auth-message show ' + type;
 }
-
-
 function clearAuthMessages(){
-
-    authMessage.className =
-        "auth-message";
-
-    resetMessage.className =
-        "auth-message";
-
+    authMessage.className='auth-message';
+    resetMessage.className='auth-message';
 }
-
-
-/* =========================================================
-   FIREBASE ERRORS
-========================================================= */
-
 function friendlyError(error){
-
-    const code =
-        error?.code || "";
-
-    const errors = {
-
-        "auth/invalid-email":
-            "Please enter a valid email address.",
-
-        "auth/user-not-found":
-            "No account was found with this email.",
-
-        "auth/wrong-password":
-            "Incorrect password.",
-
-        "auth/invalid-credential":
-            "Incorrect email or password.",
-
-        "auth/email-already-in-use":
-            "An account already exists with this email.",
-
-        "auth/weak-password":
-            "Password must be at least 6 characters.",
-
-        "auth/too-many-requests":
-            "Too many attempts. Please try again later.",
-
-        "auth/network-request-failed":
-            "Network error. Check your internet connection.",
-
-        "auth/operation-not-allowed":
-            "Email/password authentication is not enabled in Firebase.",
-
-        "auth/user-disabled":
-            "This account has been disabled."
-
+    const code = error && error.code ? error.code : '';
+    const map = {
+        'auth/invalid-email':'Please enter a valid email address.',
+        'auth/user-not-found':'No account was found with this email.',
+        'auth/wrong-password':'Incorrect password.',
+        'auth/invalid-credential':'Incorrect email or password.',
+        'auth/email-already-in-use':'An account already exists with this email.',
+        'auth/weak-password':'Password must be at least 6 characters.',
+        'auth/too-many-requests':'Too many attempts. Please try again later.',
+        'auth/network-request-failed':'Network error. Check your internet connection.',
+        'auth/operation-not-allowed':'Email/password sign-in is not enabled in Firebase.',
+        'auth/user-disabled':'This account has been disabled.'
     };
-
-    return (
-        errors[code] ||
-        "Something went wrong. Please try again."
-    );
-
+    return map[code] || (error && error.message ? error.message.replace(/^Firebase:\s*/,'') : 'Something went wrong. Please try again.');
 }
 
-
-/* =========================================================
-   OPEN AUTH
-========================================================= */
-
-window.openAuthModal =
-function(mode="login"){
-
-    authMode =
-        mode;
-
+window.openAuthModal = function(mode='login'){
+    authMode = mode;
     clearAuthMessages();
-
     authForm.reset();
-
     resetForm.reset();
-
-    authFormView.style.display =
-        "block";
-
-    resetView.style.display =
-        "none";
-
-    verifyView.style.display =
-        "none";
-
-    const signup =
-        mode === "signup";
-
-    nameField.style.display =
-        signup
-            ? "block"
-            : "none";
-
-    authName.required =
-        signup;
-
-    authPassword.autocomplete =
-        signup
-            ? "new-password"
-            : "current-password";
-
-    authSubtitle.textContent =
-        signup
-            ? "Create your free AnimeFlex account"
-            : "Login to your AnimeFlex account";
-
-    authSubmit.textContent =
-        signup
-            ? "Create Account"
-            : "Login";
-
-    forgotBtn.style.display =
-        signup
-            ? "none"
-            : "block";
-
-    authSwitch.innerHTML =
-        signup
-            ? `
-                Already have an account?
-                <button
-                    class="auth-link"
-                    type="button"
-                    onclick="openAuthModal('login')">
-                    Login
-                </button>
-              `
-            : `
-                Don't have an account?
-                <button
-                    class="auth-link"
-                    type="button"
-                    onclick="openAuthModal('signup')">
-                    Create one
-                </button>
-              `;
-
-    authModal.classList.add(
-        "active"
-    );
-
-    document.body.style.overflow =
-        "hidden";
-
+    authFormView.style.display='block';
+    resetView.style.display='none';
+    verifyView.style.display='none';
+    nameField.style.display = mode === 'signup' ? 'block' : 'none';
+    authName.required = mode === 'signup';
+    authPassword.autocomplete = mode === 'signup' ? 'new-password' : 'current-password';
+    authSubtitle.textContent = mode === 'signup' ? 'Create your free AnimeFlex account' : 'Login to your AnimeFlex account';
+    authSubmit.textContent = mode === 'signup' ? 'Create Account' : 'Login';
+    forgotBtn.style.display = mode === 'signup' ? 'none' : 'block';
+    authSwitch.innerHTML = mode === 'signup'
+        ? 'Already have an account? <button class="auth-link" type="button" onclick="openAuthModal(\'login\')">Login</button>'
+        : 'Don\'t have an account? <button class="auth-link" type="button" onclick="openAuthModal(\'signup\')">Create one</button>';
+    authModal.classList.add('active');
+    document.body.style.overflow='hidden';
 };
 
-
-/* =========================================================
-   CLOSE AUTH
-========================================================= */
-
-window.closeAuthModal =
-function(){
-
-    authModal.classList.remove(
-        "active"
-    );
-
-    document.body.style.overflow =
-        "";
-
+window.closeAuthModal = function(){
+    authModal.classList.remove('active');
+    document.body.style.overflow='';
 };
 
-
-/* =========================================================
-   RESET VIEW
-========================================================= */
-
-window.openResetView =
-function(){
-
+window.openResetView = function(){
     clearAuthMessages();
-
     resetForm.reset();
-
-    resetView.style.display =
-        "block";
-
-    authFormView.style.display =
-        "none";
-
-    verifyView.style.display =
-        "none";
-
-    document
-        .getElementById(
-            "resetEmail"
-        )
-        .value =
-        authEmail.value.trim();
-
+    resetView.style.display='block';
+    authFormView.style.display='none';
+    verifyView.style.display='none';
+    document.getElementById('resetEmail').value = authEmail.value.trim();
 };
-
-
-/* =========================================================
-   VERIFICATION
-========================================================= */
 
 function showVerifyView(user){
-
-    authFormView.style.display =
-        "none";
-
-    resetView.style.display =
-        "none";
-
-    verifyView.style.display =
-        "block";
-
-    document
-        .getElementById(
-            "verifyEmail"
-        )
-        .textContent =
-        user.email || "";
-
+    authFormView.style.display='none';
+    resetView.style.display='none';
+    verifyView.style.display='block';
+    document.getElementById('verifyEmail').textContent=user.email || '';
 }
 
-
-async function sendVerification(
-    user,
-    showMessage=true
-){
-
+async function sendVerification(user, showMessage=true){
     try{
-
-        await sendEmailVerification(
-            user
-        );
-
-        if(showMessage){
-
-            showToast(
-                "Verification email sent."
-            );
-
-        }
-
+        await sendEmailVerification(user);
+        if(showMessage) showToast('Verification email sent. Check your inbox.');
         return true;
-
     }catch(error){
-
-        if(showMessage){
-
-            showToast(
-                friendlyError(error)
-            );
-
-        }
-
+        if(showMessage) showToast(friendlyError(error));
         return false;
-
     }
-
 }
 
-
-window.resendVerificationEmail =
-async function(){
-
-    const user =
-        auth.currentUser;
-
-    if(!user){
-
-        openAuthModal(
-            "login"
-        );
-
-        return;
-    }
-
-    await sendVerification(
-        user,
-        true
-    );
-
+window.resendVerificationEmail = async function(){
+    const user=auth.currentUser;
+    if(!user){openAuthModal('login');return;}
+    await sendVerification(user,true);
 };
 
-
-window.checkEmailVerification =
-async function(){
-
-    const user =
-        auth.currentUser;
-
-    if(!user){
-
-        openAuthModal(
-            "login"
-        );
-
-        return;
-    }
-
+window.checkEmailVerification = async function(){
+    const user=auth.currentUser;
+    if(!user){openAuthModal('login');return;}
     try{
-
         await user.reload();
-
-        const refreshed =
-            auth.currentUser;
-
-        if(
-            refreshed &&
-            refreshed.emailVerified
-        ){
-
-            showToast(
-                "Email verified successfully!"
-            );
-
+        const refreshed=auth.currentUser;
+        if(refreshed && refreshed.emailVerified){
+            showToast('Email verified successfully! Welcome to AnimeFlex.');
             closeAuthModal();
-
-            updateAuthUI(
-                refreshed
-            );
-
+            updateAuthUI(refreshed);
         }else{
-
-            showToast(
-                "Email is not verified yet."
-            );
-
+            showToast('Email is not verified yet. Open the verification email first.');
         }
-
-    }catch(error){
-
-        showToast(
-            friendlyError(error)
-        );
-
-    }
-
+    }catch(error){showToast(friendlyError(error));}
 };
-
-
-/* =========================================================
-   AUTH UI
-========================================================= */
 
 function updateAuthUI(user){
-
-    const login =
-        document.getElementById(
-            "loginNavBtn"
-        );
-
-    const signup =
-        document.getElementById(
-            "signupNavBtn"
-        );
-
-    const menu =
-        document.getElementById(
-            "userMenu"
-        );
-
-    const email =
-        document.getElementById(
-            "userEmail"
-        );
-
+    const loginBtn=document.getElementById('loginNavBtn');
+    const signupBtn=document.getElementById('signupNavBtn');
+    const userMenu=document.getElementById('userMenu');
+    const userEmail=document.getElementById('userEmail');
     if(user){
-
-        login.style.display =
-            "none";
-
-        signup.style.display =
-            "none";
-
-        menu.style.display =
-            "flex";
-
-        email.textContent =
-            user.displayName ||
-            user.email ||
-            "User";
-
+        loginBtn.style.display='none';
+        signupBtn.style.display='none';
+        userMenu.style.display='flex';
+        userEmail.textContent=user.displayName || user.email || 'User';
     }else{
-
-        login.style.display =
-            "inline-block";
-
-        signup.style.display =
-            "inline-block";
-
-        menu.style.display =
-            "none";
-
-        email.textContent =
-            "";
-
+        loginBtn.style.display='inline-block';
+        signupBtn.style.display='inline-block';
+        userMenu.style.display='none';
+        userEmail.textContent='';
     }
-
 }
 
-
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-window.logoutUser =
-async function(){
-
+window.logoutUser = async function(){
     try{
-
-        await signOut(
-            auth
-        );
-
+        await signOut(auth);
         closeAuthModal();
-
-        updateAuthUI(
-            null
-        );
-
-        showToast(
-            "You have been logged out."
-        );
-
-    }catch(error){
-
-        showToast(
-            friendlyError(error)
-        );
-
-    }
-
+        updateAuthUI(null);
+        showToast('You have been logged out.');
+    }catch(error){showToast(friendlyError(error));}
 };
 
-
-/* =========================================================
-   LOGIN / SIGNUP
-========================================================= */
-
-authForm.addEventListener(
-    "submit",
-    async function(event){
-
-        event.preventDefault();
-
-        clearAuthMessages();
-
-        const email =
-            authEmail.value.trim();
-
-        const password =
-            authPassword.value;
-
-        if(
-            !email ||
-            !password
-        )
-            return;
-
-        authSubmit.disabled =
-            true;
-
-        authSubmit.textContent =
-            authMode === "signup"
-                ? "Creating..."
-                : "Logging in...";
-
-        try{
-
-            if(
-                authMode === "signup"
-            ){
-
-                const name =
-                    authName.value.trim();
-
-                if(
-                    name.length < 2
-                ){
-
-                    showAuthMessage(
-                        authMessage,
-                        "Please enter your name."
-                    );
-
-                    return;
-                }
-
-                const result =
-                    await createUserWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
-
-                await updateProfile(
-                    result.user,
-                    {
-                        displayName:
-                            name
-                    }
-                );
-
-                await sendVerification(
-                    result.user,
-                    false
-                );
-
-                showVerifyView(
-                    result.user
-                );
-
-                showToast(
-                    "Account created! Check your email."
-                );
-
-            }else{
-
-                const result =
-                    await signInWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
-
-                if(
-                    !result.user.emailVerified
-                ){
-
-                    await sendVerification(
-                        result.user,
-                        false
-                    );
-
-                    showVerifyView(
-                        result.user
-                    );
-
-                    showToast(
-                        "Please verify your email first."
-                    );
-
-                }else{
-
-                    closeAuthModal();
-
-                    updateAuthUI(
-                        result.user
-                    );
-
-                    showToast(
-                        "Welcome back to AnimeFlex!"
-                    );
-
-                }
-
+authForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    clearAuthMessages();
+    const email=authEmail.value.trim();
+    const password=authPassword.value;
+    if(!email || !password)return;
+    authSubmit.disabled=true;
+    authSubmit.textContent=authMode==='signup'?'Creating...':'Logging in...';
+    try{
+        if(authMode==='signup'){
+            const name=authName.value.trim();
+            if(name.length < 2){
+                showAuthMessage(authMessage,'Please enter your name.');
+                return;
             }
-
-        }catch(error){
-
-            showAuthMessage(
-                authMessage,
-                friendlyError(error)
-            );
-
-        }finally{
-
-            authSubmit.disabled =
-                false;
-
-            authSubmit.textContent =
-                authMode === "signup"
-                    ? "Create Account"
-                    : "Login";
-
+            const result=await createUserWithEmailAndPassword(auth,email,password);
+            if(name) await updateProfile(result.user,{displayName:name});
+            await sendVerification(result.user,false);
+            showVerifyView(result.user);
+            showToast('Account created! Check your email to verify it.');
+        }else{
+            const result=await signInWithEmailAndPassword(auth,email,password);
+            if(!result.user.emailVerified){
+                await sendVerification(result.user,false);
+                showVerifyView(result.user);
+                showToast('Please verify your email before continuing.');
+            }else{
+                closeAuthModal();
+                updateAuthUI(result.user);
+                showToast('Welcome back to AnimeFlex!');
+            }
         }
-
+    }catch(error){
+        showAuthMessage(authMessage,friendlyError(error));
+    }finally{
+        authSubmit.disabled=false;
+        authSubmit.textContent=authMode==='signup'?'Create Account':'Login';
     }
-);
+});
 
-
-/* =========================================================
-   PASSWORD RESET
-========================================================= */
-
-resetForm.addEventListener(
-    "submit",
-    async function(event){
-
-        event.preventDefault();
-
-        resetMessage.className =
-            "auth-message";
-
-        const email =
-            document
-                .getElementById(
-                    "resetEmail"
-                )
-                .value
-                .trim();
-
-        if(!email)
-            return;
-
-        const button =
-            document.getElementById(
-                "resetSubmit"
-            );
-
-        button.disabled =
-            true;
-
-        button.textContent =
-            "Sending...";
-
-        try{
-
-            await sendPasswordResetEmail(
-                auth,
-                email
-            );
-
-            showAuthMessage(
-                resetMessage,
-                "Password reset email sent. Check your inbox.",
-                "success"
-            );
-
-        }catch(error){
-
-            showAuthMessage(
-                resetMessage,
-                friendlyError(error)
-            );
-
-        }finally{
-
-            button.disabled =
-                false;
-
-            button.textContent =
-                "Send Reset Email";
-
-        }
-
+resetForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    resetMessage.className='auth-message';
+    const email=document.getElementById('resetEmail').value.trim();
+    if(!email)return;
+    const btn=document.getElementById('resetSubmit');
+    btn.disabled=true;
+    btn.textContent='Sending...';
+    try{
+        await sendPasswordResetEmail(auth,email);
+        showAuthMessage(resetMessage,'Password reset email sent. Check your inbox and follow the link to create a new password.','success');
+    }catch(error){
+        showAuthMessage(resetMessage,friendlyError(error));
+    }finally{
+        btn.disabled=false;
+        btn.textContent='Send Reset Email';
     }
-);
+});
 
+authModal.addEventListener('click',function(e){if(e.target===authModal)window.closeAuthModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape' && authModal.classList.contains('active'))window.closeAuthModal();});
 
-/* =========================================================
-   AUTH MODAL CLICK
-========================================================= */
-
-authModal.addEventListener(
-    "click",
-    function(event){
-
-        if(event.target === authModal){
-
-            closeAuthModal();
-
-        }
-
+onAuthStateChanged(auth,function(user){
+    updateAuthUI(user);
+    if(user && !user.emailVerified && authModal.classList.contains('active')){
+        showVerifyView(user);
     }
-);
-
-
-/* =========================================================
-   AUTH STATE
-========================================================= */
-
-onAuthStateChanged(
-    auth,
-    function(user){
-
-        updateAuthUI(
-            user
-        );
-
-    }
-);
-
+});
 </script>
 
 </body>
