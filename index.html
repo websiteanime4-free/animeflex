@@ -600,6 +600,39 @@ footer strong{
     color:#e50914;
 }
 
+
+/* ================= AUTH SYSTEM ================= */
+.auth-actions{margin-left:0;display:flex;align-items:center;gap:8px}
+.auth-btn{border:1px solid #333;background:#171717;color:#fff;border-radius:20px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;white-space:nowrap}
+.auth-btn:hover{border-color:#e50914;background:#e50914}
+.auth-btn.signup{background:#e50914;border-color:#e50914}
+.auth-btn.signup:hover{background:#ff1b27}
+.user-menu{display:none;align-items:center;gap:8px}
+.user-email{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#aaa;font-size:12px}
+.auth-modal .modal-box{width:min(430px,100%);max-height:90vh}
+.auth-modal .modal-body{display:block;padding:30px}
+.auth-logo{text-align:center;font-size:30px;font-weight:800;margin-bottom:6px}
+.auth-logo span{color:#e50914}
+.auth-subtitle{text-align:center;color:#777;font-size:13px;margin-bottom:22px}
+.auth-form{display:flex;flex-direction:column;gap:12px}
+.auth-form label{color:#aaa;font-size:12px;font-weight:700}
+.auth-form input{width:100%;height:45px;background:#181818;border:1px solid #303030;border-radius:7px;color:#fff;padding:0 13px;outline:none}
+.auth-form input:focus{border-color:#e50914}
+.auth-submit{height:45px;border:0;border-radius:7px;background:#e50914;color:#fff;font-weight:800;cursor:pointer;margin-top:4px}
+.auth-submit:hover{background:#ff1b27}
+.auth-submit:disabled{background:#555;cursor:not-allowed}
+.auth-link{border:0;background:none;color:#e50914;cursor:pointer;font-size:12px;text-align:center;padding:3px}
+.auth-switch{text-align:center;color:#777;font-size:12px;margin-top:15px}
+.auth-message{display:none;padding:10px 12px;border-radius:7px;background:#1b1b1b;border:1px solid #333;color:#bbb;font-size:12px;line-height:1.5;margin-bottom:12px}
+.auth-message.show{display:block}
+.auth-message.error{border-color:#8f1d25;color:#ff8c92}
+.auth-message.success{border-color:#2f6f45;color:#8fe0aa}
+.verify-box{text-align:center;color:#aaa;line-height:1.7;font-size:13px}
+.verify-box strong{color:#fff;word-break:break-word}
+.verify-icon{font-size:42px;margin-bottom:10px}
+@media(max-width:800px){.auth-actions{margin-left:auto}.user-email{display:none}}
+@media(max-width:600px){.auth-btn{padding:8px 10px;font-size:12px}.auth-modal .modal-body{padding:24px 20px}}
+
 /* ================= MOBILE ================= */
 
 @media(max-width:1100px){
@@ -741,6 +774,15 @@ footer strong{
             type="search"
             placeholder="Quick search..."
         >
+    </div>
+
+    <div class="auth-actions" id="authActions">
+        <button class="auth-btn" id="loginNavBtn" onclick="openAuthModal('login')">Login</button>
+        <button class="auth-btn signup" id="signupNavBtn" onclick="openAuthModal('signup')">Sign Up</button>
+        <div class="user-menu" id="userMenu">
+            <span class="user-email" id="userEmail"></span>
+            <button class="auth-btn" onclick="logoutUser()">Logout</button>
+        </div>
     </div>
 
     <button class="menu" id="menuBtn" onclick="toggleMenu()">&#9776;</button>
@@ -1062,6 +1104,71 @@ footer strong{
 </div>
 
 
+<!-- ================= AUTH MODALS ================= -->
+<div class="modal auth-modal" id="authModal">
+    <div class="modal-box">
+        <button class="close" onclick="closeAuthModal()">&times;</button>
+
+        <div id="authFormView" class="modal-body">
+            <div class="auth-logo">Anime<span>Flex</span></div>
+            <div class="auth-subtitle" id="authSubtitle">Login to your AnimeFlex account</div>
+
+            <div class="auth-message" id="authMessage"></div>
+
+            <form class="auth-form" id="authForm">
+                <div id="nameField" style="display:none;">
+                    <label for="authName">Name</label>
+                    <input id="authName" type="text" autocomplete="name" placeholder="Your name">
+                </div>
+
+                <div>
+                    <label for="authEmail">Email</label>
+                    <input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+                </div>
+
+                <div>
+                    <label for="authPassword">Password</label>
+                    <input id="authPassword" type="password" autocomplete="current-password" placeholder="At least 6 characters" required>
+                </div>
+
+                <button class="auth-submit" id="authSubmit" type="submit">Login</button>
+                <button class="auth-link" id="forgotBtn" type="button" onclick="openResetView()">Forgot password?</button>
+            </form>
+
+            <div class="auth-switch" id="authSwitch">
+                Don't have an account? <button class="auth-link" type="button" onclick="openAuthModal('signup')">Create one</button>
+            </div>
+        </div>
+
+        <div id="resetView" class="modal-body" style="display:none;">
+            <div class="auth-logo">Reset <span>Password</span></div>
+            <div class="auth-subtitle">We'll send a password reset link to your email.</div>
+            <div class="auth-message" id="resetMessage"></div>
+            <form class="auth-form" id="resetForm">
+                <div>
+                    <label for="resetEmail">Email</label>
+                    <input id="resetEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+                </div>
+                <button class="auth-submit" id="resetSubmit" type="submit">Send Reset Email</button>
+                <button class="auth-link" type="button" onclick="openAuthModal('login')">Back to Login</button>
+            </form>
+        </div>
+
+        <div id="verifyView" class="modal-body" style="display:none;">
+            <div class="verify-box">
+                <div class="verify-icon">&#128231;</div>
+                <h2 style="color:#fff;margin-bottom:10px;">Verify your email</h2>
+                <p>A verification email has been sent to:</p>
+                <p><strong id="verifyEmail"></strong></p>
+                <p style="margin-top:12px;">Open that email and click the verification link, then return here and press the button below.</p>
+                <button class="auth-submit" style="width:100%;margin-top:18px;" onclick="checkEmailVerification()">I've Verified My Email</button>
+                <button class="auth-link" style="width:100%;margin-top:8px;" onclick="resendVerificationEmail()">Resend Verification Email</button>
+                <button class="auth-link" style="width:100%;margin-top:4px;" onclick="logoutUser()">Use another account</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- ================= TOAST ================= -->
 
 <div class="toast" id="toast"></div>
@@ -1283,6 +1390,248 @@ document.addEventListener('DOMContentLoaded',function(){
     loadBrowse();
 });
 
+</script>
+
+<!-- ================= FIREBASE AUTHENTICATION ================= -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    sendEmailVerification,
+    sendPasswordResetEmail,
+    onAuthStateChanged,
+    signOut,
+    updateProfile
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDRhUpUevm1KwP05FFuZZMBwMvsKRlHIgE",
+    authDomain: "anime-flex-16788.firebaseapp.com",
+    projectId: "anime-flex-16788",
+    storageBucket: "anime-flex-16788.firebasestorage.app",
+    messagingSenderId: "647736007153",
+    appId: "1:647736007153:web:bcbfbf547da7771d2f4c50",
+    measurementId: "G-8W58DDX0YQ"
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
+
+const authModal = document.getElementById('authModal');
+const authFormView = document.getElementById('authFormView');
+const resetView = document.getElementById('resetView');
+const verifyView = document.getElementById('verifyView');
+const authForm = document.getElementById('authForm');
+const resetForm = document.getElementById('resetForm');
+const authName = document.getElementById('authName');
+const authEmail = document.getElementById('authEmail');
+const authPassword = document.getElementById('authPassword');
+const authSubmit = document.getElementById('authSubmit');
+const forgotBtn = document.getElementById('forgotBtn');
+const nameField = document.getElementById('nameField');
+const authSubtitle = document.getElementById('authSubtitle');
+const authSwitch = document.getElementById('authSwitch');
+const authMessage = document.getElementById('authMessage');
+const resetMessage = document.getElementById('resetMessage');
+let authMode = 'login';
+
+function showAuthMessage(el, message, type='error') {
+    el.textContent = message;
+    el.className = 'auth-message show ' + type;
+}
+function clearAuthMessages(){
+    authMessage.className='auth-message';
+    resetMessage.className='auth-message';
+}
+function friendlyError(error){
+    const code = error && error.code ? error.code : '';
+    const map = {
+        'auth/invalid-email':'Please enter a valid email address.',
+        'auth/user-not-found':'No account was found with this email.',
+        'auth/wrong-password':'Incorrect password.',
+        'auth/invalid-credential':'Incorrect email or password.',
+        'auth/email-already-in-use':'An account already exists with this email.',
+        'auth/weak-password':'Password must be at least 6 characters.',
+        'auth/too-many-requests':'Too many attempts. Please try again later.',
+        'auth/network-request-failed':'Network error. Check your internet connection.',
+        'auth/operation-not-allowed':'Email/password sign-in is not enabled in Firebase.',
+        'auth/user-disabled':'This account has been disabled.'
+    };
+    return map[code] || (error && error.message ? error.message.replace(/^Firebase:\s*/,'') : 'Something went wrong. Please try again.');
+}
+
+window.openAuthModal = function(mode='login'){
+    authMode = mode;
+    clearAuthMessages();
+    authForm.reset();
+    resetForm.reset();
+    authFormView.style.display='block';
+    resetView.style.display='none';
+    verifyView.style.display='none';
+    nameField.style.display = mode === 'signup' ? 'block' : 'none';
+    authName.required = mode === 'signup';
+    authPassword.autocomplete = mode === 'signup' ? 'new-password' : 'current-password';
+    authSubtitle.textContent = mode === 'signup' ? 'Create your free AnimeFlex account' : 'Login to your AnimeFlex account';
+    authSubmit.textContent = mode === 'signup' ? 'Create Account' : 'Login';
+    forgotBtn.style.display = mode === 'signup' ? 'none' : 'block';
+    authSwitch.innerHTML = mode === 'signup'
+        ? 'Already have an account? <button class="auth-link" type="button" onclick="openAuthModal(\'login\')">Login</button>'
+        : 'Don\'t have an account? <button class="auth-link" type="button" onclick="openAuthModal(\'signup\')">Create one</button>';
+    authModal.classList.add('active');
+    document.body.style.overflow='hidden';
+};
+
+window.closeAuthModal = function(){
+    authModal.classList.remove('active');
+    document.body.style.overflow='';
+};
+
+window.openResetView = function(){
+    clearAuthMessages();
+    resetForm.reset();
+    resetView.style.display='block';
+    authFormView.style.display='none';
+    verifyView.style.display='none';
+    document.getElementById('resetEmail').value = authEmail.value.trim();
+};
+
+function showVerifyView(user){
+    authFormView.style.display='none';
+    resetView.style.display='none';
+    verifyView.style.display='block';
+    document.getElementById('verifyEmail').textContent=user.email || '';
+}
+
+async function sendVerification(user, showMessage=true){
+    try{
+        await sendEmailVerification(user);
+        if(showMessage) showToast('Verification email sent. Check your inbox.');
+        return true;
+    }catch(error){
+        if(showMessage) showToast(friendlyError(error));
+        return false;
+    }
+}
+
+window.resendVerificationEmail = async function(){
+    const user=auth.currentUser;
+    if(!user){openAuthModal('login');return;}
+    await sendVerification(user,true);
+};
+
+window.checkEmailVerification = async function(){
+    const user=auth.currentUser;
+    if(!user){openAuthModal('login');return;}
+    try{
+        await user.reload();
+        const refreshed=auth.currentUser;
+        if(refreshed && refreshed.emailVerified){
+            showToast('Email verified successfully! Welcome to AnimeFlex.');
+            closeAuthModal();
+            updateAuthUI(refreshed);
+        }else{
+            showToast('Email is not verified yet. Open the verification email first.');
+        }
+    }catch(error){showToast(friendlyError(error));}
+};
+
+function updateAuthUI(user){
+    const loginBtn=document.getElementById('loginNavBtn');
+    const signupBtn=document.getElementById('signupNavBtn');
+    const userMenu=document.getElementById('userMenu');
+    const userEmail=document.getElementById('userEmail');
+    if(user){
+        loginBtn.style.display='none';
+        signupBtn.style.display='none';
+        userMenu.style.display='flex';
+        userEmail.textContent=user.displayName || user.email || 'User';
+    }else{
+        loginBtn.style.display='inline-block';
+        signupBtn.style.display='inline-block';
+        userMenu.style.display='none';
+        userEmail.textContent='';
+    }
+}
+
+window.logoutUser = async function(){
+    try{
+        await signOut(auth);
+        closeAuthModal();
+        updateAuthUI(null);
+        showToast('You have been logged out.');
+    }catch(error){showToast(friendlyError(error));}
+};
+
+authForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    clearAuthMessages();
+    const email=authEmail.value.trim();
+    const password=authPassword.value;
+    if(!email || !password)return;
+    authSubmit.disabled=true;
+    authSubmit.textContent=authMode==='signup'?'Creating...':'Logging in...';
+    try{
+        if(authMode==='signup'){
+            const name=authName.value.trim();
+            if(name.length < 2){
+                showAuthMessage(authMessage,'Please enter your name.');
+                return;
+            }
+            const result=await createUserWithEmailAndPassword(auth,email,password);
+            if(name) await updateProfile(result.user,{displayName:name});
+            await sendVerification(result.user,false);
+            showVerifyView(result.user);
+            showToast('Account created! Check your email to verify it.');
+        }else{
+            const result=await signInWithEmailAndPassword(auth,email,password);
+            if(!result.user.emailVerified){
+                await sendVerification(result.user,false);
+                showVerifyView(result.user);
+                showToast('Please verify your email before continuing.');
+            }else{
+                closeAuthModal();
+                updateAuthUI(result.user);
+                showToast('Welcome back to AnimeFlex!');
+            }
+        }
+    }catch(error){
+        showAuthMessage(authMessage,friendlyError(error));
+    }finally{
+        authSubmit.disabled=false;
+        authSubmit.textContent=authMode==='signup'?'Create Account':'Login';
+    }
+});
+
+resetForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    resetMessage.className='auth-message';
+    const email=document.getElementById('resetEmail').value.trim();
+    if(!email)return;
+    const btn=document.getElementById('resetSubmit');
+    btn.disabled=true;
+    btn.textContent='Sending...';
+    try{
+        await sendPasswordResetEmail(auth,email);
+        showAuthMessage(resetMessage,'Password reset email sent. Check your inbox and follow the link to create a new password.','success');
+    }catch(error){
+        showAuthMessage(resetMessage,friendlyError(error));
+    }finally{
+        btn.disabled=false;
+        btn.textContent='Send Reset Email';
+    }
+});
+
+authModal.addEventListener('click',function(e){if(e.target===authModal)window.closeAuthModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape' && authModal.classList.contains('active'))window.closeAuthModal();});
+
+onAuthStateChanged(auth,function(user){
+    updateAuthUI(user);
+    if(user && !user.emailVerified && authModal.classList.contains('active')){
+        showVerifyView(user);
+    }
+});
 </script>
 
 </body>
