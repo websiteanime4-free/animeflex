@@ -4246,5 +4246,50 @@ onAuthStateChanged(
 
 </script>
 
+
+<script>
+(function () {
+  const BASE = "/animeflex/";
+
+  function fixImages(root) {
+    const imgs = root.querySelectorAll ? root.querySelectorAll("img") : [];
+    imgs.forEach(function (img) {
+      const src = img.getAttribute("src");
+      if (!src) return;
+
+      // Keep data URLs and absolute/external URLs exactly as they are.
+      if (
+        src.startsWith("data:") ||
+        src.startsWith("http://") ||
+        src.startsWith("https://") ||
+        src.startsWith("/animeflex/")
+      ) return;
+
+      const clean = src.replace(/^\.?\//, "");
+      if (clean.startsWith("images/")) {
+        img.src = BASE + clean;
+      }
+    });
+  }
+
+  function run() {
+    fixImages(document);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run);
+  } else {
+    run();
+  }
+
+  new MutationObserver(function () {
+    fixImages(document);
+  }).observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+})();
+</script>
+
 </body>
 </html>
