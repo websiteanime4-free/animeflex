@@ -3186,17 +3186,18 @@ function updateWatchLinks(){
 
 
     const youtubeLink =
-        youtubeBase
-        ? youtubeBase + youtubeQuery
-        : "https://www.youtube.com/results?search_query=" +
-          encodeURIComponent(
-              title +
-              " " +
-              season.name +
-              " Episode " +
-              episode
-          );
-
+    selectedLanguage === "Hindi"
+    ? "https://www.youtube.com/@MuseOfficialAsia"
+    : youtubeBase
+    ? youtubeBase + youtubeQuery
+    : "https://www.youtube.com/results?search_query=" +
+      encodeURIComponent(
+          title +
+          " " +
+          season.name +
+          " Episode " +
+          episode
+      );
 
     const legalQuery =
         encodeURIComponent(
