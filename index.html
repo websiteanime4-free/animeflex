@@ -2244,6 +2244,74 @@ let watchlist =
    FALLBACK IMAGE
 ========================================================= */
 
+
+/* =========================================================
+   POSTER RESOLVER
+   Existing poster URLs are kept first. If an old CDN URL
+   fails, fetch the current poster from Jikan's public API.
+========================================================= */
+
+const posterCache = {};
+
+async function resolvePoster(anime, img){
+    if(!anime || !img) return;
+
+    const key = String(anime.id);
+
+    if(posterCache[key]){
+        img.src = posterCache[key];
+        return;
+    }
+
+    try{
+        const response = await fetch(
+            "https://api.jikan.moe/v4/anime?q=" +
+            encodeURIComponent(anime.title) +
+            "&limit=1"
+        );
+
+        if(!response.ok) throw new Error("Poster API error");
+
+        const data = await response.json();
+
+        const result =
+            data &&
+            Array.isArray(data.data) &&
+            data.data.length
+            ? data.data[0]
+            : null;
+
+        const poster =
+            result &&
+            result.images &&
+            result.images.jpg &&
+            (
+                result.images.jpg.large_image_url ||
+                result.images.jpg.image_url
+            );
+
+        if(poster){
+            posterCache[key] = poster;
+            img.onerror = function(){
+                this.onerror = null;
+                this.src = fallbackImage();
+            };
+            img.src = poster;
+            anime.poster = poster;
+        }else{
+            img.src = fallbackImage();
+        }
+
+    }catch(error){
+        console.warn(
+            "Could not load poster for:",
+            anime.title,
+            error
+        );
+        img.src = fallbackImage();
+    }
+}
+
 function fallbackImage(){
 
     return "data:image/svg+xml;charset=UTF-8," +
@@ -2367,7 +2435,7 @@ function createCard(anime){
 
         this.onerror = null;
 
-        this.src = fallbackImage();
+        resolvePoster(anime, this);
 
     };
 
@@ -2853,7 +2921,7 @@ function openAnime(anime){
 
         this.onerror = null;
 
-        this.src = fallbackImage();
+        resolvePoster(anime, this);
 
     };
 
@@ -4244,51 +4312,6 @@ onAuthStateChanged(
     }
 );
 
-</script>
-
-
-<script>
-(function () {
-  const BASE = "/animeflex/";
-
-  function fixImages(root) {
-    const imgs = root.querySelectorAll ? root.querySelectorAll("img") : [];
-    imgs.forEach(function (img) {
-      const src = img.getAttribute("src");
-      if (!src) return;
-
-      // Keep data URLs and absolute/external URLs exactly as they are.
-      if (
-        src.startsWith("data:") ||
-        src.startsWith("http://") ||
-        src.startsWith("https://") ||
-        src.startsWith("/animeflex/")
-      ) return;
-
-      const clean = src.replace(/^\.?\//, "");
-      if (clean.startsWith("images/")) {
-        img.src = BASE + clean;
-      }
-    });
-  }
-
-  function run() {
-    fixImages(document);
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", run);
-  } else {
-    run();
-  }
-
-  new MutationObserver(function () {
-    fixImages(document);
-  }).observe(document.documentElement, {
-    childList: true,
-    subtree: true
-  });
-})();
 </script>
 
 </body>
