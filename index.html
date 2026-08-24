@@ -1453,7 +1453,7 @@ footer strong{
                             </label>
 
                             <select id="seasonSelect"
-                                onchange="handleSeasonChange()">
+                                onchange="changeSeason()">
                             </select>
 
                         </div>
@@ -1465,7 +1465,7 @@ footer strong{
                             </label>
 
                             <select id="episodeSelect"
-                                onchange="updateEpisodeInfo(false)">
+                                onchange="updateEpisodeInfo()">
                             </select>
 
                         </div>
@@ -1511,7 +1511,7 @@ footer strong{
                             class="watch-link"
                             target="_blank"
                             rel="noopener noreferrer">
-                            ▶ YouTube
+                            ▶ Official YouTube
                         </a>
 
                         <a
@@ -2899,46 +2899,38 @@ function closeModal(){
 ========================================================= */
 
 function setupSeasons(){
-    const seasonSelect = document.getElementById("seasonSelect");
-    if(!seasonSelect || !currentAnime) return;
 
-    seasonSelect.innerHTML = "";
+    const select =
+        document.getElementById("seasonSelect");
 
-    currentAnime.seasons.forEach(function(season,index){
-        const option = document.createElement("option");
-        option.value = String(index);
-        option.textContent = season.name + " — " + season.episodes + " episodes";
-        seasonSelect.appendChild(option);
-    });
+    select.innerHTML = "";
 
-    seasonSelect.selectedIndex = 0;
-    setupEpisodes();
-}
+    if(!currentAnime) return;
 
 
-/* =========================================================
-   EPISODE SELECT
-========================================================= */
+    currentAnime.seasons.forEach(
+        function(season,index){
 
-function setupEpisodes(){
-    const seasonSelect = document.getElementById("seasonSelect");
-    const episodeSelect = document.getElementById("episodeSelect");
+            const option =
+                document.createElement("option");
 
-    if(!seasonSelect || !episodeSelect || !currentAnime) return;
+            option.value = index;
 
-    const season = currentAnime.seasons[Number(seasonSelect.value)];
-    episodeSelect.innerHTML = "";
+            option.textContent =
+                season.name +
+                " — " +
+                season.episodes +
+                " episodes";
 
-    if(!season) return;
+            select.appendChild(option);
 
-    for(let i = 1; i <= Number(season.episodes); i++){
-        const option = document.createElement("option");
-        option.value = String(i);
-        option.textContent = "Episode " + i;
-        episodeSelect.appendChild(option);
-    }
+        }
+    );
 
-    episodeSelect.selectedIndex = 0;
+    select.value = "0";
+
+    setupEpisodes(1);
+
 }
 
 
@@ -2946,10 +2938,76 @@ function setupEpisodes(){
    SEASON CHANGE
 ========================================================= */
 
-function handleSeasonChange(){
+function changeSeason(){
+
     if(!currentAnime) return;
-    setupEpisodes();
-    updateEpisodeInfo(false);
+
+    // A new season starts from Episode 1.
+    setupEpisodes(1);
+
+    updateEpisodeInfo();
+
+}
+
+
+/* =========================================================
+   EPISODE SELECT
+========================================================= */
+
+function setupEpisodes(selectedEpisode = 1){
+
+    const seasonSelect =
+        document.getElementById("seasonSelect");
+
+    const episodeSelect =
+        document.getElementById("episodeSelect");
+
+    if(!currentAnime) return;
+
+    const seasonIndex =
+        parseInt(seasonSelect.value || 0);
+
+    const season =
+        currentAnime.seasons[seasonIndex];
+
+    if(!season) return;
+
+    const previousEpisode =
+        parseInt(
+            episodeSelect.value || selectedEpisode || 1
+        );
+
+    episodeSelect.innerHTML = "";
+
+    for(
+        let i=1;
+        i<=season.episodes;
+        i++
+    ){
+
+        const option =
+            document.createElement("option");
+
+        option.value = i;
+
+        option.textContent =
+            "Episode " + i;
+
+        episodeSelect.appendChild(option);
+
+    }
+
+    const safeEpisode =
+        Math.min(
+            Math.max(
+                selectedEpisode || previousEpisode || 1,
+                1
+            ),
+            season.episodes
+        );
+
+    episodeSelect.value = String(safeEpisode);
+
 }
 
 
@@ -2957,26 +3015,45 @@ function handleSeasonChange(){
    UPDATE EPISODE INFO
 ========================================================= */
 
-function updateEpisodeInfo(rebuildEpisodes = true){
+function updateEpisodeInfo(){
+
     if(!currentAnime) return;
 
-    if(rebuildEpisodes){
-        setupEpisodes();
-    }
+    const seasonSelect =
+        document.getElementById("seasonSelect");
 
-    const seasonSelect = document.getElementById("seasonSelect");
-    const episodeSelect = document.getElementById("episodeSelect");
-    const season = currentAnime.seasons[Number(seasonSelect.value)];
+    const episodeSelect =
+        document.getElementById("episodeSelect");
+
+
+    const seasonIndex =
+        parseInt(seasonSelect.value || 0);
+
+    const season =
+        currentAnime.seasons[seasonIndex];
 
     if(!season) return;
 
-    const episode = Number(episodeSelect.value || 1);
 
-    document.getElementById("episodeInfo").innerHTML =
-        "<strong>" + currentAnime.title + "</strong> — " +
-        season.name + " — Episode " + episode + " of " + season.episodes;
+    const episode =
+        parseInt(episodeSelect.value || 1);
+
+
+    document.getElementById(
+        "episodeInfo"
+    ).innerHTML =
+        "<strong>" +
+        currentAnime.title +
+        "</strong> — " +
+        season.name +
+        " — Episode " +
+        episode +
+        " of " +
+        season.episodes;
+
 
     updateWatchLinks();
+
 }
 
 
@@ -3054,8 +3131,36 @@ function updateWatchLinks(){
         currentAnime.seasons[seasonIndex];
 
 
+    if(!season) return;
+
+
     const title =
         currentAnime.title;
+
+
+    /*
+      Official YouTube channels by language.
+
+      Hindi  -> Muse India
+      English -> Crunchyroll Dubs
+      Japanese -> Ani-One Asia
+
+      These links search inside the official channel rather than
+      linking to unknown/unofficial uploads. Availability varies
+      by title, episode and territory.
+    */
+    const officialYouTubeChannels = {
+
+        Hindi:
+        "https://www.youtube.com/@MuseIndia/search?query=",
+
+        English:
+        "https://www.youtube.com/@crunchyrolldubs/search?query=",
+
+        Japanese:
+        "https://www.youtube.com/@AniOneAsia/search?query="
+
+    };
 
 
     const youtubeQuery =
@@ -3064,29 +3169,52 @@ function updateWatchLinks(){
             " " +
             season.name +
             " Episode " +
-            episode +
-            " " +
-            selectedLanguage +
-            " official"
+            episode
         );
+
+
+    const youtubeBase =
+        officialYouTubeChannels[
+            selectedLanguage
+        ];
+
+
+    const youtubeLink =
+        youtubeBase
+        ? youtubeBase + youtubeQuery
+        : "https://www.youtube.com/results?search_query=" +
+          encodeURIComponent(
+              title +
+              " " +
+              season.name +
+              " Episode " +
+              episode
+          );
 
 
     const legalQuery =
         encodeURIComponent(
             title +
-            " episode " +
+            " " +
+            season.name +
+            " Episode " +
             episode +
             " " +
             selectedLanguage +
-            " legal streaming"
+            " official legal"
         );
 
 
-    document.getElementById(
-        "youtubeWatchLink"
-    ).href =
-        "https://www.youtube.com/results?search_query=" +
-        youtubeQuery;
+    const youtubeButton =
+        document.getElementById(
+            "youtubeWatchLink"
+        );
+
+    youtubeButton.href = youtubeLink;
+
+    youtubeButton.textContent =
+        "▶ Official YouTube — " +
+        selectedLanguage;
 
 
     document.getElementById(
