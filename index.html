@@ -2357,13 +2357,11 @@ function createCard(anime){
     const img =
         document.createElement("img");
 
-    img.alt = anime.title || "Anime poster";
+    img.src = anime.poster;
+
+    img.alt = anime.title;
 
     img.loading = "lazy";
-
-    img.decoding = "async";
-
-    img.src = anime.poster || fallbackImage();
 
     img.onerror = function(){
 
@@ -2457,11 +2455,7 @@ function renderGrid(gridId,list){
 
     grid.innerHTML = "";
 
-    if(!Array.isArray(list)) return;
-
     list.forEach(function(anime){
-
-        if(!anime) return;
 
         grid.appendChild(
             createCard(anime)
@@ -3158,8 +3152,7 @@ function updateWatchLinks(){
     const officialYouTubeChannels = {
 
         Hindi:
-        "Hindi:
-        "https://www.youtube.com/@MuseIndiaChannel",",
+        "https://www.youtube.com/@MuseIndiaChannel",
 
         English:
         "https://www.youtube.com/@crunchyrolldubs/search?query=",
@@ -3187,18 +3180,19 @@ function updateWatchLinks(){
 
 
     const youtubeLink =
-    selectedLanguage === "Hindi"
-    ? "https://www.youtube.com/@MuseOfficialAsia"
-    : youtubeBase
-    ? youtubeBase + youtubeQuery
-    : "https://www.youtube.com/results?search_query=" +
-      encodeURIComponent(
-          title +
-          " " +
-          season.name +
-          " Episode " +
-          episode
-      );
+        selectedLanguage === "Hindi"
+        ? "https://www.youtube.com/@MuseIndiaChannel"
+        : youtubeBase
+        ? youtubeBase + youtubeQuery
+        : "https://www.youtube.com/results?search_query=" +
+          encodeURIComponent(
+              title +
+              " " +
+              season.name +
+              " Episode " +
+              episode
+          );
+
 
     const legalQuery =
         encodeURIComponent(
@@ -4251,68 +4245,6 @@ onAuthStateChanged(
     }
 );
 
-</script>
-
-
-<script>
-(function () {
-  const BASE = "/animeflex/";
-
-  function fixImages(root) {
-    const imgs = root.querySelectorAll ? root.querySelectorAll("img") : [];
-    imgs.forEach(function (img) {
-      const src = img.getAttribute("src");
-      if (!src) return;
-
-      // Keep data URLs and absolute/external URLs exactly as they are.
-      if (
-        src.startsWith("data:") ||
-        src.startsWith("http://") ||
-        src.startsWith("https://") ||
-        src.startsWith("/animeflex/")
-      ) return;
-
-      const clean = src.replace(/^\.?\//, "");
-      if (clean.startsWith("images/")) {
-        img.src = BASE + clean;
-      }
-    });
-  }
-
-  function run() {
-    fixImages(document);
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", run);
-  } else {
-    run();
-  }
-
-  new MutationObserver(function () {
-    fixImages(document);
-  }).observe(document.documentElement, {
-    childList: true,
-    subtree: true
-  });
-})();
-</script>
-
-
-<script>
-/* AnimeFlex startup safety: keep the anime sections rendering even if an
-   optional feature (auth, analytics, etc.) throws an error. */
-window.addEventListener("load", function () {
-  try { if (typeof loadTrending === "function") loadTrending(); } catch (e) {
-    console.error("Trending render error:", e);
-  }
-  try { if (typeof loadExplore === "function") loadExplore(); } catch (e) {
-    console.error("Explore render error:", e);
-  }
-  try { if (typeof loadBrowse === "function") loadBrowse(); } catch (e) {
-    console.error("Browse render error:", e);
-  }
-});
 </script>
 
 </body>
